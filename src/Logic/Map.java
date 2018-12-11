@@ -1,12 +1,33 @@
 package Logic;
 
-import Utils.Position;
+import Animals.Cat;
+import Animals.Dog;
 
-public class Map {
-    public String toString() {
-        return null;
+import java.util.ArrayList;
+
+public class Map extends MainObject {
+    private int mapWidth;
+    private int mapHeight;
+    private Cat cat;
+    private Dog dog;
+    private ArrayList<MiddleMapObject>[][] objects;
+    private double[][] grass;
+
+
+    public Map(Game game, int mapWidth, int mapHeight) {
+        super(game);
+        this.mapWidth = mapWidth;
+        this.mapHeight = mapHeight;
+//        objects = new ArrayList[mapWidth][];
+//        for (int i = 0; i < mapWidth; i++)
+//            for (int j = 0; j < mapHeight; j++) {
+//
+//            }
+
     }
 
-    public void plant(Position position) {
+    @Override
+    protected void increaseTurn() {
+
     }
 }

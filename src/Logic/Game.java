@@ -1,17 +1,11 @@
 package Logic;
 
-import Animals.Cat;
-import Animals.Dog;
 import Buildings.BaseBuilding;
-
-import java.util.ArrayList;
+import Utils.Position;
 
 public class Game {
-    private Cat cat;
-    private Dog dog;
     private BaseBuilding[] buildings = new BaseBuilding[6];
     private Level currentLevel;
-    //private ArrayList<Level> levels;
 
     public BaseBuilding getBuilding(int index) {
         return null;
@@ -36,4 +30,13 @@ public class Game {
 
     public void loadCustom(String path) {
     }
+
+    private Game() {
+
+    }
+
+    public static void decrasePlant(Position position) {
+
+    }
+
 }
