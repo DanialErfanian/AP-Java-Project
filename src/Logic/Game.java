@@ -9,9 +9,9 @@ public class Game {
     private Level currentLevel;
     private Map map;
 
-    public void inceaseTurn(){
+    public void inceaseTurn() {
         map.increaseTurn();
-        for(int i = 0 ; i < buildings.length; i ++)
+        for (int i = 0; i < buildings.length; i++)
             getBuilding(i).increaseTurn();
     }
 
