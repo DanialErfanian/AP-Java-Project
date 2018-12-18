@@ -2,14 +2,16 @@ package Animals;
 
 import Logic.Game;
 import Products.Product;
+import Utils.Position;
 
 abstract public class ProducerAnimal extends BaseAnimal {
     final int maxHungriness = 100;
     private int productionRate, currentProgress, hungriness;
 
-    public ProducerAnimal(Game game) {
-        super(game);
+    ProducerAnimal(Game game, Position position) {
+        super(game, position);
     }
+
 
     abstract Product getProduct();
 
