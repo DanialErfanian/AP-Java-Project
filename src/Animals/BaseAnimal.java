@@ -7,8 +7,9 @@ import Utils.Position;
 abstract public class BaseAnimal extends MiddleMapObject {
     private Position position;
 
-    public BaseAnimal(Game game) {
+    BaseAnimal(Game game, Position position) {
         super(game);
+        this.position = position;
     }
 
     public Position getPosition() {

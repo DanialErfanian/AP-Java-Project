@@ -1,10 +1,13 @@
 package Animals;
 
 import Logic.Game;
+import Utils.Position;
 
 public class Bear extends WildAnimal {
-    public Bear(Game game) {
-        super(game);
+
+
+    Bear(Game game, Position position) {
+        super(game, position);
     }
 
     @Override
