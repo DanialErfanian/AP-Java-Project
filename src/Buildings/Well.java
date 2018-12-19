@@ -1,16 +1,18 @@
 package Buildings;
 
+import Logic.Constants;
 import Logic.Game;
 
 public class Well extends BaseBuilding {
-    private double capacity, remainedWater;
+    private int level = 0;
+    private double capacity = Constants.WELL_INITIAL_CAPACITY, remainedWater = capacity;
 
     public Well(Game game) {
         super(game);
     }
 
     @Override
-    protected void increaseTurn() {
+    public void increaseTurn() {
         // Empty
     }
 
@@ -34,10 +36,20 @@ public class Well extends BaseBuilding {
         return null;
     }
 
-    public void fill() {
+    public boolean fill() {
+        int cost = Constants.WELL_INITIAL_REFILL_COST + level * Constants.WELL_UPGRADE_INCREASE_REFILL_COST;
+        if (!getGame().decreaseMoney(cost))
+            return false;
+        remainedWater = capacity;
+        return true;
     }
 
     public boolean upgrade() {
-        return false;
+        int cost = Constants.WELL_UPGRADE_COST;
+        if (!getGame().decreaseMoney(cost))
+            return false;
+        capacity += Constants.WELL_UPGRADE_INCREASE_CAPACITY;
+        level++;
+        return true;
     }
 }

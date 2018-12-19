@@ -10,8 +10,11 @@ public class GroundProduct extends MiddleMapObject {
     int amount = 1;
     private int constructTime = 5;
 
-    public GroundProduct(Game game) {
+    public GroundProduct(Game game, Product type, Position position, int amount) {
         super(game);
+        this.type = type;
+        this.position = position;
+        this.amount = amount;
     }
 
     @Override
