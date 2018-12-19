@@ -19,10 +19,12 @@ public class Warehouse extends BaseBuilding {
     }
 
     boolean addProduct(Product product, int count) {
-        if (remainedCapacity < count && remainedCapacity - count <= capacity) {
+        if (remainedCapacity < count) {
             return false;
         }
         int current = this.getProductCount(product);
+        if (current < -count)
+            return false;
         products.put(product, current + count);
         remainedCapacity -= count;
         return true;
