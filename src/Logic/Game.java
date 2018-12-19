@@ -1,6 +1,5 @@
 package Logic;
 
-import Buildings.BaseBuilding;
 import Buildings.Warehouse;
 import Buildings.Workshop;
 import Utils.Position;
@@ -40,11 +39,11 @@ public class Game {
         this.money = money;
     }
 
-    public BaseBuilding getWorkshop(int index) {
+    public Workshop getWorkshop(int index) {
         return workshops[index];
     }
 
-    public void AddBuilding(BaseBuilding building) {
+    public void addWorkshop(Workshop workshop) {
         //TODO: take care of the number of warehouses
     }
 
