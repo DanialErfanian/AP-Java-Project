@@ -1,18 +1,34 @@
 package Logic;
 
-import Buildings.BaseBuilding;
+import Buildings.Warehouse;
+import Buildings.Workshop;
 import Utils.Position;
 
 public class Game {
     private int money = Constants.START_MONEY;
-    private BaseBuilding[] buildings = new BaseBuilding[6];
+    private Workshop[] workshops = new Workshop[6];
     private Level currentLevel;
     private Map map;
 
+    public Map getMap() {
+        return map;
+    }
+
+    public Warehouse getWarehouse() {
+        return map.getWarehouse();
+    }
+
+    public boolean decreaseMoney(int x) {
+        if (money < x)
+            return false;
+        money -= x;
+        return true;
+    }
+
     public void inceaseTurn() {
         map.increaseTurn();
-        for (int i = 0; i < buildings.length; i++)
-            getBuilding(i).increaseTurn();
+        for (int i = 0; i < workshops.length; i++)
+            getWorkshop(i).increaseTurn();
     }
 
     public int getMoney() {
@@ -23,11 +39,11 @@ public class Game {
         this.money = money;
     }
 
-    public BaseBuilding getBuilding(int index) {
-        return buildings[index];
+    public Workshop getWorkshop(int index) {
+        return workshops[index];
     }
 
-    public void AddBuilding(BaseBuilding building) {
+    public void addWorkshop(Workshop workshop) {
         //TODO: take care of the number of warehouses
     }
 

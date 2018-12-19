@@ -3,6 +3,8 @@ package Logic;
 import Animals.Cat;
 import Animals.Dog;
 import Animals.Lion;
+import Buildings.Warehouse;
+import Buildings.Well;
 import Utils.Position;
 
 import java.util.ArrayList;
@@ -13,12 +15,22 @@ public class Map extends MainObject {
     private int mapHeight;
     private Cat cat;
     private Dog dog;
+    private Well well;
     private ArrayList<ArrayList<ArrayList<MiddleMapObject>>> objects;
     private double[][] grass;
     private int lastWildAnimalTime = 0;
+    private Warehouse warehouse;
 
-    private void addObject(int x, int y, MiddleMapObject object) {
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void addObject(int x, int y, MiddleMapObject object) {
         objects.get(x).get(y).add(object);
+    }
+
+    public void addObject(Position position, MiddleMapObject object) {
+        addObject(position.getX(), position.getY(), object);
     }
 
     public int getMapWidth() {
@@ -67,6 +79,7 @@ public class Map extends MainObject {
         }
         cat.increaseTurn();
         dog.increaseTurn();
+        well.increaseTurn();
         for (int i = 0; i < mapWidth; i++)
             for (int j = 0; j < mapHeight; j++)
                 for (MiddleMapObject object : objects.get(i).get(j))
