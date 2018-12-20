@@ -27,7 +27,7 @@ abstract public class Vehicle extends MainObject {
         return onTheWay;
     }
 
-    abstract void upgrade();
+    public abstract boolean upgrade();
 
     abstract public String toString();
 

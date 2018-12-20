@@ -28,8 +28,8 @@ public class Helicopter extends Vehicle {
     }
 
     @Override
-    void upgrade() {
-
+    public boolean upgrade() {
+        return false;
     }
 
     @Override

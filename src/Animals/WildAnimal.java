@@ -3,7 +3,7 @@ package Animals;
 import Logic.Game;
 import Utils.Position;
 
-abstract class WildAnimal extends BaseAnimal {// TODO increaseTurn must run catch if it's needed
+abstract public class WildAnimal extends BaseAnimal {// TODO increaseTurn must run catch if it's needed
     private boolean catched = false;
     private int catchedTime = 0;
 
@@ -11,6 +11,9 @@ abstract class WildAnimal extends BaseAnimal {// TODO increaseTurn must run catc
         super(game, position);
     }
 
+    public void cage(){
+        catched = true;
+    }
 
     private void escape() {
 

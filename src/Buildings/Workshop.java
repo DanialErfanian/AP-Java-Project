@@ -9,16 +9,22 @@ import Utils.Position;
 import java.util.ArrayList;
 
 public class Workshop extends BaseBuilding {
+    private String name;
     private int runningThreads = 0;
     private int progress = 0;
     private ArrayList<Product> inputProducts;
     private Product outputProduct;
     private int level = 1;
 
-    public Workshop(Game game, ArrayList<Product> inputProducts, Product outputProduct) {
+    public Workshop(Game game, ArrayList<Product> inputProducts, Product outputProduct, String name) {
         super(game);
         this.inputProducts = inputProducts;
         this.outputProduct = outputProduct;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String toString() {
