@@ -3,6 +3,7 @@ package Logic;
 public class Constants {
     private Constants() {
     }
+    public static final int GROUND_PRODUCT_TIMEOUT = 5;
 
     public static final int HEN_BUY_COST = 100; // coin
 

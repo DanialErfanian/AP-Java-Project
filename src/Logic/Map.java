@@ -23,7 +23,7 @@ public class Map extends MainObject {
     private int lastWildAnimalTime = 0;
     private Warehouse warehouse;
 
-    public Well getWell() {
+    Well getWell() {
         return well;
     }
 

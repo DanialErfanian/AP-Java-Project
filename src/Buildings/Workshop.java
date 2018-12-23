@@ -15,12 +15,14 @@ public class Workshop extends BaseBuilding {
     private ArrayList<Product> inputProducts;
     private Product outputProduct;
     private int level = 1;
+    private Position nearestPosition;
 
-    public Workshop(Game game, ArrayList<Product> inputProducts, Product outputProduct, String name) {
+    public Workshop(Game game, ArrayList<Product> inputProducts, Product outputProduct, String name, Position nearestPosition) {
         super(game);
         this.inputProducts = inputProducts;
         this.outputProduct = outputProduct;
         this.name = name;
+        this.nearestPosition = nearestPosition;
     }
 
     public String getName() {
@@ -28,7 +30,13 @@ public class Workshop extends BaseBuilding {
     }
 
     public String toString() {
-        return null;
+        return "Workshop :" +
+                "\nname: " + name +
+                "\ninputProduct" + inputProducts +
+                "\noutputProduct" + outputProduct +
+                "\nnearestPosition" + nearestPosition +
+                "\nlevel: " +
+                level;
     }// get info
 
     public boolean upgrade() {
@@ -55,15 +63,10 @@ public class Workshop extends BaseBuilding {
         return "Workshop started handling order.";
     }
 
-    private Position getNearestPosition() {
-        // TODO
-        return null;
-    }
-
     public void increaseTurn() {
         progress--;
         if (progress == 0) {
-            Position position = getNearestPosition();
+            Position position = nearestPosition;
             GroundProduct object = new GroundProduct(getGame(), outputProduct, position, runningThreads);
             getGame().getMap().addObject(position, object);
             runningThreads = 0;

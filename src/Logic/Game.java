@@ -14,6 +14,10 @@ public class Game {
     private Truck truck;
     private Helicopter helicopter;
 
+    public Game() {
+
+    }
+
     public Map getMap() {
         return map;
     }
@@ -30,6 +34,8 @@ public class Game {
     }
 
     public void increaseTurn() {
+        // TODO: check if level requirements satisfied level is done
+        // TODO: max Level? :thinking:
         map.increaseTurn();
         for (int i = 0; i < workshops.length; i++)
             getWorkshop(i).increaseTurn();
@@ -48,7 +54,7 @@ public class Game {
         this.money = money;
     }
 
-    public Workshop getWorkshop(int index) {
+    private Workshop getWorkshop(int index) {
         return workshops[index];
     }
 
@@ -56,7 +62,8 @@ public class Game {
         //TODO: take care of the number of warehouses
     }
 
-    public String getInfo() {
+    @Override
+    public String toString() {
         return null;
     }
 
@@ -72,12 +79,7 @@ public class Game {
     public void loadCustom(String path) {
     }
 
-    private Game() {
-
-    }
-
     public static void decrasePlant(Position position) {
-
     }
 
     public void buy(String animalName) {
@@ -142,5 +144,8 @@ public class Game {
         return false;
     }
 
+    private void relax() {
+
+    }
 
 }
