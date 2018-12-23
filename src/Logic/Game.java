@@ -37,8 +37,7 @@ public class Game {
         // TODO: check if level requirements satisfied level is done
         // TODO: max Level? :thinking:
         map.increaseTurn();
-        for (int i = 0; i < workshops.length; i++)
-            getWorkshop(i).increaseTurn();
+        for (Workshop workshop : workshops) workshop.increaseTurn();
     }
 
     public void turn(int count) {
