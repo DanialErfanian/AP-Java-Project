@@ -60,7 +60,7 @@ public class ProductPool {
 
     public void clear(){
         products.clear();
-        remainedCapacity = 0;
+        remainedCapacity = capacity;
     }
 
     public Set<Map.Entry<Product, Integer>> getEnrtySet(){
