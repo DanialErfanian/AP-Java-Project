@@ -1,29 +1,55 @@
 package Transportation;
 
+import Logic.Constants;
 import Logic.Game;
+import Products.Product;
+import Utils.ProductPool;
+
+import java.util.HashMap;
 
 public class Truck extends Vehicle {
 
     public Truck(Game game) {
         super(game);
+        int capacity = Constants.TRUCK_INITIAL_CAPACITY;
+        products = new ProductPool(capacity);
+    }
+
+    int getUpgradeCost() {
+        return Constants.TRUCK_UPGRADE_COST;
     }
 
     @Override
-    public boolean upgrade() {
-        return false;
+    int getUpgradeIncreaseCapacity() {
+        return Constants.TRUCK_UPGRADE_INCREASE_CAPACITY;
     }
 
-    public String toString() {
-        return null;
+    private int getProfit() {
+        int sum = 0;
+        for (HashMap.Entry<Product, Integer> entry : products.getEnrtySet()) {
+            Product product = entry.getKey();
+            int count = entry.getValue();
+            sum += product.getBuyProfit() * count;
+        }
+        return sum;
     }
 
     @Override
     public void increaseTurn() {
-
+        if (progress == 0) {
+            getGame().increaseMoney(getProfit());
+            onTheWay = false;
+            clear();
+        } else
+            progress--;
     }
 
     @Override
-    public void done() {
-
+    public boolean go() {
+        if (onTheWay)
+            return false;
+        onTheWay = true;
+        progress = Constants.TRUCK_JOB_PROGRESS;
+        return true;
     }
 }

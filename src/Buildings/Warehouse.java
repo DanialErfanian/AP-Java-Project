@@ -3,43 +3,31 @@ package Buildings;
 import Logic.Constants;
 import Logic.Game;
 import Products.Product;
-
-import java.util.HashMap;
+import Utils.ProductPool;
 
 public class Warehouse extends BaseBuilding {
-    private int capacity = Constants.WAREHOUSE_INITIAL_CAPACITY;
-    private int remainedCapacity = capacity;
     private int level = 1;
-    private HashMap<Product, Integer> products = new HashMap<>();
+    private ProductPool products = new ProductPool(Constants.WAREHOUSE_INITIAL_CAPACITY);
     //TODO: add json constructor
-
-
-    int getProductCount(Product product) {
-        return products.getOrDefault(product, 0);
-    }
-
-    public boolean addProduct(Product product, int count) {
-        if (remainedCapacity < count) {
-            return false;
-        }
-        int current = this.getProductCount(product);
-        if (current < -count)
-            return false;
-        products.put(product, current + count);
-        remainedCapacity -= count;
-        return true;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public int getRemainedCapacity() {
-        return remainedCapacity;
-    }
 
     public Warehouse(Game game) {
         super(game);
+    }
+
+    int getProductCount(Product product) {
+        return products.getProductCount(product);
+    }
+
+    public boolean addProduct(Product product, int count) {
+        return products.addProduct(product, count);
+    }
+
+    public int getCapacity() {
+        return products.getCapacity();
+    }
+
+    public int getRemainedCapacity() {
+        return products.getRemainedCapacity();
     }
 
     @Override
@@ -48,15 +36,10 @@ public class Warehouse extends BaseBuilding {
 
     public String toString() {
         return "Warehouse :" +
-                "\ncapacity = " +
-                capacity +
-                "\nremainedCapacity = " +
-                remainedCapacity +
                 "\nlevel: " +
                 level +
                 "\nproducts = " +
                 products;
-
     } // getInfo
 
     public boolean upgrade() {
@@ -64,8 +47,7 @@ public class Warehouse extends BaseBuilding {
         if (!getGame().decreaseMoney(cost))
             return false;
         int increaseCapacity = Constants.WAREHOUSE_UPGRADE_INCREASE_CAPACITY;
-        capacity += increaseCapacity;
-        remainedCapacity += increaseCapacity;
+        products.increaseCapacity(increaseCapacity);
         level++;
         return true;
     }
