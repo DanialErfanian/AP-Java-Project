@@ -50,7 +50,7 @@ public class Helicopter extends Vehicle {
         if (onTheWay)
             return false;
         onTheWay = true;
-        progress = Constants.TRUCK_JOB_PROGRESS;
+        progress = Constants.HELICOPTER_JOB_PROGRESS;
         return true;
     }
 
