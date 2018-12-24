@@ -2,6 +2,7 @@ package Transportation;
 
 import Logic.Game;
 import Logic.MainObject;
+import Products.Product;
 
 abstract public class Vehicle extends MainObject {
     private int capacity, level, progress;
@@ -33,5 +34,9 @@ abstract public class Vehicle extends MainObject {
 
     abstract public void increaseTurn();
 
-    abstract public void done();
+    abstract public boolean add(Product product, int count);
+
+    abstract public void clear();
+
+    abstract public boolean go();
 }

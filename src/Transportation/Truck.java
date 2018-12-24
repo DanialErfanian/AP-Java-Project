@@ -1,6 +1,7 @@
 package Transportation;
 
 import Logic.Game;
+import Products.Product;
 
 public class Truck extends Vehicle {
 
@@ -23,7 +24,17 @@ public class Truck extends Vehicle {
     }
 
     @Override
-    public void done() {
+    public boolean add(Product product, int count) {
+        return false;
+    }
 
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public boolean go() {
+        return false;
     }
 }

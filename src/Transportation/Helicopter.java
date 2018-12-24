@@ -24,9 +24,6 @@ public class Helicopter extends Vehicle {
         // va cost ro update mikone ke anna ho:)
     }
 
-    public void go() {
-    }
-
     @Override
     public boolean upgrade() {
         return false;
@@ -35,6 +32,21 @@ public class Helicopter extends Vehicle {
     @Override
     public void done() {
 
+    }
+
+    @Override
+    public boolean add(Product product, int count) {
+        return false;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public boolean go() {
+        return false;
     }
 
     public String toString() {
