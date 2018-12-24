@@ -3,6 +3,26 @@ package Logic;
 public class Constants {
     private Constants() {
     }
+
+    public static final int HELICOPTER_INITIAL_CAPACITY = 15;
+    public static final int HELICOPTER_UPGRADE_COST = 100; // coin
+    public static final int HELICOPTER_UPGRADE_INCREASE_CAPACITY = 10;
+    public static final int HELICOPTER_JOB_PROGRESS = 30; // turn
+
+    public static final int WOOL_BUY_PROFIT = 125; // coin
+    public static final int MILK_BUY_PROFIT = 100; // coin
+    public static final int EGG_BUY_PROFIT = 75; // coin
+
+    public static final int WOOL_SELL_PROFIT = 125; // coin
+    public static final int MILK_SELL_PROFIT = 100; // coin
+    public static final int EGG_SELL_PROFIT = 75; // coin
+
+
+    public static final int TRUCK_INITIAL_CAPACITY = 15;
+    public static final int TRUCK_UPGRADE_COST = 100; // coin
+    public static final int TRUCK_UPGRADE_INCREASE_CAPACITY = 10;
+    public static final int TRUCK_JOB_PROGRESS = 30; // turn
+
     public static final int GROUND_PRODUCT_TIMEOUT = 5;
 
     public static final int HEN_BUY_COST = 100; // coin

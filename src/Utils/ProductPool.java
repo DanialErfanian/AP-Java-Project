@@ -3,6 +3,8 @@ package Utils;
 import Products.Product;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class ProductPool {
     private int capacity;
@@ -54,6 +56,15 @@ public class ProductPool {
     public void increaseCapacity(int increaseCapacity) {
         capacity += increaseCapacity;
         remainedCapacity += increaseCapacity;
-
     }
+
+    public void clear(){
+        products.clear();
+        remainedCapacity = 0;
+    }
+
+    public Set<Map.Entry<Product, Integer>> getEnrtySet(){
+        return products.entrySet();
+    }
+
 }

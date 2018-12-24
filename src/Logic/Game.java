@@ -33,6 +33,10 @@ public class Game {
         return true;
     }
 
+    public void increaseMoney(int x) {
+        money += x;
+    }
+
     public void increaseTurn() {
         // TODO: check if level requirements satisfied level is done
         // TODO: max Level? :thinking:
