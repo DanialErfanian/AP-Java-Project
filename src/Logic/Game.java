@@ -1,12 +1,14 @@
 package Logic;
 
+import java.io.*;
+
 import Buildings.Warehouse;
 import Buildings.Workshop;
 import Transportation.Helicopter;
 import Transportation.Truck;
 import Utils.Position;
 
-public class Game {
+public class Game implements java.io.Serializable {
     private int money = Constants.START_MONEY;
     private Workshop[] workshops = new Workshop[6];
     private Level currentLevel;
@@ -70,10 +72,38 @@ public class Game {
         return null;
     }
 
-    public void save(String path) {
+    public boolean save(String path) {
+        try {
+            FileOutputStream file = new FileOutputStream(path);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            out.writeObject(this);
+
+            out.close();
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
-    public void load(String path) {
+    public static Game load(String path) {
+        Game resultGame;
+        try {
+            FileInputStream file = new FileInputStream(path);
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            // Method for deserialization of object
+            resultGame = (Game) in.readObject();
+
+            in.close();
+            file.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return resultGame;
     }
 
     public void run(String mapName) {
