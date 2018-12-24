@@ -38,6 +38,7 @@ public class Helicopter extends Vehicle {
     public void increaseTurn() {
         if (progress == 0) {
             onTheWay = false;
+            // TODO add to Warehouse
             clear();
         } else
             progress--;
