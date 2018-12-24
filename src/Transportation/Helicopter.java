@@ -25,7 +25,7 @@ public class Helicopter extends Vehicle {
     }
 
 
-    private int getProfit() {
+    private int getCost() {
         int sum = 0;
         for (HashMap.Entry<Product, Integer> entry : products.getEnrtySet()) {
             Product product = entry.getKey();
@@ -38,7 +38,6 @@ public class Helicopter extends Vehicle {
     @Override
     public void increaseTurn() {
         if (progress == 0) {
-            getGame().increaseMoney(getProfit());
             onTheWay = false;
             clear();
         } else
@@ -48,6 +47,8 @@ public class Helicopter extends Vehicle {
     @Override
     public boolean go() {
         if (onTheWay)
+            return false;
+        if(!getGame().decreaseMoney(getCost()))
             return false;
         onTheWay = true;
         progress = Constants.HELICOPTER_JOB_PROGRESS;
