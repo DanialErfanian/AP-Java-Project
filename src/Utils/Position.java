@@ -1,6 +1,6 @@
 package Utils;
 
-public class Position {
+public class Position implements java.io.Serializable {
     private int x, y;
 
     public int getX() {

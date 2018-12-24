@@ -4,7 +4,7 @@ import Products.Product;
 
 import java.util.HashMap;
 
-public class Level {
+public class Level implements java.io.Serializable {
     HashMap<Product, Integer> requirements;
 
     public String toString() {

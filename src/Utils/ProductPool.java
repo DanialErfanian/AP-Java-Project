@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class ProductPool {
+public class ProductPool implements java.io.Serializable {
     private int capacity;
     private int remainedCapacity;
     private HashMap<Product, Integer> products = new HashMap<>();
