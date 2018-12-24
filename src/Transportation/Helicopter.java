@@ -11,9 +11,8 @@ public class Helicopter extends Vehicle {
 
     public Helicopter(Game game) {
         super(game);
-        capacity = Constants.HELICOPTER_INITIAL_CAPACITY;
+        int capacity = Constants.HELICOPTER_INITIAL_CAPACITY;
         products = new ProductPool(capacity);
-        remainedCapacity = capacity;
     }
 
     int getUpgradeCost() {
@@ -48,7 +47,7 @@ public class Helicopter extends Vehicle {
     public boolean go() {
         if (onTheWay)
             return false;
-        if(!getGame().decreaseMoney(getCost()))
+        if (!getGame().decreaseMoney(getCost()))
             return false;
         onTheWay = true;
         progress = Constants.HELICOPTER_JOB_PROGRESS;

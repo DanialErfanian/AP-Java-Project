@@ -6,7 +6,7 @@ import Products.Product;
 import Utils.ProductPool;
 
 abstract public class Vehicle extends MainObject {
-    int capacity, level = 0, progress = 0, remainedCapacity;
+    int level = 0, progress = 0;
     boolean onTheWay = false;
     ProductPool products;
     //TODO: add json constructor
@@ -26,7 +26,7 @@ abstract public class Vehicle extends MainObject {
     }
 
     public int getCapacity() {
-        return capacity;
+        return products.getCapacity();
     }
 
     public int getLevel() {
@@ -53,8 +53,7 @@ abstract public class Vehicle extends MainObject {
         if (!getGame().decreaseMoney(cost))
             return false;
         int increaseCapacity = getUpgradeIncreaseCapacity();
-        capacity += increaseCapacity;
-        remainedCapacity += increaseCapacity;
+        products.increaseCapacity(increaseCapacity);
         return true;
     }
 
@@ -62,7 +61,6 @@ abstract public class Vehicle extends MainObject {
         if (onTheWay)
             return false;
         products.clear();
-        remainedCapacity = capacity;
         return true;
     }
 
@@ -70,10 +68,6 @@ abstract public class Vehicle extends MainObject {
 
     public String toString() {
         return this.getClass() + " :" +
-                "\ncapacity = " +
-                capacity +
-                "\nremainedCapacity = " +
-                remainedCapacity +
                 "\nlevel: " +
                 level +
                 "\nproducts = " +
