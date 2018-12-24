@@ -18,7 +18,7 @@ public class Warehouse extends BaseBuilding {
         return products.getOrDefault(product, 0);
     }
 
-    boolean addProduct(Product product, int count) {
+    public boolean addProduct(Product product, int count) {
         if (remainedCapacity < count) {
             return false;
         }
@@ -47,7 +47,16 @@ public class Warehouse extends BaseBuilding {
     }
 
     public String toString() {
-        return null;
+        return "Warehouse :" +
+                "\ncapacity = " +
+                capacity +
+                "\nremainedCapacity = " +
+                remainedCapacity +
+                "\nlevel: " +
+                level +
+                "\nproducts = " +
+                products;
+
     } // getInfo
 
     public boolean upgrade() {

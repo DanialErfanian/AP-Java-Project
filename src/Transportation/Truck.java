@@ -9,8 +9,8 @@ public class Truck extends Vehicle {
     }
 
     @Override
-    void upgrade() {
-
+    public boolean upgrade() {
+        return false;
     }
 
     public String toString() {

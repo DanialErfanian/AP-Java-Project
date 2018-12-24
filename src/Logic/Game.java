@@ -2,6 +2,8 @@ package Logic;
 
 import Buildings.Warehouse;
 import Buildings.Workshop;
+import Transportation.Helicopter;
+import Transportation.Truck;
 import Utils.Position;
 
 public class Game {
@@ -9,6 +11,12 @@ public class Game {
     private Workshop[] workshops = new Workshop[6];
     private Level currentLevel;
     private Map map;
+    private Truck truck;
+    private Helicopter helicopter;
+
+    public Game() {
+
+    }
 
     public Map getMap() {
         return map;
@@ -25,10 +33,16 @@ public class Game {
         return true;
     }
 
-    public void inceaseTurn() {
+    public void increaseTurn() {
+        // TODO: check if level requirements satisfied level is done
+        // TODO: max Level? :thinking:
         map.increaseTurn();
-        for (int i = 0; i < workshops.length; i++)
-            getWorkshop(i).increaseTurn();
+        for (Workshop workshop : workshops) workshop.increaseTurn();
+    }
+
+    public void turn(int count) {
+        for (int i = 0; i < count; i++)
+            increaseTurn();
     }
 
     public int getMoney() {
@@ -39,7 +53,7 @@ public class Game {
         this.money = money;
     }
 
-    public Workshop getWorkshop(int index) {
+    private Workshop getWorkshop(int index) {
         return workshops[index];
     }
 
@@ -47,7 +61,8 @@ public class Game {
         //TODO: take care of the number of warehouses
     }
 
-    public String getInfo() {
+    @Override
+    public String toString() {
         return null;
     }
 
@@ -63,15 +78,72 @@ public class Game {
     public void loadCustom(String path) {
     }
 
-    private Game() {
-
-    }
-
     public static void decrasePlant(Position position) {
-
     }
 
     public void buy(String animalName) {
+        // TODO
+//        int cost = -1;
+//        BaseAnimal animal = null;
+//
+//        switch (animalName) {
+//            case "Hen":
+//                cost = Constants.HEN_BUY_COST;
+//                animal = new Hen(this, )
+//        }
+    }
+
+    public void collect(int x, int y) {
+        map.collect(x, y);
+    }
+
+    public void cage(int x, int y) {
+        map.cage(x, y);
+    }
+
+    public void plant(int x, int y) {
+
+    }
+
+    public void well() {
+        map.getWell().fill();
+    }
+
+    private Workshop getWorkshopWithName(String workshopName) {
+        for (Workshop workshop : workshops)
+            if (workshop != null && workshop.getName().equals(workshopName))
+                return workshop;
+        return null;
+    }
+
+    public String startWorkshop(String workshopName) {
+        Workshop workshop = getWorkshopWithName(workshopName);
+        if (workshop != null)
+            return workshop.start();
+        return "Workshop with this name not found!";
+    }
+
+    public boolean upgrade(String targetName) {
+        switch (targetName) {
+            case "cat":
+                return map.getCat().upgrade();
+            case "well":
+                return map.getWell().upgrade();
+            case "truck":
+                return truck.upgrade();
+            case "helicopter":
+                return helicopter.upgrade();
+            case "warehouse":
+                return getWarehouse().upgrade();
+            default:
+                Workshop workshop = getWorkshopWithName(targetName);
+                if (workshop != null)
+                    return workshop.upgrade();
+        }
+        return false;
+    }
+
+    private void relax() {
 
     }
 

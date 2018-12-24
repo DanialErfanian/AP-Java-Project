@@ -4,16 +4,29 @@ import Logic.Game;
 import Products.Product;
 import Utils.Position;
 
-abstract public class ProducerAnimal extends BaseAnimal {
+public class ProducerAnimal extends BaseAnimal {
+
     final int maxHungriness = 100;
     private int productionRate, currentProgress, hungriness;
+    private ProducerAnimalType type;
 
-    ProducerAnimal(Game game, Position position) {
+    ProducerAnimal(Game game, Position position, ProducerAnimalType type) {
         super(game, position);
+        this.type = type;
     }
 
-
-    abstract Product getProduct();
+    // return product type of this animal depending on its type!
+    public Product getProduct() {
+        switch (type) {
+            case COW:
+                return Product.MILK;
+            case SHEEP:
+                return Product.WOOL;
+            case HEN:
+                return Product.EGG;
+        }
+        return null;
+    }
 
     public int getHungriness() {
         return hungriness;
@@ -41,6 +54,11 @@ abstract public class ProducerAnimal extends BaseAnimal {
 
     final public void eat() {
         // decrease hungriness if chaman not found
+        // TODO
+    }
+
+    @Override
+    protected void increaseTurn() {
         // TODO
     }
 }

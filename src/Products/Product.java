@@ -1,7 +1,5 @@
 package Products;
 
-import Logic.MainObject;
-
-public enum Product{
+public enum Product {
     WOOL, MILK, EGG
 }

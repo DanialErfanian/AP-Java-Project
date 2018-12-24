@@ -3,8 +3,10 @@ package Logic;
 import Animals.Cat;
 import Animals.Dog;
 import Animals.Lion;
+import Animals.WildAnimal;
 import Buildings.Warehouse;
 import Buildings.Well;
+import Products.GroundProduct;
 import Utils.Position;
 
 import java.util.ArrayList;
@@ -20,6 +22,24 @@ public class Map extends MainObject {
     private double[][] grass;
     private int lastWildAnimalTime = 0;
     private Warehouse warehouse;
+
+    Well getWell() {
+        return well;
+    }
+
+    public Position getRandomValidPosition() {
+        Random random = new Random();
+        int x = random.nextInt(mapWidth);
+        int y = random.nextInt(mapHeight);
+        return new Position(x, y);
+    }
+
+    void collect(int x, int y) {
+        ArrayList<MiddleMapObject> objects = this.objects.get(x).get(y);
+        for (MiddleMapObject object : objects)
+            if (object instanceof GroundProduct)
+                ((GroundProduct) object).collect();
+    }
 
     public Warehouse getWarehouse() {
         return warehouse;
@@ -69,12 +89,12 @@ public class Map extends MainObject {
     protected void increaseTurn() {
         lastWildAnimalTime--;
         if (-lastWildAnimalTime == Constants.WILD_ANIMAL_TIME_PERIOD) {
-            Random random = new Random();
-            int x = random.nextInt(mapWidth);
-            int y = random.nextInt(mapHeight);
+            Position position = getRandomValidPosition();
+            int x = position.getX();
+            int y = position.getY();
             // FIXME add lion or bear or both
-            addObject(x, y, new Lion(getGame(), new Position(x, y)));
-            addObject(x, y, new Lion(getGame(), new Position(x, y)));
+            addObject(x, y, new Lion(getGame(), position));
+            addObject(x, y, new Lion(getGame(), position));
             lastWildAnimalTime = 0;
         }
         cat.increaseTurn();
@@ -84,5 +104,12 @@ public class Map extends MainObject {
             for (int j = 0; j < mapHeight; j++)
                 for (MiddleMapObject object : objects.get(i).get(j))
                     object.increaseTurn();
+    }
+
+    void cage(int x, int y) {
+        ArrayList<MiddleMapObject> objects = this.objects.get(x).get(y);
+        for (MiddleMapObject object : objects)
+            if (object instanceof WildAnimal)
+                ((WildAnimal) object).cage();
     }
 }

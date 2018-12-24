@@ -33,7 +33,14 @@ public class Well extends BaseBuilding {
     }
 
     public String toString() {
-        return null;
+
+        return "Well: " +
+                "\nlevel: " +
+                level +
+                "\ncapacity: " +
+                capacity +
+                "\nremainedWater: " +
+                remainedWater;
     }
 
     public boolean fill() {
