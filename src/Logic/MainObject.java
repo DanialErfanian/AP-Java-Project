@@ -1,6 +1,6 @@
 package Logic;
 
-abstract public class MainObject {
+abstract public class MainObject implements java.io.Serializable {
     private Game game;
 
     public Game getGame() {
