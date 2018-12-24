@@ -2,7 +2,6 @@ package Logic;
 
 import Animals.Cat;
 import Animals.Dog;
-import Animals.Lion;
 import Animals.WildAnimal;
 import Buildings.Warehouse;
 import Buildings.Well;
@@ -17,11 +16,11 @@ public class Map extends MainObject {
     private int mapHeight;
     private Cat cat;
     private Dog dog;
-    private Well well;
+    private Well well = new Well(getGame());
     private ArrayList<ArrayList<ArrayList<MiddleMapObject>>> objects;
     private double[][] grass;
     private int lastWildAnimalTime = 0;
-    private Warehouse warehouse;
+    private Warehouse warehouse = new Warehouse(getGame());
 
     Well getWell() {
         return well;
@@ -83,6 +82,7 @@ public class Map extends MainObject {
             for (int j = 0; j < mapHeight; j++)
                 objects.get(i).add(new ArrayList<>());
         }
+        grass = new double[mapWidth][mapHeight];
     }
 
     @Override
@@ -90,11 +90,9 @@ public class Map extends MainObject {
         lastWildAnimalTime--;
         if (-lastWildAnimalTime == Constants.WILD_ANIMAL_TIME_PERIOD) {
             Position position = getRandomValidPosition();
-            int x = position.getX();
-            int y = position.getY();
-            // FIXME add lion or bear or both
-            addObject(x, y, new Lion(getGame(), position));
-            addObject(x, y, new Lion(getGame(), position));
+            addObject(position, new WildAnimal(getGame(), position));
+            position = getRandomValidPosition();
+            addObject(position, new WildAnimal(getGame(), position));
             lastWildAnimalTime = 0;
         }
         cat.increaseTurn();
@@ -108,8 +106,38 @@ public class Map extends MainObject {
 
     void cage(int x, int y) {
         ArrayList<MiddleMapObject> objects = this.objects.get(x).get(y);
-        for (MiddleMapObject object : objects)
+        for (int i = 0; i < objects.size(); i++) {
+            MiddleMapObject object = objects.get(i);
             if (object instanceof WildAnimal)
-                ((WildAnimal) object).cage();
+                objects.set(i, ((WildAnimal) object).cage());
+        }
+    }
+
+    private ArrayList<MiddleMapObject> getCellObjects(int x, int y) {
+        return objects.get(x).get(y);
+    }
+
+    public ArrayList<MiddleMapObject> getCellObjects(Position position) {
+        return getCellObjects(position.getX(), position.getY());
+    }
+
+
+    public Position getRandomValidAdjacentPosition(Position position) {
+        int dx[] = {-1, -0, +0, +1};
+        int dy[] = {-0, -1, +1, +0};
+        ArrayList<Position> validPositions = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            Position currentPosition = new Position(position.getX() + dx[i], position.getY() + dy[i]);
+            if (this.isValid(currentPosition))
+                validPositions.add(currentPosition);
+        }
+        return validPositions.get(new Random().nextInt(validPositions.size()));
+    }
+
+    private boolean isValid(Position position) {
+        return position.getX() >= 0 &&
+                position.getX() < this.mapWidth &&
+                position.getY() >= 0 &&
+                position.getY() < this.mapHeight;
     }
 }

@@ -21,7 +21,7 @@ public class GroundProduct extends MiddleMapObject {
 
     @Override
     protected void increaseTurn() {
-        if(constructTime == 0)
+        if (constructTime == 0)
             amount = 0;
         else
             constructTime--;
@@ -33,4 +33,7 @@ public class GroundProduct extends MiddleMapObject {
             amount--;
     }
 
+    public int getAmount() {
+        return amount;
+    }
 }

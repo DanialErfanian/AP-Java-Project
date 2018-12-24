@@ -1,6 +1,11 @@
 package Logic;
 
 public class Constants {
+    public static final int BEAR_SELL_PROFIT = 300;
+    public static final int LION_SELL_PROFIT = 300;
+    public static final int LION_BUY_PROFIT = 300;
+    public static final int BEAR_BUY_PROFIT = 300;
+
     private Constants() {
     }
 
