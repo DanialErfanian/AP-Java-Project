@@ -53,10 +53,4 @@ public class Helicopter extends Vehicle {
         progress = Constants.HELICOPTER_JOB_PROGRESS;
         return true;
     }
-
-    @Override
-    public boolean canUpgrade() {
-        int cost = getUpgradeCost();
-        return getGame().getMoney() >= cost;
-    }
 }

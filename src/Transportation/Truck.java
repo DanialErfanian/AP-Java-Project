@@ -11,9 +11,8 @@ public class Truck extends Vehicle {
 
     public Truck(Game game) {
         super(game);
-        capacity = Constants.TRUCK_INITIAL_CAPACITY;
+        int capacity = Constants.TRUCK_INITIAL_CAPACITY;
         products = new ProductPool(capacity);
-        remainedCapacity = capacity;
     }
 
     int getUpgradeCost() {
@@ -52,11 +51,5 @@ public class Truck extends Vehicle {
         onTheWay = true;
         progress = Constants.TRUCK_JOB_PROGRESS;
         return true;
-    }
-
-    @Override
-    public boolean canUpgrade() {
-        int cost = getUpgradeCost();
-        return getGame().getMoney() >= cost;
     }
 }

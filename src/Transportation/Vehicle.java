@@ -48,7 +48,7 @@ abstract public class Vehicle extends MainObject {
 
     abstract int getUpgradeIncreaseCapacity();
 
-    public boolean upgrade() {
+    public final boolean upgrade() {
         int cost = getUpgradeCost();
         if (!getGame().decreaseMoney(cost))
             return false;
@@ -66,7 +66,7 @@ abstract public class Vehicle extends MainObject {
 
     abstract public boolean go();
 
-    public String toString() {
+    public final String toString() {
         return this.getClass() + " :" +
                 "\nlevel: " +
                 level +
@@ -74,5 +74,7 @@ abstract public class Vehicle extends MainObject {
                 products;
     } // getInfo
 
-    abstract public boolean canUpgrade();
+    public final boolean canUpgrade(){
+        return getGame().getMoney() >= getUpgradeCost();
+    }
 }
