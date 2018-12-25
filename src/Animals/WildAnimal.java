@@ -8,11 +8,17 @@ import Utils.Position;
 
 import java.util.ArrayList;
 
-public class WildAnimal extends BaseAnimal {// TODO increaseTurn must run catch if it's needed
+public class WildAnimal extends BaseAnimal {
     private WildAnimalType type;
 
-    public WildAnimalType getType() {
-        return type;
+    @Override
+    public String toString() {
+        return "WildAnimal: \ntype: " + type + "\n" + super.toString();
+    }
+
+    @Override
+    void doTask() {
+        catchAnimal();
     }
 
     public WildAnimal(Game game, Position position) {
@@ -20,17 +26,19 @@ public class WildAnimal extends BaseAnimal {// TODO increaseTurn must run catch 
         this.type = Math.random() > 0.5 ? WildAnimalType.LION : WildAnimalType.BEAR;
     }
 
-    public WildAnimal(Game game, Position position, WildAnimalType type) {
-        super(game, position);
-        this.type = type;
+    @Override
+    void regenerateTarget() {
+        target = getGame().getMap().getRandomCatchableTarget();
     }
 
+//    public WildAnimal(Game game, Position position, WildAnimalType type) {
+//        super(game, position);
+//        this.type = type;
+//    }
+
     public GroundProduct cage() {
-        return new GroundProduct(getGame(),
-                (this.type.equals(WildAnimalType.LION) ? Product.LION : Product.BEAR),
-                this.getPosition(),
-                1
-        );
+        Product product = this.type.equals(WildAnimalType.LION) ? Product.LION : Product.BEAR;
+        return new GroundProduct(getGame(), product, this.getPosition(), 1);
     }
 
     private void catchAnimal() {
@@ -39,14 +47,7 @@ public class WildAnimal extends BaseAnimal {// TODO increaseTurn must run catch 
             MiddleMapObject object = cellObjects.get(i);
             if (object instanceof WildAnimal)
                 continue;
-            if (object instanceof GroundProduct && ((GroundProduct) object).getAmount() == 0)
-                continue;
             cellObjects.set(i, null);
         }
-    }
-
-    @Override
-    protected void increaseTurn() {
-        this.setPosition(this.getGame().getMap().getRandomValidAdjacentPosition(this.getPosition()));
     }
 }

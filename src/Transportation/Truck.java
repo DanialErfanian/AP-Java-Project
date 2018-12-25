@@ -3,7 +3,7 @@ package Transportation;
 import Logic.Constants;
 import Logic.Game;
 import Products.Product;
-import Utils.ProductPool;
+import Products.ProductPool;
 
 import java.util.HashMap;
 
@@ -26,7 +26,7 @@ public class Truck extends Vehicle {
 
     private int getProfit() {
         int sum = 0;
-        for (HashMap.Entry<Product, Integer> entry : products.getEnrtySet()) {
+        for (HashMap.Entry<Product, Integer> entry : products.getEntrySet()) {
             Product product = entry.getKey();
             int count = entry.getValue();
             sum += product.getBuyProfit() * count;

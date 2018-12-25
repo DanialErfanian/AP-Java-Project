@@ -1,6 +1,4 @@
-package Utils;
-
-import Products.Product;
+package Products;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,12 +56,12 @@ public class ProductPool implements java.io.Serializable {
         remainedCapacity += increaseCapacity;
     }
 
-    public void clear(){
+    public void clear() {
         products.clear();
         remainedCapacity = capacity;
     }
 
-    public Set<Map.Entry<Product, Integer>> getEnrtySet(){
+    public Set<Map.Entry<Product, Integer>> getEntrySet() {
         return products.entrySet();
     }
 

@@ -8,14 +8,12 @@ import Utils.Position;
 
 public class GroundProduct extends MiddleMapObject {
     private Product type;
-    private Position position;
     private int amount;
     private int constructTime = Constants.GROUND_PRODUCT_TIMEOUT;
 
     public GroundProduct(Game game, Product type, Position position, int amount) {
-        super(game);
+        super(game, position);
         this.type = type;
-        this.position = position;
         this.amount = amount;
     }
 

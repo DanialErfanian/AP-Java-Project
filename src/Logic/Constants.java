@@ -1,13 +1,20 @@
 package Logic;
 
 public class Constants {
+    private Constants() {
+    }
+
+    static final int CAT_UPGRADE_COST = 500; // coin
+
     public static final int BEAR_SELL_PROFIT = 300;
     public static final int LION_SELL_PROFIT = 300;
     public static final int LION_BUY_PROFIT = 300;
     public static final int BEAR_BUY_PROFIT = 300;
 
-    private Constants() {
-    }
+    static final double PRODUCER_ANIMAL_EAT_GRASS_RATE = 1;
+    public static final int PRODUCER_ANIMAL_FULL_PROGRESS = 10;
+    public static final int PRODUCER_ANIMAL_PRODUCTION_RATE = 1;
+    public static final int PRODUCER_ANIMAL_MAX_HUNGRINESS = 13;
 
     public static final int HELICOPTER_INITIAL_CAPACITY = 15;
     public static final int HELICOPTER_UPGRADE_COST = 100; // coin

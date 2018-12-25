@@ -1,22 +1,35 @@
 package Animals;
 
 import Logic.Game;
+import Logic.MiddleMapObject;
 import Utils.Position;
 
+import java.util.ArrayList;
+
 public class Dog extends BaseAnimal {
-    private WildAnimal target;
-
-    public Dog(Game game, Position position, WildAnimal target) {
+    public Dog(Game game, Position position) {
         super(game, position);
-        this.target = target;
-    }
-
-    public void startCatch() {
-
     }
 
     @Override
-    public void increaseTurn() {
-
+    void regenerateTarget() {
+        target = getGame().getMap().getRandomWildAnimal();
     }
+
+    @Override
+    void doTask() {
+        catchWildAnimal();
+    }
+
+    private void catchWildAnimal() {
+        ArrayList<MiddleMapObject> cellObjects = this.getGame().getMap().getCellObjects(this.getPosition());
+        for (MiddleMapObject object : cellObjects)
+            if (object instanceof WildAnimal) {
+                ((WildAnimal) object).die();
+                this.die();
+                return;
+            }
+    }
+
+
 }

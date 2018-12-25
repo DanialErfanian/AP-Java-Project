@@ -1,7 +1,5 @@
 package Logic;
 
-import Animals.Cat;
-import Animals.Dog;
 import Animals.WildAnimal;
 import Buildings.Warehouse;
 import Buildings.Well;
@@ -14,13 +12,22 @@ import java.util.Random;
 public class Map extends MainObject {
     private int mapWidth;
     private int mapHeight;
-    private Cat cat;
-    private Dog dog;
     private Well well = new Well(getGame());
     private ArrayList<ArrayList<ArrayList<MiddleMapObject>>> objects;
     private double[][] grass;
     private int lastWildAnimalTime = 0;
+    private int catLevel = 1;
     private Warehouse warehouse = new Warehouse(getGame());
+
+    boolean upgradeCat() {
+        if(catLevel == 2)
+            return false;
+        int cost = Constants.CAT_UPGRADE_COST;
+        if(!getGame().decreaseMoney(cost))
+            return false;
+        catLevel = 2;
+        return true;
+    }
 
     Well getWell() {
         return well;
@@ -40,11 +47,11 @@ public class Map extends MainObject {
                 ((GroundProduct) object).collect();
     }
 
-    public Warehouse getWarehouse() {
+    Warehouse getWarehouse() {
         return warehouse;
     }
 
-    public void addObject(int x, int y, MiddleMapObject object) {
+    private void addObject(int x, int y, MiddleMapObject object) {
         objects.get(x).get(y).add(object);
     }
 
@@ -52,25 +59,10 @@ public class Map extends MainObject {
         addObject(position.getX(), position.getY(), object);
     }
 
-    public int getMapWidth() {
-        return mapWidth;
+    public double getGrass(Position position) {
+        return grass[position.getX()][position.getY()];
     }
 
-    public int getMapHeight() {
-        return mapHeight;
-    }
-
-    public double getGrass(int x, int y) {
-        return grass[x][y];
-    }
-
-    public Cat getCat() {
-        return cat;
-    }
-
-    public Dog getDog() {
-        return dog;
-    }
 
     public Map(Game game, int mapWidth, int mapHeight) {
         super(game);
@@ -95,8 +87,6 @@ public class Map extends MainObject {
             addObject(position, new WildAnimal(getGame(), position));
             lastWildAnimalTime = 0;
         }
-        cat.increaseTurn();
-        dog.increaseTurn();
         well.increaseTurn();
         for (int i = 0; i < mapWidth; i++)
             for (int j = 0; j < mapHeight; j++)
@@ -121,23 +111,78 @@ public class Map extends MainObject {
         return getCellObjects(position.getX(), position.getY());
     }
 
-
-    public Position getRandomValidAdjacentPosition(Position position) {
-        int dx[] = {-1, -0, +0, +1};
-        int dy[] = {-0, -1, +1, +0};
-        ArrayList<Position> validPositions = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            Position currentPosition = new Position(position.getX() + dx[i], position.getY() + dy[i]);
-            if (this.isValid(currentPosition))
-                validPositions.add(currentPosition);
-        }
-        return validPositions.get(new Random().nextInt(validPositions.size()));
+    boolean upgradeCats() {
+        catLevel++;
+        return false;
     }
 
-    private boolean isValid(Position position) {
-        return position.getX() >= 0 &&
-                position.getX() < this.mapWidth &&
-                position.getY() >= 0 &&
-                position.getY() < this.mapHeight;
+    boolean decreasePlant(int x, int y) {
+        double rate = Constants.PRODUCER_ANIMAL_EAT_GRASS_RATE;
+        if (grass[x][y] < rate)
+            return false;
+        grass[x][y] -= rate;
+        return true;
+    }
+
+    public Position getRandomGrassyPosition() {
+        ArrayList<Position> positions = new ArrayList<>();
+        for (int i = 0; i < mapWidth; i++)
+            for (int j = 0; j < mapHeight; j++)
+                if (grass[i][j] > 0)
+                    positions.add(new Position(i, j));
+        if (positions.size() == 0)
+            return null;
+        return positions.get(new Random().nextInt(positions.size()));
+    }
+
+    public Targetable getRandomCatchableTarget() {
+        ArrayList<Targetable> targets = new ArrayList<>();
+
+        for (int i = 0; i < mapWidth; i++)
+            for (int j = 0; j < mapHeight; j++)
+                for (MiddleMapObject object : objects.get(i).get(j))
+                    if (!(object instanceof WildAnimal))
+                        targets.add(object);
+        if (targets.size() == 0)
+            return null;
+        return targets.get(new Random().nextInt(targets.size()));
+    }
+
+    public WildAnimal getRandomWildAnimal() {
+        ArrayList<WildAnimal> animals = new ArrayList<>();
+
+        for (int i = 0; i < mapWidth; i++)
+            for (int j = 0; j < mapHeight; j++)
+                for (MiddleMapObject object : objects.get(i).get(j))
+                    if (object instanceof WildAnimal)
+                        animals.add((WildAnimal) object);
+        if (animals.size() == 0)
+            return null;
+        return animals.get(new Random().nextInt(animals.size()));
+    }
+
+    @Override
+    public String toString() {
+        // TODO
+        return super.toString();
+    }
+
+    public GroundProduct getGroundProductForCat(Position position) {
+        ArrayList<GroundProduct> products = new ArrayList<>();
+        int minDistance = Integer.MAX_VALUE;
+        for (int i = 0; i < mapWidth; i++)
+            for (int j = 0; j < mapHeight; j++)
+                for (MiddleMapObject object : objects.get(i).get(j))
+                    if (object instanceof GroundProduct) {
+                        products.add((GroundProduct) object);
+                        minDistance = Math.min(minDistance, Position.getDistance(position, object.position));
+                    }
+        if (catLevel == 2)
+            for (GroundProduct product : products)
+                if (Position.getDistance(position, product.position) == minDistance)
+                    return product;
+        if (products.size() == 0)
+            return null;
+        return products.get(new Random().nextInt(products.size()));
     }
 }
