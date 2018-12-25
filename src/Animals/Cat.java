@@ -18,4 +18,9 @@ public class Cat extends BaseAnimal {
     void doTask() {
         getGame().collect(position.getX(), position.getY());
     }
+
+    @Override
+    public String toString() {
+        return "Cat: \n" + super.toString();
+    }
 }

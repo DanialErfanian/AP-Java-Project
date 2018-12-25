@@ -31,5 +31,8 @@ public class Dog extends BaseAnimal {
             }
     }
 
-
+    @Override
+    public String toString() {
+        return "Gog: \n" + super.toString();
+    }
 }

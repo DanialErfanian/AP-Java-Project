@@ -74,12 +74,12 @@ public class ProducerAnimal extends BaseAnimal {
                 "\nhungriness: " +
                 hungriness +
                 "\ntype: " +
-                type +
+                type + "\n" +
                 super.toString();
     }
 
     protected boolean isTargetInvalid() {
-        if(super.isTargetInvalid())
+        if (super.isTargetInvalid())
             return true;
         return getGame().getMap().getGrass(target.getPosition()) > 0;
     }
