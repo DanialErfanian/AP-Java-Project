@@ -9,12 +9,18 @@ public class Cat extends BaseAnimal {
         super(game, position);
     }
 
-    public boolean upgrade() {
-        return false;
+    @Override
+    void regenerateTarget() {
+        target = getGame().getMap().getGroundProductForCat(position);
     }
 
     @Override
-    public void increaseTurn() {
+    void doTask() {
+        getGame().collect(position.getX(), position.getY());
+    }
 
+    @Override
+    public String toString() {
+        return "Cat: \n" + super.toString();
     }
 }

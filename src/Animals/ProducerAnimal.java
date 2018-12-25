@@ -1,19 +1,23 @@
 package Animals;
 
+import Logic.Constants;
 import Logic.Game;
+import Logic.Map;
+import Products.GroundProduct;
 import Products.Product;
 import Utils.Position;
 
 public class ProducerAnimal extends BaseAnimal {
-
-    final int maxHungriness = 100;
+    // if hungriness equals to maxHungriness  animal must die
     private int productionRate, currentProgress, hungriness;
     private ProducerAnimalType type;
 
-    ProducerAnimal(Game game, Position position, ProducerAnimalType type) {
+    public ProducerAnimal(Game game, Position position, ProducerAnimalType type) {
         super(game, position);
         this.type = type;
+        this.productionRate = Constants.PRODUCER_ANIMAL_PRODUCTION_RATE;
     }
+
 
     // return product type of this animal depending on its type!
     public Product getProduct() {
@@ -28,37 +32,57 @@ public class ProducerAnimal extends BaseAnimal {
         return null;
     }
 
-    public int getHungriness() {
-        return hungriness;
+    @Override
+    public void regenerateTarget() {
+        this.target = getGame().getMap().getRandomGrassyPosition();
     }
 
-    public void setHungriness(int hungriness) {
-        this.hungriness = hungriness;
-    }
-
-    public int getProductionRate() {
-        return productionRate;
-    }
-
-    public void setProductionRate(int productionRate) {
-        this.productionRate = productionRate;
-    }
-
-    public int getCurrentProgress() {
-        return currentProgress;
-    }
-
-    public void setCurrentProgress(int currentProgress) {
-        this.currentProgress = currentProgress;
-    }
-
-    final public void eat() {
-        // decrease hungriness if chaman not found
-        // TODO
+    private void eat() {
+        int maxHungriness = Constants.PRODUCER_ANIMAL_MAX_HUNGRINESS;
+        if (hungriness >= maxHungriness)
+            die();
+        else {
+            hungriness++;
+            if (hungriness > 0 && getGame().decreasePlant(getPosition()))
+                hungriness--;
+        }
     }
 
     @Override
-    protected void increaseTurn() {
-        // TODO
+    void doTask() {
+        eat();
+        if (this.isValid())
+            decreaseProgress();
     }
+
+    private void decreaseProgress() {
+        currentProgress -= productionRate;
+        if (currentProgress <= 0) {
+            Map map = getGame().getMap();
+            map.addObject(getPosition(), new GroundProduct(getGame(), getProduct(), getPosition(), 1));
+            currentProgress = Constants.PRODUCER_ANIMAL_FULL_PROGRESS;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ProducerAnimal: " +
+                "\nproductionRate: " +
+                productionRate +
+                "\ncurrentProgress: " +
+                currentProgress +
+                "\nhungriness: " +
+                hungriness +
+                "\ntype: " +
+                type + "\n" +
+                super.toString();
+    }
+
+    protected boolean isTargetInvalid() {
+        if (super.isTargetInvalid())
+            return true;
+        return getGame().getMap().getGrass(target.getPosition()) > 0;
+    }
+
+
 }

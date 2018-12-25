@@ -1,24 +1,53 @@
 package Animals;
 
 import Logic.Game;
+import Logic.MiddleMapObject;
+import Products.GroundProduct;
+import Products.Product;
 import Utils.Position;
 
-abstract public class WildAnimal extends BaseAnimal {// TODO increaseTurn must run catch if it's needed
-    private boolean catched = false;
-    private int catchedTime = 0;
+import java.util.ArrayList;
 
-    WildAnimal(Game game, Position position) {
+public class WildAnimal extends BaseAnimal {
+    private WildAnimalType type;
+
+    @Override
+    public String toString() {
+        return "WildAnimal: \ntype: " + type + "\n" + super.toString();
+    }
+
+    @Override
+    void doTask() {
+        catchAnimal();
+    }
+
+    public WildAnimal(Game game, Position position) {
         super(game, position);
+        this.type = Math.random() > 0.5 ? WildAnimalType.LION : WildAnimalType.BEAR;
     }
 
-    public void cage(){
-        catched = true;
+    @Override
+    void regenerateTarget() {
+        target = getGame().getMap().getRandomCatchableTarget();
     }
 
-    private void escape() {
+//    public WildAnimal(Game game, Position position, WildAnimalType type) {
+//        super(game, position);
+//        this.type = type;
+//    }
 
+    public GroundProduct cage() {
+        Product product = this.type.equals(WildAnimalType.LION) ? Product.LION : Product.BEAR;
+        return new GroundProduct(getGame(), product, this.getPosition(), 1);
     }
 
     private void catchAnimal() {
+        ArrayList<MiddleMapObject> cellObjects = this.getGame().getMap().getCellObjects(this.getPosition());
+        for (int i = 0; i < cellObjects.size(); i++) {
+            MiddleMapObject object = cellObjects.get(i);
+            if (object instanceof WildAnimal)
+                continue;
+            cellObjects.set(i, null);
+        }
     }
 }

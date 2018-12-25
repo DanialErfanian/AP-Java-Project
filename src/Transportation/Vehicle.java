@@ -3,7 +3,7 @@ package Transportation;
 import Logic.Game;
 import Logic.MainObject;
 import Products.Product;
-import Utils.ProductPool;
+import Products.ProductPool;
 
 abstract public class Vehicle extends MainObject {
     int level = 0, progress = 0;

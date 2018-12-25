@@ -1,12 +1,12 @@
 package Logic;
 
-import java.io.*;
-
 import Buildings.Warehouse;
 import Buildings.Workshop;
 import Transportation.Helicopter;
 import Transportation.Truck;
 import Utils.Position;
+
+import java.io.*;
 
 public class Game implements java.io.Serializable {
     private int money = Constants.START_MONEY;
@@ -112,9 +112,6 @@ public class Game implements java.io.Serializable {
     public void loadCustom(String path) {
     }
 
-    public static void decrasePlant(Position position) {
-    }
-
     public void buy(String animalName) {
         // TODO
 //        int cost = -1;
@@ -160,7 +157,7 @@ public class Game implements java.io.Serializable {
     public boolean upgrade(String targetName) {
         switch (targetName) {
             case "cat":
-                return map.getCat().upgrade();
+                return map.upgradeCats();
             case "well":
                 return map.getWell().upgrade();
             case "truck":
@@ -178,7 +175,22 @@ public class Game implements java.io.Serializable {
     }
 
     private void relax() {
+        // TODO
+        // GroundProduct with amount 0 mean invalid and must be deleted
+        // WildAnimal will replace with null after remove
+        // generally BaseAnimal with position = null mean invalid and must be deleted
+    }
 
+    private boolean decreasePlant(int x, int y) {
+        return map.decreasePlant(x, y);
+    }
+
+    public boolean decreasePlant(Position position) {
+        return decreasePlant(position.getX(), position.getY());
+    }
+
+    public boolean upgradeCat() {
+        return map.upgradeCat();
     }
 
 }

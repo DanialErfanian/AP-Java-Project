@@ -3,7 +3,7 @@ package Buildings;
 import Logic.Constants;
 import Logic.Game;
 import Products.Product;
-import Utils.ProductPool;
+import Products.ProductPool;
 
 public class Warehouse extends BaseBuilding {
     private int level = 1;
