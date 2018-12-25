@@ -19,6 +19,8 @@ public class GroundProduct extends MiddleMapObject {
 
     @Override
     protected void increaseTurn() {
+        if(position == null)
+            return;
         if (constructTime == 0)
             amount = 0;
         else
@@ -29,6 +31,8 @@ public class GroundProduct extends MiddleMapObject {
         Warehouse warehouse = getGame().getWarehouse();
         while (amount > 0 && warehouse.addProduct(type, 1))
             amount--;
+        if(amount == 0)
+            this.position = null;
     }
 
     public int getAmount() {
