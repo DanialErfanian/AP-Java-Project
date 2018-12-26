@@ -9,7 +9,6 @@ abstract public class Vehicle extends MainObject {
     int level = 0, progress = 0;
     boolean onTheWay = false;
     ProductPool products;
-    //TODO: add json constructor
 
     private int getProductCount(Product product) {
         return products.getProductCount(product);
