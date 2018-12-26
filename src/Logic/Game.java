@@ -132,12 +132,13 @@ public class Game implements java.io.Serializable {
         map.cage(x, y);
     }
 
-    public void plant(int x, int y) {
-
+    public boolean plant(int x, int y) {
+        // TODO
+        return false;
     }
 
-    public void well() {
-        map.getWell().fill();
+    public boolean well() {
+        return map.getWell().fill();
     }
 
     private Workshop getWorkshopWithName(String workshopName) {
