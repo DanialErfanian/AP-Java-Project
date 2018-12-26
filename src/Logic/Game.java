@@ -112,7 +112,7 @@ public class Game implements java.io.Serializable {
     public void loadCustom(String path) {
     }
 
-    public void buy(String animalName) {
+    public boolean buy(String animalName) {
         // TODO
 //        int cost = -1;
 //        BaseAnimal animal = null;
@@ -122,6 +122,7 @@ public class Game implements java.io.Serializable {
 //                cost = Constants.HEN_BUY_COST;
 //                animal = new Hen(this, )
 //        }
+        return false;
     }
 
     public void collect(int x, int y) {

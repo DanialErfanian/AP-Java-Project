@@ -16,6 +16,11 @@ class Ui {
             String[] args = command.split(" ");
             switch (args[0]) {
                 case "buy":
+                    String animalName = args[1];
+                    if (game.buy(animalName))
+                        System.out.printf("a/an %s bought successfully.\n", animalName);
+                    else
+                        System.out.println("buying animal failed");
                     break;
                 case "pickup":
                     int x = Integer.parseInt(args[1]);
