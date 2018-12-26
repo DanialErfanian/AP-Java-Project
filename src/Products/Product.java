@@ -5,8 +5,8 @@ import Logic.Constants;
 public enum Product {
     WOOL, MILK, EGG, BEAR, LION;
 
-    public int getSellProfit(){
-        if(this == Product.EGG)
+    public int getSellProfit() {
+        if (this == Product.EGG)
             return Constants.EGG_SELL_PROFIT;
         else if (this == Product.MILK)
             return Constants.MILK_SELL_PROFIT;
@@ -20,7 +20,7 @@ public enum Product {
     }
 
     public int getBuyProfit() {
-        if(this == Product.EGG)
+        if (this == Product.EGG)
             return Constants.EGG_BUY_PROFIT;
         else if (this == Product.MILK)
             return Constants.MILK_BUY_PROFIT;

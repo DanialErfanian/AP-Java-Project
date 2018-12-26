@@ -14,11 +14,11 @@ abstract public class MiddleMapObject extends MainObject implements Targetable {
         return position;
     }
 
-    public final void destruct(){
+    public final void destruct() {
         position = null;
     }
 
-    protected final boolean isValid(){
+    protected final boolean isValid() {
         return position != null;
     }
 

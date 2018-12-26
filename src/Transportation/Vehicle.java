@@ -73,7 +73,7 @@ abstract public class Vehicle extends MainObject {
                 products;
     } // getInfo
 
-    public final boolean canUpgrade(){
+    public final boolean canUpgrade() {
         return getGame().getMoney() >= getUpgradeCost();
     }
 }
