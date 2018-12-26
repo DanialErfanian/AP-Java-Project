@@ -13,8 +13,8 @@ public class Game implements java.io.Serializable {
     private Workshop[] workshops = new Workshop[6];
     private Level currentLevel;
     private Map map;
-    private Truck truck;
-    private Helicopter helicopter;
+    private Truck truck = new Truck(this);
+    private Helicopter helicopter = new Helicopter(this);
 
     public Game() {
 
