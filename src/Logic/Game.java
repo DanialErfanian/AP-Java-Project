@@ -13,8 +13,8 @@ public class Game implements java.io.Serializable {
     private Workshop[] workshops = new Workshop[6];
     private Level currentLevel;
     private Map map;
-    private Truck truck;
-    private Helicopter helicopter;
+    private Truck truck = new Truck(this);
+    private Helicopter helicopter = new Helicopter(this);
 
     public Game() {
 
@@ -132,12 +132,13 @@ public class Game implements java.io.Serializable {
         map.cage(x, y);
     }
 
-    public void plant(int x, int y) {
-
+    public boolean plant(int x, int y) {
+        // TODO
+        return false;
     }
 
-    public void well() {
-        map.getWell().fill();
+    public boolean well() {
+        return map.getWell().fill();
     }
 
     private Workshop getWorkshopWithName(String workshopName) {
