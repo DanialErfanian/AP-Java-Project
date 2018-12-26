@@ -8,7 +8,6 @@ import Products.ProductPool;
 public class Warehouse extends BaseBuilding {
     private int level = 1;
     private ProductPool products = new ProductPool(Constants.WAREHOUSE_INITIAL_CAPACITY);
-    //TODO: add json constructor
 
     public Warehouse(Game game) {
         super(game);

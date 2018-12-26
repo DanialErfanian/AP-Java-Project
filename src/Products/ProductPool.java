@@ -8,8 +8,6 @@ public class ProductPool implements java.io.Serializable {
     private int capacity;
     private int remainedCapacity;
     private HashMap<Product, Integer> products = new HashMap<>();
-    //TODO: add json constructor
-
 
     public ProductPool(int capacity) {
         this.capacity = capacity;
