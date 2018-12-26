@@ -25,8 +25,8 @@ public class Dog extends BaseAnimal {
         ArrayList<MiddleMapObject> cellObjects = this.getGame().getMap().getCellObjects(this.getPosition());
         for (MiddleMapObject object : cellObjects)
             if (object instanceof WildAnimal) {
-                ((WildAnimal) object).die();
-                this.die();
+                object.destruct();
+                this.destruct();
                 return;
             }
     }

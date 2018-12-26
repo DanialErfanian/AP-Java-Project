@@ -28,22 +28,22 @@ abstract public class BaseAnimal extends MiddleMapObject {
             target = getGame().getMap().getRandomValidPosition();
         int[] dx = {-1, -0, +0, +1};
         int[] dy = {-0, -1, +1, +0};
-        int distance = Position.getDistance(this.position, target.getPosition());
+        int distance = Position.getDistance(this.getPosition(), target.getPosition());
         if (distance == 0)
             return;
         ArrayList<Position> validPositions = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            Position currentPosition = new Position(position.getX() + dx[i], position.getY() + dy[i]);
+            Position currentPosition = new Position(getPosition().getX() + dx[i], getPosition().getY() + dy[i]);
             if (Position.getDistance(currentPosition, target.getPosition()) == distance - 1)
                 validPositions.add(currentPosition);
         }
-        position = validPositions.get(new Random().nextInt(validPositions.size()));
+        setPosition(validPositions.get(new Random().nextInt(validPositions.size())));
     }
 
     @Override
     public String toString() {
         return "BaseAnimal: " +
-                "\nposition: " + position +
+                "\nposition: " + getPosition() +
                 "\ntarget: " + target.getPosition();
     }
 
@@ -57,9 +57,5 @@ abstract public class BaseAnimal extends MiddleMapObject {
         if (!this.isValid())
             return;
         move();
-    }
-
-    final void die() {
-        this.position = null;
     }
 }
