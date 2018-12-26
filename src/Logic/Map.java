@@ -175,11 +175,11 @@ public class Map extends MainObject {
                 for (MiddleMapObject object : objects.get(i).get(j))
                     if (object instanceof GroundProduct) {
                         products.add((GroundProduct) object);
-                        minDistance = Math.min(minDistance, Position.getDistance(position, object.position));
+                        minDistance = Math.min(minDistance, Position.getDistance(position, object.getPosition()));
                     }
         if (catLevel == 2)
             for (GroundProduct product : products)
-                if (Position.getDistance(position, product.position) == minDistance)
+                if (Position.getDistance(position, product.getPosition()) == minDistance)
                     return product;
         if (products.size() == 0)
             return null;
