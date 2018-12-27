@@ -44,11 +44,16 @@ public class Well extends BaseBuilding {
     }
 
     public boolean upgrade() {
-        int cost = Constants.WELL_UPGRADE_COST;
+        int cost = getUpgradeCost();
         if (!getGame().decreaseMoney(cost))
             return false;
         capacity += Constants.WELL_UPGRADE_INCREASE_CAPACITY;
         level++;
         return true;
+    }
+
+    @Override
+    protected int getUpgradeCost() {
+        return Constants.WELL_UPGRADE_COST;
     }
 }

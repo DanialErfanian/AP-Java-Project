@@ -11,4 +11,10 @@ abstract public class BaseBuilding extends MainObject {
     abstract public String toString();
 
     abstract public boolean upgrade();
+
+    public final boolean canUpgrade(){
+        return getGame().getMoney() >= getUpgradeCost();
+    }
+
+    abstract protected int getUpgradeCost();
 }

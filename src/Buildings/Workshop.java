@@ -40,11 +40,16 @@ public class Workshop extends BaseBuilding {
     }// get info
 
     public boolean upgrade() {
-        int cost = Constants.WORKSHOP_UPGRADE_COST;
+        int cost = getUpgradeCost();
         if (!getGame().decreaseMoney(cost))
             return false;
         level++;
         return true;
+    }
+
+    @Override
+    protected int getUpgradeCost() {
+        return Constants.WORKSHOP_UPGRADE_COST;
     }
 
     public String start() {
