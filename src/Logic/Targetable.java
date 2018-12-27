@@ -2,6 +2,6 @@ package Logic;
 
 import Utils.Position;
 
-public interface Targetable{
+public interface Targetable {
     Position getPosition();
 }

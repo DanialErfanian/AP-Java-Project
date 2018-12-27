@@ -2,13 +2,16 @@ package Logic;
 
 import Buildings.Warehouse;
 import Buildings.Workshop;
+import Products.Product;
 import Transportation.Helicopter;
 import Transportation.Truck;
+import Transportation.Vehicle;
 import Utils.Position;
 
 import java.io.*;
 
 public class Game implements java.io.Serializable {
+    // TODO Max level is still unhandled
     private int money = Constants.START_MONEY;
     private Workshop[] workshops = new Workshop[6];
     private Level currentLevel;
@@ -55,24 +58,18 @@ public class Game implements java.io.Serializable {
         return money;
     }
 
-    public void setMoney(int money) {
-        this.money = money;
-    }
-
-    private Workshop getWorkshop(int index) {
-        return workshops[index];
-    }
-
     public void addWorkshop(Workshop workshop) {
         //TODO: take care of the number of warehouses
     }
 
     @Override
     public String toString() {
+        // TODO
         return null;
     }
 
     public boolean save(String path) {
+        relax();
         try {
             FileOutputStream file = new FileOutputStream(path);
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -134,8 +131,7 @@ public class Game implements java.io.Serializable {
     }
 
     public boolean plant(int x, int y) {
-        // TODO
-        return false;
+        return map.plant(x, y);
     }
 
     public boolean well() {
@@ -191,8 +187,56 @@ public class Game implements java.io.Serializable {
         return decreasePlant(position.getX(), position.getY());
     }
 
-    public boolean upgradeCat() {
-        return map.upgradeCat();
+    public void print(String target) {
+        // TODO
+    }
+
+    private Vehicle getVehicleByName(String name) {
+        switch (name) {
+            case "truck":
+                return truck;
+            case "helicopter":
+                return helicopter;
+            default:
+                return null;
+        }
+    }
+
+    private Product getProductByName(String itemName) {
+        switch (itemName) {
+            case "wool":
+                return Product.WOOL;
+            case "egg":
+                return Product.EGG;
+            case "milk":
+                return Product.MILK;
+            default:
+                return null;
+        }
+    }
+
+    public boolean addToVehicle(String name, String itemName, int count) {
+        Product product = getProductByName(itemName);
+        Vehicle vehicle = getVehicleByName(name);
+        if (product == null)
+            return false;
+        if (vehicle == null)
+            return false;
+        return vehicle.addProduct(product, count);
+    }
+
+    public boolean clearVehicle(String name) {
+        Vehicle vehicle = getVehicleByName(name);
+        if (vehicle == null)
+            return false;
+        return vehicle.clear();
+    }
+
+    public boolean goVehicle(String name) {
+        Vehicle vehicle = getVehicleByName(name);
+        if (vehicle == null)
+            return false;
+        return vehicle.go();
     }
 
 }

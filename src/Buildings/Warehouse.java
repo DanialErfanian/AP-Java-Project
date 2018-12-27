@@ -21,14 +21,6 @@ public class Warehouse extends BaseBuilding {
         return products.addProduct(product, count);
     }
 
-    public int getCapacity() {
-        return products.getCapacity();
-    }
-
-    public int getRemainedCapacity() {
-        return products.getRemainedCapacity();
-    }
-
     @Override
     protected void increaseTurn() {// Empty :)
     }
@@ -49,9 +41,5 @@ public class Warehouse extends BaseBuilding {
         products.increaseCapacity(increaseCapacity);
         level++;
         return true;
-    }
-
-    public int getLevel() {
-        return level;
     }
 }

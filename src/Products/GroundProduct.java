@@ -34,8 +34,4 @@ public class GroundProduct extends MiddleMapObject {
         if (amount == 0)
             this.destruct();
     }
-
-    public int getAmount() {
-        return amount;
-    }
 }

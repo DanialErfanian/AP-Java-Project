@@ -19,11 +19,11 @@ public class Map extends MainObject {
     private int catLevel = 1;
     private Warehouse warehouse = new Warehouse(getGame());
 
-    boolean upgradeCat() {
-        if(catLevel == 2)
+    boolean upgradeCats() {
+        if (catLevel == 2)
             return false;
         int cost = Constants.CAT_UPGRADE_COST;
-        if(!getGame().decreaseMoney(cost))
+        if (!getGame().decreaseMoney(cost))
             return false;
         catLevel = 2;
         return true;
@@ -111,11 +111,6 @@ public class Map extends MainObject {
         return getCellObjects(position.getX(), position.getY());
     }
 
-    boolean upgradeCats() {
-        catLevel++;
-        return false;
-    }
-
     boolean decreasePlant(int x, int y) {
         double rate = Constants.PRODUCER_ANIMAL_EAT_GRASS_RATE;
         if (grass[x][y] < rate)
@@ -184,5 +179,12 @@ public class Map extends MainObject {
         if (products.size() == 0)
             return null;
         return products.get(new Random().nextInt(products.size()));
+    }
+
+    boolean plant(int x, int y) {
+        if (!getWell().plant())
+            return false;
+        grass[x][y]++;
+        return true;
     }
 }

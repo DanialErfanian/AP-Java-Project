@@ -6,13 +6,10 @@ import Products.Product;
 import Products.ProductPool;
 
 abstract public class Vehicle extends MainObject {
-    int level = 0, progress = 0;
+    private int level = 0;
+    int progress = 0;
     boolean onTheWay = false;
     ProductPool products;
-
-    private int getProductCount(Product product) {
-        return products.getProductCount(product);
-    }
 
     public boolean addProduct(Product product, int count) {
         if (onTheWay)
@@ -24,22 +21,6 @@ abstract public class Vehicle extends MainObject {
         super(game);
     }
 
-    public int getCapacity() {
-        return products.getCapacity();
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public int getProgress() {
-        return progress;
-    }
-
-    public boolean getOnTheWay() {
-        return onTheWay;
-    }
-
     abstract public void increaseTurn();
 
 
@@ -48,9 +29,11 @@ abstract public class Vehicle extends MainObject {
     abstract int getUpgradeIncreaseCapacity();
 
     public final boolean upgrade() {
-        int cost = getUpgradeCost();
-        if (!getGame().decreaseMoney(cost))
+        if (!canUpgrade())
             return false;
+        int cost = getUpgradeCost();
+        getGame().decreaseMoney(cost);
+        level++;
         int increaseCapacity = getUpgradeIncreaseCapacity();
         products.increaseCapacity(increaseCapacity);
         return true;
@@ -69,11 +52,15 @@ abstract public class Vehicle extends MainObject {
         return this.getClass() + " :" +
                 "\nlevel: " +
                 level +
+                "\nonTheWay: " +
+                onTheWay +
+                "\nprogress: " +
+                progress +
                 "\nproducts = " +
                 products;
     } // getInfo
 
-    public final boolean canUpgrade() {
+    private boolean canUpgrade() {
         return getGame().getMoney() >= getUpgradeCost();
     }
 }

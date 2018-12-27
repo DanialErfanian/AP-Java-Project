@@ -4,6 +4,8 @@ public class Constants {
     private Constants() {
     }
 
+    public static final double NEW_PLANT_NEEDED_WATER = 1;
+
     static final int CAT_UPGRADE_COST = 500; // coin
 
     public static final int BEAR_SELL_PROFIT = 300;
