@@ -8,7 +8,7 @@ import Products.Product;
 import Utils.Position;
 
 public class ProducerAnimal extends BaseAnimal {
-    // if hungriness equals to maxHungriness  animal must die
+    // if hungriness equals to maxHungriness  animal must destruct
     private int productionRate, currentProgress, hungriness;
     private ProducerAnimalType type;
 
@@ -40,7 +40,7 @@ public class ProducerAnimal extends BaseAnimal {
     private void eat() {
         int maxHungriness = Constants.PRODUCER_ANIMAL_MAX_HUNGRINESS;
         if (hungriness >= maxHungriness)
-            die();
+            destruct();
         else {
             hungriness++;
             if (hungriness > 0 && getGame().decreasePlant(getPosition()))

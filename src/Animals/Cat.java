@@ -11,12 +11,12 @@ public class Cat extends BaseAnimal {
 
     @Override
     void regenerateTarget() {
-        target = getGame().getMap().getGroundProductForCat(position);
+        target = getGame().getMap().getGroundProductForCat(getPosition());
     }
 
     @Override
     void doTask() {
-        getGame().collect(position.getX(), position.getY());
+        getGame().collect(getPosition().getX(), getPosition().getY());
     }
 
     @Override

@@ -16,20 +16,12 @@ public class Well extends BaseBuilding {
         // Empty
     }
 
-    public double getRemainedWater() {
-        return remainedWater;
-    }
-
-    public void setRemainedWater(double remainedWater) {
-        this.remainedWater = remainedWater;
-    }
-
-    public void setCapacity(double capacity) {
-        this.capacity = capacity;
-    }
-
-    public double getCapacity() {
-        return capacity;
+    public boolean plant() {
+        double cost = Constants.NEW_PLANT_NEEDED_WATER;
+        if (remainedWater < cost)
+            return false;
+        remainedWater -= cost;
+        return true;
     }
 
     public String toString() {
@@ -52,11 +44,16 @@ public class Well extends BaseBuilding {
     }
 
     public boolean upgrade() {
-        int cost = Constants.WELL_UPGRADE_COST;
+        int cost = getUpgradeCost();
         if (!getGame().decreaseMoney(cost))
             return false;
         capacity += Constants.WELL_UPGRADE_INCREASE_CAPACITY;
         level++;
         return true;
+    }
+
+    @Override
+    protected int getUpgradeCost() {
+        return Constants.WELL_UPGRADE_COST;
     }
 }

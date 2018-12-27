@@ -3,7 +3,7 @@ package Logic;
 import Utils.Position;
 
 abstract public class MiddleMapObject extends MainObject implements Targetable {
-    protected Position position; // TODO only getter is ok?
+    private Position position;
 
     public MiddleMapObject(Game game, Position position) {
         super(game);
@@ -14,8 +14,15 @@ abstract public class MiddleMapObject extends MainObject implements Targetable {
         return position;
     }
 
-    protected final boolean isValid(){
+    public final void destruct() {
+        position = null;
+    }
+
+    protected final boolean isValid() {
         return position != null;
     }
 
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 }

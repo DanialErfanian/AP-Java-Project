@@ -21,14 +21,6 @@ public class Warehouse extends BaseBuilding {
         return products.addProduct(product, count);
     }
 
-    public int getCapacity() {
-        return products.getCapacity();
-    }
-
-    public int getRemainedCapacity() {
-        return products.getRemainedCapacity();
-    }
-
     @Override
     protected void increaseTurn() {// Empty :)
     }
@@ -42,7 +34,7 @@ public class Warehouse extends BaseBuilding {
     } // getInfo
 
     public boolean upgrade() {
-        int cost = Constants.WAREHOUSE_UPGRADE_COST;
+        int cost = getUpgradeCost();
         if (!getGame().decreaseMoney(cost))
             return false;
         int increaseCapacity = Constants.WAREHOUSE_UPGRADE_INCREASE_CAPACITY;
@@ -51,7 +43,8 @@ public class Warehouse extends BaseBuilding {
         return true;
     }
 
-    public int getLevel() {
-        return level;
+    @Override
+    protected int getUpgradeCost() {
+        return Constants.WAREHOUSE_UPGRADE_COST;
     }
 }

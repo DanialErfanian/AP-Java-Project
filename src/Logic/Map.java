@@ -1,6 +1,6 @@
 package Logic;
 
-import Animals.WildAnimal;
+import Animals.*;
 import Buildings.Warehouse;
 import Buildings.Well;
 import Products.GroundProduct;
@@ -19,11 +19,11 @@ public class Map extends MainObject {
     private int catLevel = 1;
     private Warehouse warehouse = new Warehouse(getGame());
 
-    boolean upgradeCat() {
-        if(catLevel == 2)
+    boolean upgradeCats() {
+        if (catLevel == 2)
             return false;
         int cost = Constants.CAT_UPGRADE_COST;
-        if(!getGame().decreaseMoney(cost))
+        if (!getGame().decreaseMoney(cost))
             return false;
         catLevel = 2;
         return true;
@@ -111,11 +111,6 @@ public class Map extends MainObject {
         return getCellObjects(position.getX(), position.getY());
     }
 
-    boolean upgradeCats() {
-        catLevel++;
-        return false;
-    }
-
     boolean decreasePlant(int x, int y) {
         double rate = Constants.PRODUCER_ANIMAL_EAT_GRASS_RATE;
         if (grass[x][y] < rate)
@@ -175,14 +170,55 @@ public class Map extends MainObject {
                 for (MiddleMapObject object : objects.get(i).get(j))
                     if (object instanceof GroundProduct) {
                         products.add((GroundProduct) object);
-                        minDistance = Math.min(minDistance, Position.getDistance(position, object.position));
+                        minDistance = Math.min(minDistance, Position.getDistance(position, object.getPosition()));
                     }
         if (catLevel == 2)
             for (GroundProduct product : products)
-                if (Position.getDistance(position, product.position) == minDistance)
+                if (Position.getDistance(position, product.getPosition()) == minDistance)
                     return product;
         if (products.size() == 0)
             return null;
         return products.get(new Random().nextInt(products.size()));
+    }
+
+    boolean plant(int x, int y) {
+        if (!getWell().plant())
+            return false;
+        grass[x][y]++;
+        return true;
+    }
+
+    boolean buy(String animalName) {
+        int cost;
+        BaseAnimal animal;
+        Position position = getRandomValidPosition();
+        switch (animalName) {
+            case "hen":
+                cost = Constants.HEN_BUY_COST;
+                animal = new ProducerAnimal(getGame(), position, ProducerAnimalType.HEN);
+                break;
+            case "sheep":
+                cost = Constants.SHEEP_BUY_COST;
+                animal = new ProducerAnimal(getGame(), position, ProducerAnimalType.SHEEP);
+                break;
+            case "cow":
+                cost = Constants.COW_BUY_COST;
+                animal = new ProducerAnimal(getGame(), position, ProducerAnimalType.COW);
+                break;
+            case "cat":
+                cost = Constants.CAT_BUY_COST;
+                animal = new Cat(getGame(), position);
+                break;
+            case "dog":
+                cost = Constants.DOG_BUY_COST;
+                animal = new Dog(getGame(), position);
+                break;
+            default:
+                return false;
+        }
+        if (!getGame().decreaseMoney(cost))
+            return false;
+        addObject(position, animal);
+        return true;
     }
 }
