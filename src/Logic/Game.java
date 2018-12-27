@@ -9,6 +9,7 @@ import Transportation.Vehicle;
 import Utils.Position;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class Game implements java.io.Serializable {
     // TODO Max level is still unhandled
@@ -110,16 +111,7 @@ public class Game implements java.io.Serializable {
     }
 
     public boolean buy(String animalName) {
-        // TODO
-//        int cost = -1;
-//        BaseAnimal animal = null;
-//
-//        switch (animalName) {
-//            case "Hen":
-//                cost = Constants.HEN_BUY_COST;
-//                animal = new Hen(this, )
-//        }
-        return false;
+        return map.buy(animalName);
     }
 
     public void collect(int x, int y) {
@@ -187,8 +179,26 @@ public class Game implements java.io.Serializable {
         return decreasePlant(position.getX(), position.getY());
     }
 
-    public void print(String target) {
-        // TODO
+    public String print(String target) {
+        switch (target) {
+            case "info":
+                return this.toString();
+            case "map":
+                return map.toString();
+            case "levels":
+                return ""; // TODO why levels ? no level ?
+            case "warehouse":
+                return getWarehouse().toString();
+            case "well":
+                return map.getWell().toString();
+            case "workshops":
+                return Arrays.toString(workshops);
+            case "truck":
+                return truck.toString();
+            case "helicopter":
+                return helicopter.toString();
+        }
+        return "Invalid input!";
     }
 
     private Vehicle getVehicleByName(String name) {

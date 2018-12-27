@@ -78,7 +78,7 @@ class Ui {
                     break;
                 case "print":
                     target = args[1];
-                    game.print(target);
+                    System.out.println(game.print(target));
                     break;
                 case "turn":
                     int turnCount = args.length >= 2 ? Integer.valueOf(args[1]) : 1;

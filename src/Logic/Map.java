@@ -1,6 +1,6 @@
 package Logic;
 
-import Animals.WildAnimal;
+import Animals.*;
 import Buildings.Warehouse;
 import Buildings.Well;
 import Products.GroundProduct;
@@ -185,6 +185,40 @@ public class Map extends MainObject {
         if (!getWell().plant())
             return false;
         grass[x][y]++;
+        return true;
+    }
+
+    boolean buy(String animalName) {
+        int cost;
+        BaseAnimal animal;
+        Position position = getRandomValidPosition();
+        switch (animalName) {
+            case "hen":
+                cost = Constants.HEN_BUY_COST;
+                animal = new ProducerAnimal(getGame(), position, ProducerAnimalType.HEN);
+                break;
+            case "sheep":
+                cost = Constants.SHEEP_BUY_COST;
+                animal = new ProducerAnimal(getGame(), position, ProducerAnimalType.SHEEP);
+                break;
+            case "cow":
+                cost = Constants.COW_BUY_COST;
+                animal = new ProducerAnimal(getGame(), position, ProducerAnimalType.COW);
+                break;
+            case "cat":
+                cost = Constants.CAT_BUY_COST;
+                animal = new Cat(getGame(), position);
+                break;
+            case "dog":
+                cost = Constants.DOG_BUY_COST;
+                animal = new Dog(getGame(), position);
+                break;
+            default:
+                return false;
+        }
+        if (!getGame().decreaseMoney(cost))
+            return false;
+        addObject(position, animal);
         return true;
     }
 }
