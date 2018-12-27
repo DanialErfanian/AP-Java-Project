@@ -7,6 +7,9 @@ import Transportation.Helicopter;
 import Transportation.Truck;
 import Transportation.Vehicle;
 import Utils.Position;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.util.Arrays;
@@ -86,6 +89,7 @@ public class Game implements java.io.Serializable {
         return true;
     }
 
+    @Nullable
     public static Game load(String path) {
         Game resultGame;
         try {
@@ -130,6 +134,7 @@ public class Game implements java.io.Serializable {
         return map.getWell().fill();
     }
 
+    @Nullable
     private Workshop getWorkshopWithName(String workshopName) {
         for (Workshop workshop : workshops)
             if (workshop != null && workshop.getName().equals(workshopName))
@@ -201,7 +206,9 @@ public class Game implements java.io.Serializable {
         return "Invalid input!";
     }
 
-    private Vehicle getVehicleByName(String name) {
+    @Nullable
+    @Contract(pure = true)
+    private Vehicle getVehicleByName(@NotNull String name) {
         switch (name) {
             case "truck":
                 return truck;
@@ -212,7 +219,9 @@ public class Game implements java.io.Serializable {
         }
     }
 
-    private Product getProductByName(String itemName) {
+    @Nullable
+    @Contract(pure = true)
+    private Product getProductByName(@NotNull String itemName) {
         switch (itemName) {
             case "wool":
                 return Product.WOOL;
