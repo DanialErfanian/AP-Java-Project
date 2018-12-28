@@ -3,6 +3,7 @@ package Logic;
 import Buildings.Warehouse;
 import Buildings.Workshop;
 import Products.Product;
+import Products.WorkshopBuilder;
 import Transportation.Helicopter;
 import Transportation.Truck;
 import Transportation.Vehicle;
@@ -12,19 +13,33 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Game implements java.io.Serializable {
     // TODO Max level is still unhandled
-    private int money = Constants.START_MONEY;
-    private Workshop[] workshops = new Workshop[6];
-    private Level currentLevel;
+    private static ArrayList<Level> levels = new ArrayList<>();
+    private HashMap<Product, Integer> requirements;
+    private int money;
+    private final Workshop[] workshops = new Workshop[6];
     private Map map;
-    private Truck truck = new Truck(this);
-    private Helicopter helicopter = new Helicopter(this);
+    private Truck truck;
+    private Helicopter helicopter;
 
     public Game() {
 
+    }
+
+    public Game(Level level) {
+        requirements = level.getRequirements();
+        money = level.getMoney();
+        WorkshopBuilder[] workshops = level.getWorkshops();
+        for (int i = 0; i < 6; i++)
+            this.workshops[i] = new Workshop(this, workshops[i]);
+        this.map = new Map(this, level.getMapWidth(), level.getMapHeight());
+        this.truck = new Truck(this);
+        this.helicopter = new Helicopter(this);
     }
 
     public Map getMap() {
@@ -60,10 +75,6 @@ public class Game implements java.io.Serializable {
 
     public int getMoney() {
         return money;
-    }
-
-    public void addWorkshop(Workshop workshop) {
-        //TODO: take care of the number of warehouses
     }
 
     @Override
@@ -108,10 +119,17 @@ public class Game implements java.io.Serializable {
         return resultGame;
     }
 
-    public void run(String mapName) {
+    @Nullable
+    public static Game run(String mapName) {
+        for (Level level : levels)
+            if (level.getName().equals(mapName))
+                return new Game(level);
+        return null;
     }
 
-    public void loadCustom(String path) {
+    public static void loadCustom(String path) {// throw IOException {
+        Level level = Level.loadFromFile(path);
+        levels.add(level);
     }
 
     public boolean buy(String animalName) {

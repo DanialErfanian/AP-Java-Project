@@ -59,11 +59,22 @@ class Ui {
                     else
                         System.out.println("Upgrading failed!");
                 case "load_custom":
+                    String path = args[1];
+                    Game.loadCustom(path);
                     break;
                 case "run":
+                    String mapName = args[1];
+                    Game newGame = Game.run(mapName);
+                    if (newGame == null)
+                        System.out.println("Map with this name not found!");
+                    else {
+                        game = newGame;
+                        System.out.println("Map loaded successfully.");
+                    }
+
                     break;
                 case "save_game":
-                    String path = args[1];
+                    path = args[1];
                     System.out.println("Saving " + (game.save(path) ? "done." : "failed!"));
                     break;
                 case "load_game":
