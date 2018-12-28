@@ -13,7 +13,7 @@ public class Warehouse extends BaseBuilding {
         super(game);
     }
 
-    int getProductCount(Product product) {
+    public int getProductCount(Product product) {
         return products.getProductCount(product);
     }
 

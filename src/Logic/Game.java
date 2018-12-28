@@ -31,6 +31,16 @@ public class Game implements java.io.Serializable {
 
     }
 
+    private HashMap<Product, Double> getPassedPercent() {
+        HashMap<Product, Double> result = new HashMap<>();
+        for (HashMap.Entry<Product, Integer> entry : requirements.entrySet()) {
+            Product product = entry.getKey();
+            int wishCount = entry.getValue();
+            result.put(product, (double) (100 * getWarehouse().getProductCount(product) / wishCount));
+        }
+        return result;
+    }
+
     public Game(Level level) {
         requirements = level.getRequirements();
         money = level.getMoney();
@@ -79,8 +89,10 @@ public class Game implements java.io.Serializable {
 
     @Override
     public String toString() {
-        // TODO
-        return null;
+        return "Game: " +
+                "\nmoney: " + money +
+                "\nrequirements: " + requirements +
+                "\nrequirements passed percent: " + this.getPassedPercent();
     }
 
     public boolean save(String path) {
@@ -209,7 +221,7 @@ public class Game implements java.io.Serializable {
             case "map":
                 return map.toString();
             case "levels":
-                return ""; // TODO why levels ? no level ?
+                return levels.toString();
             case "warehouse":
                 return getWarehouse().toString();
             case "well":
