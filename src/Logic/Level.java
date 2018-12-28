@@ -3,6 +3,7 @@ package Logic;
 import Products.Product;
 import Products.WorkshopBuilder;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Level implements java.io.Serializable {
@@ -20,8 +21,13 @@ public class Level implements java.io.Serializable {
 
     @Override
     public String toString() {
-        // TODO
-        return null;
+        return "Level: " +
+                "\nname: " + name +
+                "\nrequirements: " + requirements +
+                "\nworkshops: " + Arrays.toString(workshops) +
+                "\nmapWidth: " + mapWidth +
+                "\nmapHeight: " + mapHeight +
+                "\nmoney: " + money;
     }
 
     public Level(String name, HashMap<Product, Integer> requirements, int mapWidth, int mapHeight, int money) {
