@@ -7,6 +7,7 @@ import Products.GroundProduct;
 import Utils.Position;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Map extends MainObject {
@@ -18,6 +19,18 @@ public class Map extends MainObject {
     private int lastWildAnimalTime = 0;
     private int catLevel = 1;
     private Warehouse warehouse = new Warehouse(getGame());
+
+    @Override
+    public String toString() {
+        return "Map: " +
+                "\nmapWidth: " + mapWidth +
+                "\nmapHeight: " + mapHeight +
+                "\nwell: " + well +
+                "\nobjects: " + objects +
+                "\ngrass: " + Arrays.deepToString(grass) +
+                "\nwarehouse: " + warehouse;
+    }
+
 
     boolean upgradeCats() {
         if (catLevel == 2)
@@ -64,7 +77,7 @@ public class Map extends MainObject {
     }
 
 
-    public Map(Game game, int mapWidth, int mapHeight) {
+    Map(Game game, int mapWidth, int mapHeight) {
         super(game);
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
@@ -154,12 +167,6 @@ public class Map extends MainObject {
         if (animals.size() == 0)
             return null;
         return animals.get(new Random().nextInt(animals.size()));
-    }
-
-    @Override
-    public String toString() {
-        // TODO
-        return super.toString();
     }
 
     public GroundProduct getGroundProductForCat(Position position) {

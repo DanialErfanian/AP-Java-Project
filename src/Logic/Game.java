@@ -3,28 +3,60 @@ package Logic;
 import Buildings.Warehouse;
 import Buildings.Workshop;
 import Products.Product;
+import Products.WorkshopBuilder;
 import Transportation.Helicopter;
 import Transportation.Truck;
 import Transportation.Vehicle;
 import Utils.Position;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.YaGsonBuilder;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Game implements java.io.Serializable {
     // TODO Max level is still unhandled
-    private int money = Constants.START_MONEY;
-    private Workshop[] workshops = new Workshop[6];
-    private Level currentLevel;
+    private static ArrayList<Level> levels = new ArrayList<>();
+    private HashMap<Product, Integer> requirements;
+    private int money;
+    private final Workshop[] workshops = new Workshop[6];
     private Map map;
-    private Truck truck = new Truck(this);
-    private Helicopter helicopter = new Helicopter(this);
+    private Truck truck;
+    private Helicopter helicopter;
 
     public Game() {
 
+    }
+
+    private HashMap<Product, Double> getPassedPercent() {
+        HashMap<Product, Double> result = new HashMap<>();
+        for (HashMap.Entry<Product, Integer> entry : requirements.entrySet()) {
+            Product product = entry.getKey();
+            int wishCount = entry.getValue();
+            result.put(product, (double) (100 * getWarehouse().getProductCount(product) / wishCount));
+        }
+        return result;
+    }
+
+    public Game(Level level) {
+        requirements = level.getRequirements();
+        money = level.getMoney();
+        WorkshopBuilder[] workshops = level.getWorkshops();
+        for (int i = 0; i < 6; i++)
+            this.workshops[i] = new Workshop(this, workshops[i]);
+        this.map = new Map(this, level.getMapWidth(), level.getMapHeight());
+        this.truck = new Truck(this);
+        this.helicopter = new Helicopter(this);
     }
 
     public Map getMap() {
@@ -62,56 +94,51 @@ public class Game implements java.io.Serializable {
         return money;
     }
 
-    public void addWorkshop(Workshop workshop) {
-        //TODO: take care of the number of warehouses
-    }
-
     @Override
     public String toString() {
-        // TODO
-        return null;
+        return "Game: " +
+                "\nmoney: " + money +
+                "\nrequirements: " + requirements +
+                "\nrequirements passed percent: " + this.getPassedPercent();
     }
 
     public boolean save(String path) {
         relax();
+        YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
         try {
-            FileOutputStream file = new FileOutputStream(path);
-            ObjectOutputStream out = new ObjectOutputStream(file);
-
-            out.writeObject(this);
-
-            out.close();
-            file.close();
-        } catch (IOException e) {
+            File file = new File(path);
+            PrintStream result = new PrintStream(file);
+            result.println(mapper.toJson(this, Game.class));
+            return true;
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;
         }
-        return true;
     }
 
     @Nullable
     public static Game load(String path) {
-        Game resultGame;
         try {
-            FileInputStream file = new FileInputStream(path);
-            ObjectInputStream in = new ObjectInputStream(file);
-
-            // Method for deserialization of object
-            resultGame = (Game) in.readObject();
-
-            in.close();
-            file.close();
-        } catch (Exception e) {
+            String text = new String(Files.readAllBytes(Paths.get(path)));
+            YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
+            return mapper.fromJson(text, Game.class);
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
-        return resultGame;
     }
 
-    public void run(String mapName) {
+    @Nullable
+    public static Game run(String mapName) {
+        for (Level level : levels)
+            if (level.getName().equals(mapName))
+                return new Game(level);
+        return null;
     }
 
-    public void loadCustom(String path) {
+    public static void loadCustom(String path) {// throw IOException {
+        Level level = Level.loadFromFile(path);
+        levels.add(level);
     }
 
     public boolean buy(String animalName) {
@@ -191,7 +218,7 @@ public class Game implements java.io.Serializable {
             case "map":
                 return map.toString();
             case "levels":
-                return ""; // TODO why levels ? no level ?
+                return levels.toString();
             case "warehouse":
                 return getWarehouse().toString();
             case "well":
