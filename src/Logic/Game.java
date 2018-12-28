@@ -8,11 +8,18 @@ import Transportation.Helicopter;
 import Transportation.Truck;
 import Transportation.Vehicle;
 import Utils.Position;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.YaGsonBuilder;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -97,38 +104,28 @@ public class Game implements java.io.Serializable {
 
     public boolean save(String path) {
         relax();
+        YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
         try {
-            FileOutputStream file = new FileOutputStream(path);
-            ObjectOutputStream out = new ObjectOutputStream(file);
-
-            out.writeObject(this);
-
-            out.close();
-            file.close();
-        } catch (IOException e) {
+            File file = new File(path);
+            PrintStream result = new PrintStream(file);
+            result.println(mapper.toJson(this, Game.class));
+            return true;
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;
         }
-        return true;
     }
 
     @Nullable
     public static Game load(String path) {
-        Game resultGame;
         try {
-            FileInputStream file = new FileInputStream(path);
-            ObjectInputStream in = new ObjectInputStream(file);
-
-            // Method for deserialization of object
-            resultGame = (Game) in.readObject();
-
-            in.close();
-            file.close();
-        } catch (Exception e) {
+            String text = new String(Files.readAllBytes(Paths.get(path)));
+            YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
+            return mapper.fromJson(text, Game.class);
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
-        return resultGame;
     }
 
     @Nullable
