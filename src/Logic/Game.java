@@ -136,9 +136,12 @@ public class Game implements java.io.Serializable {
         return null;
     }
 
-    public static void loadCustom(String path) {// throw IOException {
+    public static boolean loadCustom(String path) {
         Level level = Level.loadFromFile(path);
+        if (level == null)
+            return false;
         levels.add(level);
+        return true;
     }
 
     public boolean buy(String animalName) {

@@ -60,7 +60,10 @@ class Ui {
                         System.out.println("Upgrading failed!");
                 case "load_custom":
                     String path = args[1];
-                    Game.loadCustom(path);
+                    if (Game.loadCustom(path))
+                        System.out.println("Custom level loaded successfully.");
+                    else
+                        System.out.println("Loading level failed!");
                     break;
                 case "run":
                     String mapName = args[1];
