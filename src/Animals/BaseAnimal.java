@@ -37,8 +37,8 @@ abstract public class BaseAnimal extends MiddleMapObject {
             if (Position.getDistance(currentPosition, target.getPosition()) == distance - 1)
                 validPositions.add(currentPosition);
         }
-        setPosition(validPositions.get(new Random().nextInt(validPositions.size())));
-        // TODO move animal in map.objects
+        Position newPosition = validPositions.get(new Random().nextInt(validPositions.size()));
+        getGame().getMap().moveAnimal(this, newPosition);
     }
 
     @Override

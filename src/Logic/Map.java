@@ -270,4 +270,12 @@ public class Map extends MainObject {
         addObject(position, animal);
         return true;
     }
+
+    public void moveAnimal(MiddleMapObject object, Position newPosition) {
+        ArrayList<MiddleMapObject> objects = getObjects(object.getPosition());
+        assert objects != null;
+        objects.remove(object);
+        addObject(newPosition, object);
+        object.setPosition(newPosition);
+    }
 }
