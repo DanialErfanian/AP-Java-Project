@@ -41,4 +41,9 @@ public class Position implements java.io.Serializable, Targetable {
     public Position getPosition() {
         return this;
     }
+
+    @Override
+    public String toString() {
+        return String.format("(%d, %d)", x, y);
+    }
 }

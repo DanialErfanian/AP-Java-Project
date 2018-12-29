@@ -44,7 +44,7 @@ abstract public class BaseAnimal extends MiddleMapObject {
     public String toString() {
         return "BaseAnimal: " +
                 "\nposition: " + getPosition() +
-                "\ntarget: " + target.getPosition();
+                "\ntarget: " + ((target == null) ? "null" : target.getPosition());
     }
 
     abstract void doTask();
