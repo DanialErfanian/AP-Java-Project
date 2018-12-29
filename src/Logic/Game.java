@@ -85,8 +85,12 @@ public class Game implements java.io.Serializable {
     public void increaseTurn() {
         // TODO: check if level requirements satisfied level is done
         // TODO: max Level? :thinking:
+        if (map == null)
+            return;
         map.increaseTurn();
-        for (Workshop workshop : workshops) workshop.increaseTurn();
+        for (Workshop workshop : workshops)
+            if (workshop != null)
+                workshop.increaseTurn();
     }
 
     public void turn(int count) {
@@ -107,7 +111,7 @@ public class Game implements java.io.Serializable {
     }
 
     public boolean save(String path) {
-        if (path == null)
+        if (path == null || map == null)
             return false;
         relax();
         YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
@@ -228,13 +232,15 @@ public class Game implements java.io.Serializable {
     }
 
     public String print(String target) {
+        if (target.equals("levels"))
+            return levels.toString();
+        if (map == null)
+            return "Game isn't started with certain level";
         switch (target) {
             case "info":
                 return this.toString();
             case "map":
                 return map.toString();
-            case "levels":
-                return levels.toString();
             case "warehouse":
                 return getWarehouse().toString();
             case "well":

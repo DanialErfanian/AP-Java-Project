@@ -38,6 +38,7 @@ abstract public class BaseAnimal extends MiddleMapObject {
                 validPositions.add(currentPosition);
         }
         setPosition(validPositions.get(new Random().nextInt(validPositions.size())));
+        // TODO move animal in map.objects
     }
 
     @Override

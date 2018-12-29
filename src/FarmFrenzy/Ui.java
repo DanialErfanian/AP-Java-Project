@@ -4,6 +4,7 @@ import Logic.Game;
 import Utils.Position;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 class Ui {
@@ -17,7 +18,7 @@ class Ui {
             String command = input.nextLine();
             if (command.length() == 0)
                 continue;
-            String[] args = command.split(" ");
+            String[] args = command.toLowerCase().split(" ");
             switch (args[0]) {
                 case "buy":
                     buyAnimal(game, args);
@@ -60,6 +61,14 @@ class Ui {
                     break;
                 case "exit":
                     System.exit(0);
+                case "clear":
+                    try {
+                        System.out.println("Fana e ozma :)");
+                        Runtime.getRuntime().exec("clear");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
                 default:
                     vehicleCommand(game, args);
             }

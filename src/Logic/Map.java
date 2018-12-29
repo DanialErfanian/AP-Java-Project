@@ -129,6 +129,11 @@ public class Map extends MainObject {
 
     @Override
     protected void increaseTurn() {
+        well.increaseTurn();
+        for (int i = 0; i < mapWidth; i++)
+            for (int j = 0; j < mapHeight; j++)
+                for (MiddleMapObject object : objects.get(i).get(j))
+                    object.increaseTurn();
         lastWildAnimalTime--;
         if (-lastWildAnimalTime == Constants.WILD_ANIMAL_TIME_PERIOD) {
             Position position = getRandomValidPosition();
@@ -137,11 +142,6 @@ public class Map extends MainObject {
             addObject(position, new WildAnimal(getGame(), position));
             lastWildAnimalTime = 0;
         }
-        well.increaseTurn();
-        for (int i = 0; i < mapWidth; i++)
-            for (int j = 0; j < mapHeight; j++)
-                for (MiddleMapObject object : objects.get(i).get(j))
-                    object.increaseTurn();
     }
 
     boolean cage(Position position) {
@@ -150,8 +150,10 @@ public class Map extends MainObject {
             return false;
         for (int i = 0; i < objects.size(); i++) {
             MiddleMapObject object = objects.get(i);
-            if (object instanceof WildAnimal)
+            if (object instanceof WildAnimal) {
                 objects.set(i, ((WildAnimal) object).cage());
+                System.out.println("We catched a Wild animal");
+            }
         }
         return true;
     }
