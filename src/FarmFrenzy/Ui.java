@@ -106,7 +106,7 @@ class Ui {
             System.out.printf("%s cleared successfully.\n", args[0]);
         else
             System.out.printf("clearing %s failed!\n", args[0]);
-    }// TODO
+    }
 
     static private void goVehicle(Game game, String[] args) {
         if (game.goVehicle(args[0]))

@@ -21,6 +21,19 @@ public class Map extends MainObject {
     private int catLevel = 1;
     private Warehouse warehouse = new Warehouse(getGame());
 
+    void relax() {
+        for (int i = 0; i < mapWidth; i++)
+            for (int j = 0; j < mapHeight; j++) {
+                ArrayList<MiddleMapObject> objects = getObjects(i, j), relaxed = new ArrayList<>();
+                assert (objects != null);
+                for (MiddleMapObject object : objects)
+                    if (object.isValid())
+                        relaxed.add(object);
+                objects.clear();
+                objects.addAll(relaxed);
+            }
+    }
+
     @Override
     public String toString() {
         return "Map: " +
@@ -74,8 +87,11 @@ public class Map extends MainObject {
 
     @Nullable
     private ArrayList<MiddleMapObject> getObjects(Position position) {
-        int x = position.getX();
-        int y = position.getY();
+        return getObjects(position.getX(), position.getY());
+    }
+
+    @Nullable
+    private ArrayList<MiddleMapObject> getObjects(int x, int y) {
         if (isInvalid(x, y))
             return null;
         return this.objects.get(x).get(y);

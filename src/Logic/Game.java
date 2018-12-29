@@ -216,10 +216,7 @@ public class Game implements java.io.Serializable {
     }
 
     private void relax() {
-        // TODO
-        // GroundProduct with amount 0 mean invalid and must be deleted
-        // WildAnimal will replace with null after remove
-        // generally BaseAnimal with position = null mean invalid and must be deleted
+        map.relax();
     }
 
     private boolean decreasePlant(int x, int y) {
