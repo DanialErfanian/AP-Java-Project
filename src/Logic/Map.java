@@ -5,6 +5,7 @@ import Buildings.Warehouse;
 import Buildings.Well;
 import Products.GroundProduct;
 import Utils.Position;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,11 +54,31 @@ public class Map extends MainObject {
         return new Position(x, y);
     }
 
-    void collect(int x, int y) {
-        ArrayList<MiddleMapObject> objects = this.objects.get(x).get(y);
+    private boolean isInvalid(int x, int y) {
+        return x < 0 || y < 0 || x >= mapWidth || y >= mapHeight;
+    }
+
+    private boolean isInvalid(Position position) {
+        return isInvalid(position.getX(), position.getY());
+    }
+
+    boolean collect(Position position) {
+        ArrayList<MiddleMapObject> objects = getObjects(position);
+        if (objects == null)
+            return false;
         for (MiddleMapObject object : objects)
             if (object instanceof GroundProduct)
                 ((GroundProduct) object).collect();
+        return true;
+    }
+
+    @Nullable
+    private ArrayList<MiddleMapObject> getObjects(Position position) {
+        int x = position.getX();
+        int y = position.getY();
+        if (isInvalid(x, y))
+            return null;
+        return this.objects.get(x).get(y);
     }
 
     Warehouse getWarehouse() {
@@ -107,13 +128,16 @@ public class Map extends MainObject {
                     object.increaseTurn();
     }
 
-    void cage(int x, int y) {
-        ArrayList<MiddleMapObject> objects = this.objects.get(x).get(y);
+    boolean cage(Position position) {
+        ArrayList<MiddleMapObject> objects = getObjects(position);
+        if (objects == null)
+            return false;
         for (int i = 0; i < objects.size(); i++) {
             MiddleMapObject object = objects.get(i);
             if (object instanceof WildAnimal)
                 objects.set(i, ((WildAnimal) object).cage());
         }
+        return true;
     }
 
     private ArrayList<MiddleMapObject> getCellObjects(int x, int y) {
@@ -188,10 +212,10 @@ public class Map extends MainObject {
         return products.get(new Random().nextInt(products.size()));
     }
 
-    boolean plant(int x, int y) {
-        if (!getWell().plant())
+    boolean plant(Position position) {
+        if (isInvalid(position) || !getWell().plant())
             return false;
-        grass[x][y]++;
+        grass[position.getX()][position.getY()]++;
         return true;
     }
 

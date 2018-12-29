@@ -4,6 +4,7 @@ import Products.Product;
 import Products.WorkshopBuilder;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,6 +23,7 @@ public class Level implements java.io.Serializable {
     private int mapHeight;
     private int money;
 
+    @Nullable
     static Level loadFromFile(String path) {
         try {
             String text = new String(Files.readAllBytes(Paths.get(path)));

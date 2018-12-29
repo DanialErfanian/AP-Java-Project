@@ -16,7 +16,7 @@ public class Cat extends BaseAnimal {
 
     @Override
     void doTask() {
-        getGame().collect(getPosition().getX(), getPosition().getY());
+        getGame().collect(getPosition());
     }
 
     @Override

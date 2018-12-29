@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+// TODO print map without start NuLL Pointer exception
 public class Game implements java.io.Serializable {
     // TODO Max level is still unhandled
     private static ArrayList<Level> levels = new ArrayList<>();
@@ -53,7 +54,10 @@ public class Game implements java.io.Serializable {
         money = level.getMoney();
         WorkshopBuilder[] workshops = level.getWorkshops();
         for (int i = 0; i < 6; i++)
-            this.workshops[i] = new Workshop(this, workshops[i]);
+            if (workshops[i] != null)
+                this.workshops[i] = new Workshop(this, workshops[i]);
+            else
+                this.workshops[i] = null;
         this.map = new Map(this, level.getMapWidth(), level.getMapHeight());
         this.truck = new Truck(this);
         this.helicopter = new Helicopter(this);
@@ -103,6 +107,8 @@ public class Game implements java.io.Serializable {
     }
 
     public boolean save(String path) {
+        if (path == null)
+            return false;
         relax();
         YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
         try {
@@ -118,6 +124,8 @@ public class Game implements java.io.Serializable {
 
     @Nullable
     public static Game load(String path) {
+        if (path == null)
+            return null;
         try {
             String text = new String(Files.readAllBytes(Paths.get(path)));
             YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
@@ -130,31 +138,38 @@ public class Game implements java.io.Serializable {
 
     @Nullable
     public static Game run(String mapName) {
+        if (mapName == null)
+            return null;
         for (Level level : levels)
             if (level.getName().equals(mapName))
                 return new Game(level);
         return null;
     }
 
-    public static void loadCustom(String path) {// throw IOException {
+    public static boolean loadCustom(String path) {
+        if (path == null)
+            return false;
         Level level = Level.loadFromFile(path);
+        if (level == null)
+            return false;
         levels.add(level);
+        return true;
     }
 
     public boolean buy(String animalName) {
         return map.buy(animalName);
     }
 
-    public void collect(int x, int y) {
-        map.collect(x, y);
+    public boolean collect(Position position) {
+        return map.collect(position);
     }
 
-    public void cage(int x, int y) {
-        map.cage(x, y);
+    public boolean cage(Position position) {
+        return map.cage(position);
     }
 
-    public boolean plant(int x, int y) {
-        return map.plant(x, y);
+    public boolean plant(Position position) {
+        return map.plant(position);
     }
 
     public boolean well() {
@@ -170,6 +185,8 @@ public class Game implements java.io.Serializable {
     }
 
     public String startWorkshop(String workshopName) {
+        if (workshopName == null)
+            return "Invalid input!";
         Workshop workshop = getWorkshopWithName(workshopName);
         if (workshop != null)
             return workshop.start();
@@ -177,6 +194,8 @@ public class Game implements java.io.Serializable {
     }
 
     public boolean upgrade(String targetName) {
+        if (targetName == null)
+            return false;
         switch (targetName) {
             case "cat":
                 return map.upgradeCats();
