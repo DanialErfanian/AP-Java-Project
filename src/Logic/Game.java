@@ -53,7 +53,10 @@ public class Game implements java.io.Serializable {
         money = level.getMoney();
         WorkshopBuilder[] workshops = level.getWorkshops();
         for (int i = 0; i < 6; i++)
-            this.workshops[i] = new Workshop(this, workshops[i]);
+            if (workshops[i] != null)
+                this.workshops[i] = new Workshop(this, workshops[i]);
+            else
+                this.workshops[i] = null;
         this.map = new Map(this, level.getMapWidth(), level.getMapHeight());
         this.truck = new Truck(this);
         this.helicopter = new Helicopter(this);
