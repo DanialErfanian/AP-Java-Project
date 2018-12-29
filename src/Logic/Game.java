@@ -39,6 +39,16 @@ public class Game implements java.io.Serializable {
 
     }
 
+    private void done() {
+        requirements = null;
+        money = 0;
+        for (int i = 0; i < 6; i++) workshops[i] = null;
+        map = null;
+        truck = null;
+        helicopter = null;
+        System.out.println("Level is done. GL&HF :)");
+    }
+
     private HashMap<Product, Double> getPassedPercent() {
         HashMap<Product, Double> result = new HashMap<>();
         for (HashMap.Entry<Product, Integer> entry : requirements.entrySet()) {
@@ -83,7 +93,14 @@ public class Game implements java.io.Serializable {
     }
 
     public void increaseTurn() {
-        // TODO: check if level requirements satisfied level is done
+        HashMap<Product, Double> passedRequirements = getPassedPercent();
+        boolean passed = true;
+        for (var x : passedRequirements.entrySet())
+            passed &= (x.getValue().equals(100.0));
+        if (passed) {
+            done();
+            return;
+        }
         // TODO: max Level? :thinking:
         if (map == null)
             return;
