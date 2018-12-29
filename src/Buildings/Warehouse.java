@@ -47,4 +47,17 @@ public class Warehouse extends BaseBuilding {
     protected int getUpgradeCost() {
         return Constants.WAREHOUSE_UPGRADE_COST;
     }
+
+    public boolean allocate(int count) {
+        return products.allocate(count);
+    }
+
+    public boolean unallocate(int count) {
+        return products.unallocate(count);
+    }
+
+    public int getRemainedCapacity() {
+        return products.getRemainedCapacity();
+    }
+
 }

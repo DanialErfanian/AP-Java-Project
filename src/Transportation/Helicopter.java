@@ -38,18 +38,29 @@ public class Helicopter extends Vehicle {
     public void increaseTurn() {
         if (progress == 0) {
             onTheWay = false;
-            // TODO add to Warehouse
+            assert (getGame().getWarehouse().unallocate(products.getFilledCapacity()));
+            for (HashMap.Entry<Product, Integer> entry : products.getEntrySet()) {
+                assert (getGame().getWarehouse().addProduct(entry.getKey(), entry.getValue()));
+            }
             clear();
         } else
             progress--;
+    }
+
+    private boolean canGo() {
+        if (getGame().getMoney() < getCost())
+            return false;
+        return getGame().getWarehouse().getRemainedCapacity() >= products.getFilledCapacity();
     }
 
     @Override
     public boolean go() {
         if (onTheWay)
             return false;
-        if (!getGame().decreaseMoney(getCost()))
+        if (!canGo())
             return false;
+        getGame().decreaseMoney(getCost());
+        assert (getGame().getWarehouse().allocate(products.getFilledCapacity()));
         onTheWay = true;
         progress = Constants.HELICOPTER_JOB_PROGRESS;
         return true;

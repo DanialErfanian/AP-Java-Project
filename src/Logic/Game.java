@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-// TODO print map without start NuLL Pointer exception
+
 public class Game implements java.io.Serializable {
     // TODO Max level is still unhandled
     private static ArrayList<Level> levels = new ArrayList<>();
