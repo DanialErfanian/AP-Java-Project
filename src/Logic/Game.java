@@ -95,7 +95,7 @@ public class Game implements java.io.Serializable {
     public void increaseTurn() {
         HashMap<Product, Double> passedRequirements = getPassedPercent();
         boolean passed = true;
-        for (var x : passedRequirements.entrySet())
+        for (HashMap.Entry<Product, Double> x : passedRequirements.entrySet())
             passed &= (x.getValue().equals(100.0));
         if (passed) {
             done();
