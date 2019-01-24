@@ -1,0 +1,30 @@
+.root-pane {
+    -fx-background-image: url("../Resources/back.png");
+    -fx-background-size: cover;
+    -fx-pref-width: 1200;
+    -fx-pref-height: 900;
+}
+
+.root-pane * {
+}
+
+.top-box {
+}
+
+.button-box {
+
+}
+
+.left-box {
+
+}
+
+.right-box {
+
+}
+
+.workshop {
+    -fx-opacity: 1;
+    -fx-min-height: 300;
+    -fx-min-width: 300;
+}

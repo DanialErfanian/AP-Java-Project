@@ -1,0 +1,41 @@
+.main-box {
+    -fx-background-color: black;
+}
+
+.main-pane {
+    -fx-background-color: black;
+    -fx-background-image: url("../../Resources/Data/MainMenu/back.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.top-box {
+    -fx-alignment: center;
+    -fx-padding: 10 0 0 0;
+}
+
+.logo-view {
+    -fx-image: url("../../Resources/Data/MainMenu/game_logo.png");
+    /*-fx-fit-to-width: 10;*/
+    -fx-fit-to-height: true;
+}
+
+.title-view {
+    -fx-image: url("../../Resources/Data/MainMenu/Title.png");
+}
+
+.middle-box {
+    -fx-background-image: url("../../Resources/Data/MainMenu/Panels/mainmenu.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.welcome-text {
+
+}
+
+.play-button {
+    -fx-background-image: url("../../Resources/Data/Common/Buttons/button_84.png");
+}
