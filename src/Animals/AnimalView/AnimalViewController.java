@@ -38,7 +38,7 @@ public class AnimalViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        final String resourcePath = "/home/danial/Desktop/AP/src/resources/Animals/Africa/GuineaFowl/";
+        final String resourcePath = "/home/danial/Desktop/AP/src/Resources/Animals/Africa/GuineaFowl/";
         handler = new StateHandler(resourcePath);
         animation = new SpriteAnimation(imageView, Duration.millis(1000));
         setState(defaultState);
@@ -76,7 +76,9 @@ public class AnimalViewController implements Initializable {
         } else if (!up && down && !left) {// down right  note: right is always true
             setState("down_left");
             imageView.setScaleX(-1);
-        } else
+        } else if(up && down && left && right)
+            setState("death");
+        else
             setState(defaultState);
     }
 

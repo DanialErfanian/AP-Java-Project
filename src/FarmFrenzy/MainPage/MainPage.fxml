@@ -1,24 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<BorderPane prefHeight="749.0" prefWidth="1040.0" styleClass="main-pane" stylesheets="@style.css"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="FarmFrenzy.MainPage.Controller">
+
+<BorderPane prefHeight="749.0" prefWidth="1040.0" styleClass="main-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FarmFrenzy.MainPage.Controller">
     <top>
         <VBox prefHeight="303.0" prefWidth="1007.0" styleClass="top-box">
             <children>
-                <ImageView fx:id="imageView" fitHeight="265.0" fitWidth="454.0" pickOnBounds="true"
-                           preserveRatio="true"/>
-                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
+                <ImageView fx:id="imageView" fitHeight="306.0" fitWidth="354.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-view" />
+                <ImageView fitHeight="132.0" fitWidth="623.0" pickOnBounds="true" preserveRatio="true" styleClass="title-view">
+               <VBox.margin>
+                  <Insets top="-70.0" />
+               </VBox.margin></ImageView>
             </children>
         </VBox>
     </top>
     <center>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <VBox prefHeight="200.0" prefWidth="100.0"/>
-            </children>
-        </HBox>
+          <VBox alignment="TOP_CENTER" prefHeight="238.0" prefWidth="1040.0" styleClass="middle-box">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcome-text" text="سلام عمووووو" textAlignment="CENTER" wrappingWidth="231.7294921875">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Text>
+            <Text layoutX="414.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcome-text" text="ov hgsssssss'" textAlignment="CENTER" wrappingWidth="231.7294921875">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Text>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="377.0" styleClass="main-menu-button" text="Play">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
     </center>
+   <bottom>
+      <HBox alignment="TOP_CENTER" prefHeight="91.0" prefWidth="1040.0" styleClass="bottom-box" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" styleClass="main-menu-button" text="Options" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="main-menu-button" text="Awards" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="main-menu-button" text="Credits" />
+            <Button layoutX="72.0" layoutY="10.0" mnemonicParsing="false" styleClass="main-menu-button" text="Exit" />
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>

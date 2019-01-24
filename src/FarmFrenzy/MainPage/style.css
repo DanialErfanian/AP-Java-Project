@@ -33,9 +33,34 @@
 }
 
 .welcome-text {
-
+    -fx-font-size: 30;
+    -fx-font-family: Serif;
 }
 
-.play-button {
-    -fx-background-image: url("../../Resources/Data/Common/Buttons/button_84.png");
+.bottom-box {
+    -fx-spacing: -90;
+}
+
+.bottom-box Button {
+    -fx-pref-width: 200;
+    -fx-pref-height: 40;
+}
+
+.main-menu-button {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../Resources/Data/Common/Buttons/button_178-0-0.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-pref-width: 377;
+    -fx-pref-height: 60;
+    -fx-font-size: 25;
+}
+
+.main-menu-button:hover {
+    -fx-background-image: url("../../Resources/Data/Common/Buttons/button_178-1-0.png");
+}
+
+.main-menu-button:armed {
+    -fx-background-image: url("../../Resources/Data/Common/Buttons/button_178-0-1.png");
 }
