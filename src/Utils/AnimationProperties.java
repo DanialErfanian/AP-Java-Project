@@ -5,14 +5,23 @@ import com.gilecode.yagson.YaGsonBuilder;
 import javafx.scene.image.Image;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class AnimationProperties {
     private final int count;
     private final int columns;
+    private transient File imageFile;
     private transient Image image;
+
+    public AnimationProperties(int count, int columns, File imageFile) {
+        this.count = count;
+        this.columns = columns;
+        this.imageFile = imageFile;
+    }
 
     public AnimationProperties(int count, int columns) {
         this.count = count;
@@ -27,7 +36,11 @@ public class AnimationProperties {
             YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
             AnimationProperties animation = mapper.fromJson(text, AnimationProperties.class);
             System.out.println("path = " + path + ".png");
-            animation.image = new Image(new File(path + ".png").toURI().toString());
+            if (animation.image == null) {
+                if (animation.imageFile == null)
+                    animation.imageFile = new File(path + ".png");
+                animation.image = new Image(animation.imageFile.toURI().toString());
+            }
             return animation;
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,7 +60,6 @@ public class AnimationProperties {
         return image;
     }
 
-    /*
     public boolean writeToFile(String path) {
         if (path == null)
             return false;
@@ -62,5 +74,4 @@ public class AnimationProperties {
             return false;
         }
     }
-    */
 }
