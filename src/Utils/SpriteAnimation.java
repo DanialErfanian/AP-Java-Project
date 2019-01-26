@@ -1,5 +1,6 @@
 package Utils;
 
+import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.geometry.Rectangle2D;
@@ -21,6 +22,7 @@ public class SpriteAnimation extends Transition {
         this(imageView, duration);
         this.count = count;
         this.columns = columns;
+        relax();
     }
 
     public SpriteAnimation(ImageView imageView, Duration duration) {
@@ -28,6 +30,7 @@ public class SpriteAnimation extends Transition {
         this.offsetX = 0;
         this.offsetY = 0;
         setCycleDuration(duration);
+        setCycleCount(Animation.INDEFINITE);
         setInterpolator(Interpolator.LINEAR);
     }
 
