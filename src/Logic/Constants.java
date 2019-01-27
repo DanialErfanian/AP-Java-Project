@@ -1,18 +1,16 @@
 package Logic;
 
+import java.io.File;
+
 public class Constants {
     private Constants() {
     }
 
+    public static final File PRODUCTS_FILE = new File("");//TODO
 
     public static final double NEW_PLANT_NEEDED_WATER = 1;
 
     static final int CAT_UPGRADE_COST = 500; // coin
-
-    public static final int BEAR_SELL_PROFIT = 300;
-    public static final int LION_SELL_PROFIT = 300;
-    public static final int LION_BUY_PROFIT = 300;
-    public static final int BEAR_BUY_PROFIT = 300;
 
     static final double PRODUCER_ANIMAL_EAT_GRASS_RATE = 1;
     public static final int PRODUCER_ANIMAL_FULL_PROGRESS = 10;
@@ -23,15 +21,6 @@ public class Constants {
     public static final int HELICOPTER_UPGRADE_COST = 100; // coin
     public static final int HELICOPTER_UPGRADE_INCREASE_CAPACITY = 10;
     public static final int HELICOPTER_JOB_PROGRESS = 30; // turn
-
-    public static final int WOOL_BUY_PROFIT = 125; // coin
-    public static final int MILK_BUY_PROFIT = 100; // coin
-    public static final int EGG_BUY_PROFIT = 75; // coin
-
-    public static final int WOOL_SELL_PROFIT = 125; // coin
-    public static final int MILK_SELL_PROFIT = 100; // coin
-    public static final int EGG_SELL_PROFIT = 75; // coin
-
 
     public static final int TRUCK_INITIAL_CAPACITY = 15;
     public static final int TRUCK_UPGRADE_COST = 100; // coin

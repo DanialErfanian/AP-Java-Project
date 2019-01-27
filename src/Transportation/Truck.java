@@ -29,7 +29,7 @@ public class Truck extends Vehicle {
         for (HashMap.Entry<Product, Integer> entry : products.getEntrySet()) {
             Product product = entry.getKey();
             int count = entry.getValue();
-            sum += product.getBuyProfit() * count;
+            sum += product.getSaleCost() * count;
         }
         return sum;
     }

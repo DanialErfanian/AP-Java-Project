@@ -29,7 +29,7 @@ public class Helicopter extends Vehicle {
         for (HashMap.Entry<Product, Integer> entry : products.getEntrySet()) {
             Product product = entry.getKey();
             int count = entry.getValue();
-            sum += product.getSellProfit() * count;
+            sum += product.getBuyCost() * count;
         }
         return sum;
     }

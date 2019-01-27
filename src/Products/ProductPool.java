@@ -20,14 +20,15 @@ public class ProductPool implements java.io.Serializable {
     }
 
     public boolean addProduct(Product product, int count) {
-        if (remainedCapacity < count) {
+        int size = count * product.getDepotSize();
+        if (remainedCapacity < size) {
             return false;
         }
         int current = this.getProductCount(product);
-        if (current < -count)
+        if (current < -size)
             return false;
-        products.put(product, current + count);
-        remainedCapacity -= count;
+        products.put(product, current + size);
+        remainedCapacity -= size;
         return true;
     }
 
