@@ -30,8 +30,6 @@ public class Main extends Application {
         UIProperties properties = UIProperties.readFromFile(new File("src/Resources/Data/Game/Back/1.json"));
 
         Group root = properties.build(workshops);
-        root.getStylesheets().add(new File("src/FarmFrenzy/GameUI/style.css").toURI().toString());
-
         primaryStage.setTitle("testing...");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
