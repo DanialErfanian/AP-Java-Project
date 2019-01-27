@@ -44,8 +44,8 @@ public class Product {
     public static final Product WOOL = getProductByName("Wool");
     public static final Product MILK = getProductByName("Milk");
     public static final Product EGG = getProductByName("Egg");
-    public static final Product BEAR = getProductByName("Bear");
-    public static final Product LION = getProductByName("Lion");
+    public static final Product BEAR = getProductByName("CagedBrownBear");
+    public static final Product LION = getProductByName("CagedLion");
 
 
     public int getSaleCost() {
