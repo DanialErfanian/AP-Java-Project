@@ -1,6 +1,6 @@
-package Products;
+package Utils;
 
-import Utils.Position;
+import Products.Product;
 
 import java.util.ArrayList;
 

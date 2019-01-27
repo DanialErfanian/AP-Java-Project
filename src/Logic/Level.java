@@ -1,7 +1,7 @@
 package Logic;
 
 import Products.Product;
-import Products.WorkshopBuilder;
+import Utils.WorkshopBuilder;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 import org.jetbrains.annotations.Nullable;
@@ -24,7 +24,7 @@ public class Level implements java.io.Serializable {
     private int money;
 
     @Nullable
-    static Level loadFromFile(String path) {
+    static Level readFromFile(String path) {
         try {
             String text = new String(Files.readAllBytes(Paths.get(path)));
             YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
@@ -35,7 +35,7 @@ public class Level implements java.io.Serializable {
         }
     }
 
-    public boolean saveToFile(String path) {
+    public boolean writeToFile(String path) {
         YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
         File file = new File(path);
         try {

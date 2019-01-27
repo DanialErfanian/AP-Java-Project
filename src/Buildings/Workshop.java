@@ -4,7 +4,7 @@ import Logic.Constants;
 import Logic.Game;
 import Products.GroundProduct;
 import Products.Product;
-import Products.WorkshopBuilder;
+import Utils.WorkshopBuilder;
 import Utils.Position;
 
 import java.util.ArrayList;

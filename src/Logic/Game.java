@@ -3,7 +3,7 @@ package Logic;
 import Buildings.Warehouse;
 import Buildings.Workshop;
 import Products.Product;
-import Products.WorkshopBuilder;
+import Utils.WorkshopBuilder;
 import Transportation.Helicopter;
 import Transportation.Truck;
 import Transportation.Vehicle;
@@ -170,7 +170,7 @@ public class Game implements java.io.Serializable {
     public static boolean loadCustom(String path) {
         if (path == null)
             return false;
-        Level level = Level.loadFromFile(path);
+        Level level = Level.readFromFile(path);
         if (level == null)
             return false;
         levels.add(level);

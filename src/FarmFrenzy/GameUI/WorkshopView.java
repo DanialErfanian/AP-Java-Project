@@ -36,7 +36,7 @@ public class WorkshopView {
         // TODO
     }
 
-    private void startUpdater() {
+    private void startUpdater(Workshop workshop) {
         // TODO
         animation.play();
     }
@@ -49,7 +49,7 @@ public class WorkshopView {
         int columns = animationProperties.getColumns();
         animation = new SpriteAnimation(imageView, Duration.millis(1000), count, columns);
         group.getChildren().add(imageView);
-        startUpdater();
+        startUpdater(workshop);
         group.getStyleClass().add("workshop");
         return group;
     }

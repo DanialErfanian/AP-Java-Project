@@ -3,7 +3,7 @@ package FarmFrenzy.GameUI;
 import Buildings.Workshop;
 import Logic.Game;
 import Products.Product;
-import Products.WorkshopBuilder;
+import Utils.WorkshopBuilder;
 import Utils.Position;
 import javafx.application.Application;
 import javafx.scene.Group;
