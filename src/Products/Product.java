@@ -10,7 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Product {
-    //    <Egg DepotSize="1" BuyCost="20" SaleCost="10"/>
     private int depotSize, buyCost, saleCost;
     private String name;
 
@@ -25,9 +24,6 @@ public class Product {
 
     static {
         loadProducts();
-    }
-
-    private Product(){
     }
 
     private static void loadProducts() {
@@ -45,11 +41,11 @@ public class Product {
         }
     }
 
-    public static final Product WOOL = getProductByName("wool");
-    public static final Product MILK = getProductByName("milk");
-    public static final Product EGG = getProductByName("egg");
-    public static final Product BEAR = getProductByName("bear");
-    public static final Product LION = getProductByName("lion");
+    public static final Product WOOL = getProductByName("Wool");
+    public static final Product MILK = getProductByName("Milk");
+    public static final Product EGG = getProductByName("Egg");
+    public static final Product BEAR = getProductByName("Bear");
+    public static final Product LION = getProductByName("Lion");
 
 
     public int getSaleCost() {
@@ -69,5 +65,9 @@ public class Product {
 
     int getDepotSize() {
         return depotSize;
+    }
+
+    public static Product[] getProducts() {
+        return products;
     }
 }

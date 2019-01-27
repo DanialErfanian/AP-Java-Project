@@ -6,7 +6,7 @@ public class Constants {
     private Constants() {
     }
 
-    public static final File PRODUCTS_FILE = new File("");//TODO
+    public static final File PRODUCTS_FILE = new File("src/Resources/Data/Game/Products/products.json");
 
     public static final double NEW_PLANT_NEEDED_WATER = 1;
 

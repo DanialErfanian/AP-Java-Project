@@ -1,0 +1,200 @@
+[
+  {
+    "name": "Egg",
+    "depotSize": 1,
+    "buyCost": 20,
+    "saleCost": 10
+  },
+  {
+    "name": "Wool",
+    "depotSize": 5,
+    "buyCost": 200,
+    "saleCost": 100
+  },
+  {
+    "name": "Plume",
+    "depotSize": 2,
+    "buyCost": 200,
+    "saleCost": 100
+  },
+  {
+    "name": "Milk",
+    "depotSize": 10,
+    "buyCost": 2000,
+    "saleCost": 1000
+  },
+  {
+    "name": "Horn",
+    "depotSize": 6,
+    "buyCost": 2000,
+    "saleCost": 1000
+  },
+  {
+    "name": "DriedEggs",
+    "depotSize": 4,
+    "buyCost": 100,
+    "saleCost": 50
+  },
+  {
+    "name": "Cake",
+    "depotSize": 5,
+    "buyCost": 200,
+    "saleCost": 100
+  },
+  {
+    "name": "FlouryCake",
+    "depotSize": 6,
+    "buyCost": 400,
+    "saleCost": 200
+  },
+  {
+    "name": "Sewing",
+    "depotSize": 3,
+    "buyCost": 300,
+    "saleCost": 150
+  },
+  {
+    "name": "Fabric",
+    "depotSize": 6,
+    "buyCost": 400,
+    "saleCost": 300
+  },
+  {
+    "name": "CarnivalDress",
+    "depotSize": 8,
+    "buyCost": 1400,
+    "saleCost": 1300
+  },
+  {
+    "name": "SourCream",
+    "depotSize": 8,
+    "buyCost": 3000,
+    "saleCost": 1500
+  },
+  {
+    "name": "Curd",
+    "depotSize": 6,
+    "buyCost": 4000,
+    "saleCost": 2000
+  },
+  {
+    "name": "Cheese",
+    "depotSize": 5,
+    "buyCost": 5000,
+    "saleCost": 2500
+  },
+  {
+    "name": "ColoredPlume",
+    "depotSize": 2,
+    "buyCost": 300,
+    "saleCost": 150
+  },
+  {
+    "name": "Adornment",
+    "depotSize": 4,
+    "buyCost": 400,
+    "saleCost": 300
+  },
+  {
+    "name": "BrightHorn",
+    "depotSize": 5,
+    "buyCost": 3000,
+    "saleCost": 1500
+  },
+  {
+    "name": "Intermediate",
+    "depotSize": 4,
+    "buyCost": 4000,
+    "saleCost": 2000
+  },
+  {
+    "name": "Souvenir",
+    "depotSize": 3,
+    "buyCost": 5000,
+    "saleCost": 2500
+  },
+  {
+    "name": "Flour",
+    "depotSize": 2,
+    "buyCost": 20,
+    "saleCost": 10
+  },
+  {
+    "name": "CheeseFerment",
+    "depotSize": 2,
+    "buyCost": 25,
+    "saleCost": 15
+  },
+  {
+    "name": "Varnish",
+    "depotSize": 3,
+    "buyCost": 25,
+    "saleCost": 15
+  },
+  {
+    "name": "MegaPie",
+    "depotSize": 20,
+    "buyCost": 20000,
+    "saleCost": 10000
+  },
+  {
+    "name": "SpruceGrizzly",
+    "depotSize": 25,
+    "buyCost": 2500,
+    "saleCost": 7000
+  },
+  {
+    "name": "SpruceLion",
+    "depotSize": 25,
+    "buyCost": 2500,
+    "saleCost": 7000
+  },
+  {
+    "name": "SpruceBrownBear",
+    "depotSize": 25,
+    "buyCost": 2500,
+    "saleCost": 7000
+  },
+  {
+    "name": "SpruceJaguar",
+    "depotSize": 25,
+    "buyCost": 2500,
+    "saleCost": 7000
+  },
+  {
+    "name": "SpruceWhiteBear",
+    "depotSize": 25,
+    "buyCost": 2500,
+    "saleCost": 7000
+  },
+  {
+    "name": "CagedGrizzly",
+    "depotSize": 20,
+    "buyCost": 80,
+    "saleCost": 80
+  },
+  {
+    "name": "CagedLion",
+    "depotSize": 20,
+    "buyCost": 150,
+    "saleCost": 150
+  },
+  {
+    "name": "CagedBrownBear",
+    "depotSize": 20,
+    "buyCost": 100,
+    "saleCost": 100
+  },
+  {
+    "name": "CagedJaguar",
+    "depotSize": 20,
+    "buyCost": 200,
+    "saleCost": 200
+  },
+  {
+    "name": "CagedWhiteBear",
+    "depotSize": 20,
+    "buyCost": 100,
+    "saleCost": 100
+  }
+]
