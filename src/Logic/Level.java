@@ -1,5 +1,6 @@
 package Logic;
 
+import FarmFrenzy.GameUI.UIProperties;
 import Products.Product;
 import Utils.WorkshopBuilder;
 import com.gilecode.yagson.YaGson;
@@ -15,16 +16,17 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Level implements java.io.Serializable {
+public class Level {
     private String name;
     private HashMap<Product, Integer> requirements;
     private final WorkshopBuilder[] workshops = new WorkshopBuilder[6];
     private int mapWidth;
     private int mapHeight;
     private int money;
+    private String UIPropertiesPath;
 
     @Nullable
-    static Level readFromFile(String path) {
+    public static Level readFromFile(String path) {
         try {
             String text = new String(Files.readAllBytes(Paths.get(path)));
             YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
@@ -59,13 +61,14 @@ public class Level implements java.io.Serializable {
                 "\nmoney: " + money;
     }
 
-    public Level(String name, HashMap<Product, Integer> requirements, WorkshopBuilder[] workshops, int mapWidth, int mapHeight, int money) {
+    public Level(String name, HashMap<Product, Integer> requirements, WorkshopBuilder[] workshops, int mapWidth, int mapHeight, int money, String UIPropertiesPath) {
         this.name = name;
         this.requirements = requirements;
         System.arraycopy(workshops, 0, this.workshops, 0, Math.min(6, workshops.length));
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
         this.money = money;
+        this.UIPropertiesPath = UIPropertiesPath;
     }
 
     String getName() {
@@ -90,5 +93,9 @@ public class Level implements java.io.Serializable {
 
     int getMoney() {
         return money;
+    }
+
+    public String getUIPropertiesPath() {
+        return UIPropertiesPath;
     }
 }

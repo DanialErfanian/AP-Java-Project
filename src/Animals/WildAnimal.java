@@ -37,7 +37,7 @@ public class WildAnimal extends BaseAnimal {
 //    }
 
     public GroundProduct cage() {
-        Product product = this.type.equals(WildAnimalType.LION) ? Product.LION : Product.BEAR;
+        Product product = this.type.equals(WildAnimalType.LION) ? Product.CagedLion : Product.CagedBrownBear;
         return new GroundProduct(getGame(), product, this.getPosition(), 1);
     }
 

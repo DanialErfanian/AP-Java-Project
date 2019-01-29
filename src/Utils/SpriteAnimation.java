@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
@@ -22,7 +23,6 @@ public class SpriteAnimation extends Transition {
         this(imageView, duration);
         this.count = count;
         this.columns = columns;
-        relax();
     }
 
     public SpriteAnimation(ImageView imageView, Duration duration) {
@@ -71,5 +71,10 @@ public class SpriteAnimation extends Transition {
     @Override
     public String toString() {
         return String.format("%s count: %d columns: %d imageView: %s", super.toString(), count, columns, imageView);
+    }
+
+    public void setImage(Image image) {
+        imageView.setImage(image);
+        relax();
     }
 }

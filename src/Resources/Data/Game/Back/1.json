@@ -6,10 +6,7 @@
       "positionY": 0,
       "width": 800,
       "height": 600,
-      "image": {
-        "path": "src/Resources/Data/Game/Back/1/back.png",
-        "prefixLength": 0
-      }
+      "image": "src/Resources/Data/Game/Back/1/back.png"
     },
     "workshops": [
       {
@@ -19,26 +16,10 @@
           "positionY": 191,
           "width": 246,
           "height": 110,
-          "image": {
-            "path": "src/Resources/Data/Game/Back/1/place1.png",
-            "prefixLength": 0
-          }
+          "image": "src/Resources/Data/Game/Back/1/place1.png"
         },
-        "view": {
-          "isCenterPosition": true,
-          "positionX": 120,
-          "positionY": 155,
-          "width": 150,
-          "height": 150,
-          "image": {
-            "path": "src/Resources/Data/Game/Houses/Cake/05.png",
-            "prefixLength": 0
-          }
-        },
-        "animationProperties": {
-          "count": 16,
-          "columns": 4
-        }
+        "positionX": 120,
+        "positionY": 155
       },
       {
         "background": {
@@ -47,26 +28,10 @@
           "positionY": 310,
           "width": 192,
           "height": 134,
-          "image": {
-            "path": "src/Resources/Data/Game/Back/1/place2.png",
-            "prefixLength": 0
-          }
+          "image": "src/Resources/Data/Game/Back/1/place2.png"
         },
-        "view": {
-          "isCenterPosition": true,
-          "positionX": 96,
-          "positionY": 280,
-          "width": 150,
-          "height": 150,
-          "image": {
-            "path": "src/Resources/Data/Game/Houses/Cheese/05.png",
-            "prefixLength": 0
-          }
-        },
-        "animationProperties": {
-          "count": 16,
-          "columns": 4
-        }
+        "positionX": 96,
+        "positionY": 280
       },
       {
         "background": {
@@ -75,26 +40,10 @@
           "positionY": 447,
           "width": 270,
           "height": 140,
-          "image": {
-            "path": "src/Resources/Data/Game/Back/1/place3.png",
-            "prefixLength": 0
-          }
+          "image": "src/Resources/Data/Game/Back/1/place3.png"
         },
-        "view": {
-          "isCenterPosition": true,
-          "positionX": 110,
-          "positionY": 427,
-          "width": 150,
-          "height": 150,
-          "image": {
-            "path": "src/Resources/Data/Game/Houses/Grinding/05.png",
-            "prefixLength": 0
-          }
-        },
-        "animationProperties": {
-          "count": 16,
-          "columns": 4
-        }
+        "positionX": 110,
+        "positionY": 427
       },
       {
         "background": {
@@ -103,26 +52,10 @@
           "positionY": 182,
           "width": 220,
           "height": 116,
-          "image": {
-            "path": "src/Resources/Data/Game/Back/1/place4.png",
-            "prefixLength": 0
-          }
+          "image": "src/Resources/Data/Game/Back/1/place4.png"
         },
-        "view": {
-          "isCenterPosition": true,
-          "positionX": 642,
-          "positionY": 160,
-          "width": 150,
-          "height": 150,
-          "image": {
-            "path": "src/Resources/Data/Game/Houses/Souvenir/05.png",
-            "prefixLength": 0
-          }
-        },
-        "animationProperties": {
-          "count": 16,
-          "columns": 4
-        }
+        "positionX": 642,
+        "positionY": 160
       },
       {
         "background": {
@@ -131,26 +64,10 @@
           "positionY": 303,
           "width": 220,
           "height": 128,
-          "image": {
-            "path": "src/Resources/Data/Game/Back/1/place5.png",
-            "prefixLength": 0
-          }
+          "image": "src/Resources/Data/Game/Back/1/place5.png"
         },
-        "view": {
-          "isCenterPosition": true,
-          "positionX": 690,
-          "positionY": 280,
-          "width": 150,
-          "height": 150,
-          "image": {
-            "path": "src/Resources/Data/Game/Houses/Plume/05.png",
-            "prefixLength": 0
-          }
-        },
-        "animationProperties": {
-          "count": 16,
-          "columns": 4
-        }
+        "positionX": 690,
+        "positionY": 280
       },
       {
         "background": {
@@ -159,26 +76,10 @@
           "positionY": 439,
           "width": 214,
           "height": 142,
-          "image": {
-            "path": "src/Resources/Data/Game/Back/1/place6.png",
-            "prefixLength": 0
-          }
+          "image": "src/Resources/Data/Game/Back/1/place6.png"
         },
-        "view": {
-          "isCenterPosition": true,
-          "positionX": 693,
-          "positionY": 420,
-          "width": 150,
-          "height": 150,
-          "image": {
-            "path": "src/Resources/Data/Game/Houses/FittingRoom/05.png",
-            "prefixLength": 0
-          }
-        },
-        "animationProperties": {
-          "count": 16,
-          "columns": 4
-        }
+        "positionX": 693,
+        "positionY": 420
       }
     ]
   }

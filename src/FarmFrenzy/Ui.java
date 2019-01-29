@@ -41,12 +41,12 @@ class Ui {
                 case "upgrade":
                     upgrade(game, args);
                     break;
-                case "load_custom":
-                    loadCustom(args);
-                    break;
-                case "run":
-                    game = run(game, args);
-                    break;
+//                case "load_custom":
+//                    loadCustom(args);
+//                    break;
+//                case "run":
+//                    game = run(game, args);
+//                    break;
                 case "save_game":
                     saveGame(game, args);
                     break;
@@ -162,29 +162,29 @@ class Ui {
         System.out.println("Saving " + (game.save(path) ? "done." : "failed!"));
     }
 
-    private static Game run(Game game, String[] args) {
-        String mapName = null;
-        if (args.length > 1)
-            mapName = args[1];
-        Game newGame = Game.run(mapName);
-        if (newGame == null)
-            System.out.println("Map with this name not found!");
-        else {
-            game = newGame;
-            System.out.println("Map loaded successfully.");
-        }
-        return game;
-    }
+//    private static Game run(Game game, String[] args) {
+//        String mapName = null;
+//        if (args.length > 1)
+//            mapName = args[1];
+//        Game newGame = Game.run(mapName);
+//        if (newGame == null)
+//            System.out.println("Map with this name not found!");
+//        else {
+//            game = newGame;
+//            System.out.println("Map loaded successfully.");
+//        }
+//        return game;
+//    }
 
-    private static void loadCustom(String[] args) {
-        String path = null;
-        if (args.length > 1)
-            path = args[1];
-        if (Game.loadCustom(path))
-            System.out.println("Custom level loaded successfully.");
-        else
-            System.out.println("Loading level failed!");
-    }
+//    private static void loadCustom(String[] args) {
+//        String path = null;
+//        if (args.length > 1)
+//            path = args[1];
+//        if (Game.loadCustom(path))
+//            System.out.println("Custom level loaded successfully.");
+//        else
+//            System.out.println("Loading level failed!");
+//    }
 
     private static void upgrade(Game game, String[] args) {
         String target = null;

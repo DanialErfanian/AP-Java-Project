@@ -23,11 +23,11 @@ public class ProducerAnimal extends BaseAnimal {
     public Product getProduct() {
         switch (type) {
             case COW:
-                return Product.MILK;
+                return Product.Milk;
             case SHEEP:
-                return Product.WOOL;
+                return Product.Wool;
             case HEN:
-                return Product.EGG;
+                return Product.Egg;
         }
         return null;
     }

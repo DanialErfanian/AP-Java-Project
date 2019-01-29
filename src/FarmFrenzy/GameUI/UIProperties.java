@@ -1,6 +1,7 @@
 package FarmFrenzy.GameUI;
 
 import Buildings.Workshop;
+import Logic.Game;
 import Utils.AnimationProperties;
 import Utils.ImageProperties;
 import com.gilecode.yagson.YaGson;
@@ -24,16 +25,6 @@ public class UIProperties {
         System.arraycopy(workshops, 0, this.workshops, 0, Math.min(6, workshops.length));
     }
 
-
-    public ImageProperties getBackground() {
-        return background;
-    }
-
-    public WorkshopView[] getWorkshops() {
-        return workshops;
-    }
-
-
     static UIProperties readFromFile(File file) {
         if (file == null)
             return null;
@@ -41,7 +32,7 @@ public class UIProperties {
             String text = new String(Files.readAllBytes(file.toPath()));
             YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
             UIProperties properties = mapper.fromJson(text, UIProperties.class);
-            System.out.println("path = " + file.toString());
+            System.out.println("UI file: " + file.toString());
             return properties;
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,14 +55,17 @@ public class UIProperties {
         }
     }
 
-    Group build(Workshop[] workshops) {
+    Group build(Game game) {
+        Workshop[] workshops = game.getWorkshops();
         Group group = new Group();
         Pane pane = new Pane();
         group.getChildren().add(pane);
 
         pane.getChildren().add(background.toImageView());
+
         for (int i = 0; i < Math.min(this.workshops.length, workshops.length); i++)
             pane.getChildren().add(this.workshops[i].build(workshops[i]));
+        // TODO money and vehicles and...
         return group;
     }
 }

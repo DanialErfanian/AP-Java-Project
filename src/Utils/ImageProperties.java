@@ -7,26 +7,21 @@ import java.io.File;
 
 public class ImageProperties {
     private int positionX, positionY, width, height;
-    private File image;
+    private String image;
     private transient boolean isCenterPosition = false;
 
-    public ImageProperties(int positionX, int positionY, int width, int height, File background) {
+    public ImageProperties(int positionX, int positionY, int width, int height, String image) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.width = width;
         this.height = height;
-        this.image = background;
+        this.image = image;
     }
 
-    public ImageView toImageView(){
-        if(isCenterPosition)
+    public ImageView toImageView() {
+        if (isCenterPosition)
             calculatePosition();
-        System.out.println(this.image.toURI());
-        System.out.println("positionX = " + positionX);
-        System.out.println("positionY = " + positionY);
-        System.out.println("width = " + width);
-        System.out.println("height = " + height);
-        Image image = new Image(this.image.toURI().toString());
+        Image image = new Image(new File(this.image).toURI().toString());
         ImageView imageView = new ImageView(image);
         imageView.relocate(positionX, positionY);
         imageView.setFitHeight(height);

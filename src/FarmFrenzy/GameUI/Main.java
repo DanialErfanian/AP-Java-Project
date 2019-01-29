@@ -1,17 +1,13 @@
 package FarmFrenzy.GameUI;
 
-import Buildings.Workshop;
 import Logic.Game;
-import Products.Product;
-import Utils.WorkshopBuilder;
-import Utils.Position;
+import Logic.Level;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -21,15 +17,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Game game = new Game();
-        Workshop workshop = new Workshop(game, new WorkshopBuilder("some name", new ArrayList<>(), Product.BEAR, new Position(0, 0)));
-        Workshop[] workshops = new Workshop[6];
-        for (int i = 0; i < 6; i++)
-            workshops[i] = workshop;
+        Level level = Level.readFromFile("media/Level-testing.json");
+        assert level != null;
+        UIProperties properties = UIProperties.readFromFile(new File(level.getUIPropertiesPath()));
 
-        UIProperties properties = UIProperties.readFromFile(new File("src/Resources/Data/Game/Back/1.json"));
-
-        Group root = properties.build(workshops);
+        Game game = new Game(level);
+        Group root = properties.build(game);
         primaryStage.setTitle("testing...");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

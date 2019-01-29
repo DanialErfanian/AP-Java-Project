@@ -1,12 +1,15 @@
 package Logic;
 
-import java.io.File;
-
 public class Constants {
     private Constants() {
     }
 
-    public static final File PRODUCTS_FILE = new File("src/Resources/Data/Game/Products/products.json");
+    public static final int WORKSHOP_VIEW_ANIMATION_COLUMNS = 4;
+    public static final int WORKSHOP_VIEW_ANIMATION_COUNT = 16;
+
+    public static final int UI_FPS = 50;
+    public static final int WORKSHOP_VIEW_HEIGHT = 150;
+    public static final int WORKSHOP_VIEW_WIDTH = 150;
 
     public static final double NEW_PLANT_NEEDED_WATER = 1;
 
@@ -49,6 +52,4 @@ public class Constants {
     public static final int WORKSHOP_UPGRADE_COST = 150;
 
     static final int WILD_ANIMAL_TIME_PERIOD = 2 * 60; // 2 minute
-    static final int START_MONEY = 500;
-
 }

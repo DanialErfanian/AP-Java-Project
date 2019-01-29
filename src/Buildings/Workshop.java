@@ -4,8 +4,8 @@ import Logic.Constants;
 import Logic.Game;
 import Products.GroundProduct;
 import Products.Product;
-import Utils.WorkshopBuilder;
 import Utils.Position;
+import Utils.WorkshopBuilder;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class Workshop extends BaseBuilding {
     private ArrayList<Product> inputs;
     private Product output;
     private Position position;
-
+    private transient WorkshopBuilder builder;
 
     public Workshop(Game game, WorkshopBuilder workshopBuilder) {
         super(game);
@@ -25,6 +25,7 @@ public class Workshop extends BaseBuilding {
         this.inputs = workshopBuilder.getInputs();
         this.output = workshopBuilder.getOutput();
         this.position = workshopBuilder.getPosition();
+        this.builder = workshopBuilder;
 
     }
 
@@ -81,5 +82,11 @@ public class Workshop extends BaseBuilding {
         }
     }
 
+    public WorkshopBuilder getBuilder() {
+        return builder;
+    }
 
+    public int getLevel() {
+        return level;
+    }
 }
