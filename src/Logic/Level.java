@@ -28,6 +28,7 @@ public class Level {
     @Nullable
     public static Level readFromFile(String path) {
         try {
+            System.out.println("Loading level from " + path);
             String text = new String(Files.readAllBytes(Paths.get(path)));
             YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
             return mapper.fromJson(text, Level.class);

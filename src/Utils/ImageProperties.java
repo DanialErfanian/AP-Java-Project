@@ -34,4 +34,14 @@ public class ImageProperties {
         positionY -= height / 2;
         isCenterPosition = false;
     }
+
+    @Override
+    public String toString() {
+        return String.format("positionX = %d\npositionY = %d \nwidth = %d\nheight = %d\nimage = %s",
+                positionX,
+                positionY,
+                width,
+                height,
+                image);
+    }
 }
