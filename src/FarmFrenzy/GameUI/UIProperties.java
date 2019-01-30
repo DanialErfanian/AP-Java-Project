@@ -22,13 +22,15 @@ public class UIProperties {
     private final ImageProperties background, road;
     private final WorkshopView[] workshops = new WorkshopView[6];
     private final VehicleView helicopter, truck;
+    private final MoneyStatus moneyStatus;
 
-    public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road, VehicleView helicopter, VehicleView truck) {
+    public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road, VehicleView helicopter, VehicleView truck, MoneyStatus moneyStatus) {
         this.background = background;
         System.arraycopy(workshops, 0, this.workshops, 0, Math.min(6, workshops.length));
         this.road = road;
         this.helicopter = helicopter;
         this.truck = truck;
+        this.moneyStatus = moneyStatus;
     }
 
     static UIProperties readFromFile(File file) {
@@ -75,8 +77,12 @@ public class UIProperties {
         pane.getChildren().add(buildRoad());
         pane.getChildren().add(truck.build(game.getTruck()));
         pane.getChildren().add(helicopter.build(game.getHelicopter()));
-
+        pane.getChildren().add(moneyStatus.build(game));
         // TODO money and vehicles and...
+//        group.setScaleX(2);
+//        group.setScaleY(2);
+//        group.setTranslateY(300);
+//        group.setTranslateX(400);
         return group;
     }
 

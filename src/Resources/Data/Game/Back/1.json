@@ -8,6 +8,22 @@
       "height": 600,
       "image": "src/Resources/Data/Game/Back/1/back.png"
     },
+    "moneyStatus": {
+      "coin": {
+        "animationProperties": {
+          "count": 16,
+          "columns": 4
+        },
+        "imageProperties": {
+          "isCenterPosition": true,
+          "positionX": 564,
+          "positionY": 25,
+          "width": 32,
+          "height": 32,
+          "image": "src/Resources/Data/Game/UI/Icons/Money/coin_32_anim.png"
+        }
+      }
+    },
     "road": {
       "isCenterPosition": true,
       "positionX": 653,

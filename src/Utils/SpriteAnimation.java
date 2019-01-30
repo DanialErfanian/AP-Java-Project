@@ -46,7 +46,7 @@ public class SpriteAnimation extends Transition {
         if (index != lastIndex) jumpTo(index);
     }
 
-    private void jumpTo(int index) {
+    void jumpTo(int index) {
         index %= count;
         final int x = (index % columns) * width + offsetX;
         final int y = (index / columns) * height + offsetY;
@@ -76,5 +76,9 @@ public class SpriteAnimation extends Transition {
     public void setImage(Image image) {
         imageView.setImage(image);
         relax();
+    }
+
+    public ImageView getImageView() {
+        return imageView;
     }
 }

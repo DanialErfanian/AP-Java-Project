@@ -23,7 +23,8 @@ public class ImageProperties {
             calculatePosition();
         Image image = new Image(new File(this.image).toURI().toString());
         ImageView imageView = new ImageView(image);
-        imageView.relocate(positionX, positionY);
+        imageView.setX(positionX);
+        imageView.setY(positionY);
         imageView.setFitHeight(height);
         imageView.setFitWidth(width);
         return imageView;

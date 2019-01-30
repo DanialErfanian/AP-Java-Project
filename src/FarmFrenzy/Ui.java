@@ -7,12 +7,12 @@ import org.jetbrains.annotations.Nullable;
 import java.io.IOException;
 import java.util.Scanner;
 
-class Ui {
+public class Ui {
     private Ui() {
 
     }
 
-    static void Run(Game game) {
+    public static void Run(Game game) {
         Scanner input = new Scanner(System.in);
         while (true) {
             String command = input.nextLine();

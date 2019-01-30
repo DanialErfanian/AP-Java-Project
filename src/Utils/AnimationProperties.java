@@ -14,13 +14,13 @@ import java.nio.file.Paths;
 public class AnimationProperties {
     private final int count;
     private final int columns;
-    private transient File imageFile;
+    private transient String imagePath;
     private transient Image image;
 
-    public AnimationProperties(int count, int columns, File imageFile) {
+    public AnimationProperties(int count, int columns, String imagePath) {
         this.count = count;
         this.columns = columns;
-        this.imageFile = imageFile;
+        this.imagePath = imagePath;
     }
 
     public AnimationProperties(int count, int columns) {
@@ -37,9 +37,10 @@ public class AnimationProperties {
             AnimationProperties animation = mapper.fromJson(text, AnimationProperties.class);
             System.out.println("path = " + path + ".png");
             if (animation.image == null) {
-                if (animation.imageFile == null)
-                    animation.imageFile = new File(path + ".png");
-                animation.image = new Image(animation.imageFile.toURI().toString());
+                if (animation.imagePath == null)
+                    animation.imagePath = path + ".png";
+                File imageFile = new File(animation.imagePath);
+                animation.image = new Image(imageFile.toURI().toString());
             }
             return animation;
         } catch (IOException e) {
