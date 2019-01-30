@@ -19,10 +19,18 @@ public class ImageProperties {
     }
 
     public ImageView toImageView() {
+        return toImageView(true);
+    }
+
+    public ImageView toImageView(boolean setImage) {
         if (isCenterPosition)
             calculatePosition();
         Image image = new Image(new File(this.image).toURI().toString());
-        ImageView imageView = new ImageView(image);
+        ImageView imageView;
+        if (setImage)
+            imageView = new ImageView(image);
+        else
+            imageView = new ImageView();
         imageView.setX(positionX);
         imageView.setY(positionY);
         imageView.setFitHeight(height);
@@ -44,5 +52,9 @@ public class ImageProperties {
                 width,
                 height,
                 image);
+    }
+
+    public String getImagePath() {
+        return image;
     }
 }

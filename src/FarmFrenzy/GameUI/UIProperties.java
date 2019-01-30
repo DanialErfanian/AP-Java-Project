@@ -1,6 +1,7 @@
 package FarmFrenzy.GameUI;
 
 import Buildings.Workshop;
+import Logic.Constants;
 import Logic.Game;
 import Utils.AnimationProperties;
 import Utils.ImageProperties;
@@ -8,6 +9,8 @@ import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.io.File;
@@ -23,14 +26,16 @@ public class UIProperties {
     private final WorkshopView[] workshops = new WorkshopView[6];
     private final VehicleView helicopter, truck;
     private final MoneyStatus moneyStatus;
+    private final ImageProperties warehouse;
 
-    public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road, VehicleView helicopter, VehicleView truck, MoneyStatus moneyStatus) {
+    public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road, VehicleView helicopter, VehicleView truck, MoneyStatus moneyStatus, ImageProperties warehouse) {
         this.background = background;
         System.arraycopy(workshops, 0, this.workshops, 0, Math.min(6, workshops.length));
         this.road = road;
         this.helicopter = helicopter;
         this.truck = truck;
         this.moneyStatus = moneyStatus;
+        this.warehouse = warehouse;
     }
 
     static UIProperties readFromFile(File file) {
@@ -74,6 +79,7 @@ public class UIProperties {
 
         pane.getChildren().add(buildBackground());
         pane.getChildren().add(buildWorkshops(game));
+        pane.getChildren().add(buildWarehouse(game));
         pane.getChildren().add(buildRoad());
         pane.getChildren().add(truck.build(game.getTruck()));
         pane.getChildren().add(helicopter.build(game.getHelicopter()));
@@ -83,6 +89,35 @@ public class UIProperties {
 //        group.setScaleY(2);
 //        group.setTranslateY(300);
 //        group.setTranslateX(400);
+        return group;
+    }
+
+    private Group buildWarehouse(Game game) {
+        Group group = new Group();
+        ImageView imageView = warehouse.toImageView(false);
+        Thread thread = new Thread(new Runnable() {
+            int last = -1;
+
+            @Override
+            public void run() {
+                while (true) {
+                    if (last != game.getWarehouse().getLevel()) {
+                        last = game.getWarehouse().getLevel();
+                        String path = warehouse.getImagePath() + String.format("0%d.png", last);
+                        Image image = new Image(new File(path).toURI().toString());
+                        imageView.setImage(image);
+                    }
+                    try {
+                        Thread.sleep(1000 / Constants.UI_FPS);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        group.getChildren().add(imageView);
+        thread.setDaemon(true);
+        thread.start();
         return group;
     }
 

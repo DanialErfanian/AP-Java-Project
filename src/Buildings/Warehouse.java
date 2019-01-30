@@ -60,4 +60,7 @@ public class Warehouse extends BaseBuilding {
         return products.getRemainedCapacity();
     }
 
+    public int getLevel() {
+        return level;
+    }
 }

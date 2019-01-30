@@ -33,30 +33,58 @@
       "image": "src/Resources/Data/Game/UI/Panels/road_1.png"
     },
     "truck": {
-      "animation": {
-        "count": 2,
-        "columns": 2
+      "status": {
+        "animation": {
+          "count": 2,
+          "columns": 2
+        },
+        "imagePath": "src/Resources/Data/Game/UI/Car/",
+        "width": 48,
+        "height": 48,
+        "positionY": 54,
+        "positionX1": 660,
+        "positionX2": 776,
+        "isCenterPosition": true
       },
-      "imagePath": "src/Resources/Data/Game/UI/Car/",
-      "width": 48,
-      "height": 48,
-      "positionY": 54,
-      "positionX1": 660,
-      "positionX2": 776,
-      "isCenterPosition": true
+      "image": {
+        "isCenterPosition": true,
+        "positionX": 212,
+        "positionY": 511,
+        "width": 150,
+        "height": 150,
+        "image": "src/Resources/Data/Game/Service/Car/"
+      }
     },
     "helicopter": {
-      "animation": {
-        "count": 6,
-        "columns": 3
+      "status": {
+        "animation": {
+          "count": 6,
+          "columns": 3
+        },
+        "imagePath": "src/Resources/Data/Game/UI/Airplane/",
+        "width": 48,
+        "height": 48,
+        "positionY": 15,
+        "positionX1": 645,
+        "positionX2": 776,
+        "isCenterPosition": true
       },
-      "imagePath": "src/Resources/Data/Game/UI/Airplane/",
-      "width": 48,
-      "height": 48,
-      "positionY": 15,
-      "positionX1": 645,
-      "positionX2": 776,
-      "isCenterPosition": true
+      "image": {
+        "isCenterPosition": true,
+        "positionX": 570,
+        "positionY": 500,
+        "width": 180,
+        "height": 180,
+        "image": "src/Resources/Data/Game/Service/Airplane/"
+      }
+    },
+    "warehouse": {
+      "isCenterPosition": true,
+      "positionX": 400,
+      "positionY": 520,
+      "width": 180,
+      "height": 148,
+      "image": "src/Resources/Data/Game/Service/Depot/"
     },
     "workshops": [
       {
