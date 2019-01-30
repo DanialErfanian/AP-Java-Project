@@ -49,7 +49,12 @@ public class Truck extends Vehicle {
         if (onTheWay)
             return false;
         onTheWay = true;
-        progress = Constants.TRUCK_JOB_PROGRESS;
+        progress = getFullProgress();
         return true;
+    }
+
+    @Override
+    public int getFullProgress() {
+        return Constants.TRUCK_JOB_PROGRESS;
     }
 }

@@ -16,6 +16,32 @@
       "height": 78,
       "image": "src/Resources/Data/Game/UI/Panels/road_1.png"
     },
+    "truck": {
+      "animation": {
+        "count": 2,
+        "columns": 2
+      },
+      "imagePath": "src/Resources/Data/Game/UI/Car/",
+      "width": 48,
+      "height": 48,
+      "positionY": 54,
+      "positionX1": 660,
+      "positionX2": 776,
+      "isCenterPosition": true
+    },
+    "helicopter": {
+      "animation": {
+        "count": 6,
+        "columns": 3
+      },
+      "imagePath": "src/Resources/Data/Game/UI/Airplane/",
+      "width": 48,
+      "height": 48,
+      "positionY": 15,
+      "positionX1": 645,
+      "positionX2": 776,
+      "isCenterPosition": true
+    },
     "workshops": [
       {
         "background": {

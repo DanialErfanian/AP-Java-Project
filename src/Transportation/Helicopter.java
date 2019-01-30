@@ -62,7 +62,12 @@ public class Helicopter extends Vehicle {
         getGame().decreaseMoney(getCost());
         assert (getGame().getWarehouse().allocate(products.getFilledCapacity()));
         onTheWay = true;
-        progress = Constants.HELICOPTER_JOB_PROGRESS;
+        progress = getFullProgress();
         return true;
+    }
+
+    @Override
+    public int getFullProgress(){
+        return Constants.HELICOPTER_JOB_PROGRESS;
     }
 }

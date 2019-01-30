@@ -7,7 +7,7 @@ import Utils.ImageProperties;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 import javafx.scene.Group;
-import javafx.scene.image.ImageView;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
 import java.io.File;
@@ -16,14 +16,19 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 
+
+//TODO: add shadow file to vehicle and workshops (like src/Resources/Data/Game/Service/Car/01_m.png)
 public class UIProperties {
     private final ImageProperties background, road;
     private final WorkshopView[] workshops = new WorkshopView[6];
+    private final VehicleView helicopter, truck;
 
-    public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road) {
+    public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road, VehicleView helicopter, VehicleView truck) {
         this.background = background;
         System.arraycopy(workshops, 0, this.workshops, 0, Math.min(6, workshops.length));
         this.road = road;
+        this.helicopter = helicopter;
+        this.truck = truck;
     }
 
     static UIProperties readFromFile(File file) {
@@ -56,19 +61,34 @@ public class UIProperties {
         }
     }
 
+    private Node buildBackground() {
+        return background.toImageView();
+    }
+
     Group build(Game game) {
-        Workshop[] workshops = game.getWorkshops();
         Group group = new Group();
         Pane pane = new Pane();
         group.getChildren().add(pane);
 
-        pane.getChildren().add(background.toImageView());
+        pane.getChildren().add(buildBackground());
+        pane.getChildren().add(buildWorkshops(game));
+        pane.getChildren().add(buildRoad());
+        pane.getChildren().add(truck.build(game.getTruck()));
+        pane.getChildren().add(helicopter.build(game.getHelicopter()));
 
-        for (int i = 0; i < Math.min(this.workshops.length, workshops.length); i++)
-            pane.getChildren().add(this.workshops[i].build(workshops[i]));
-        ImageView imageView = road.toImageView();
-        pane.getChildren().add(imageView);
         // TODO money and vehicles and...
+        return group;
+    }
+
+    private Node buildRoad() {
+        return road.toImageView();
+    }
+
+    private Node buildWorkshops(Game game) {
+        Group group = new Group();
+        Workshop[] workshops = game.getWorkshops();
+        for (int i = 0; i < Math.min(this.workshops.length, workshops.length); i++)
+            group.getChildren().add(this.workshops[i].build(workshops[i]));
         return group;
     }
 }

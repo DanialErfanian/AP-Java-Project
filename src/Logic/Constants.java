@@ -4,6 +4,8 @@ public class Constants {
     private Constants() {
     }
 
+    public static final int VEHICLE_MAX_LEVEL = 4;
+
     public static final int WORKSHOP_VIEW_ANIMATION_COLUMNS = 4;
     public static final int WORKSHOP_VIEW_ANIMATION_COUNT = 16;
 

@@ -35,7 +35,7 @@ public class SpriteAnimation extends Transition {
     }
 
 
-    private void relax() {
+    public void relax() {
         width = (int) (imageView.getImage().getWidth() / this.columns);
         height = (int) (imageView.getImage().getHeight() / Math.ceil(1. * count / columns));
     }

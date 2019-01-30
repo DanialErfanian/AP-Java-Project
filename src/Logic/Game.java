@@ -25,6 +25,7 @@ import java.util.HashMap;
 
 
 public class Game implements java.io.Serializable {
+    // TODO Helicopter drop project on middle map not to warehouse
     // TODO Max level is still unhandled
     private HashMap<Product, Integer> requirements;
     private int money;
@@ -289,5 +290,13 @@ public class Game implements java.io.Serializable {
 
     public Workshop[] getWorkshops() {
         return workshops;
+    }
+
+    public Truck getTruck() {
+        return truck;
+    }
+
+    public Helicopter getHelicopter() {
+        return helicopter;
     }
 }
