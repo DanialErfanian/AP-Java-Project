@@ -109,6 +109,8 @@ public class Game implements java.io.Serializable {
         for (Workshop workshop : workshops)
             if (workshop != null)
                 workshop.increaseTurn();
+        this.truck.increaseTurn();
+        this.helicopter.increaseTurn();
     }
 
     public void turn(int count) {

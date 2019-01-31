@@ -18,7 +18,7 @@ public class Ui {
             String command = input.nextLine();
             if (command.length() == 0)
                 continue;
-            String[] args = command.toLowerCase().split(" ");
+            String[] args = command.split(" ");
             switch (args[0]) {
                 case "buy":
                     buyAnimal(game, args);

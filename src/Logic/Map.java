@@ -133,7 +133,8 @@ public class Map extends MainObject {
         for (int i = 0; i < mapWidth; i++)
             for (int j = 0; j < mapHeight; j++)
                 for (MiddleMapObject object : objects.get(i).get(j))
-                    object.increaseTurn();
+                    if (object != null)
+                        object.increaseTurn();
         lastWildAnimalTime--;
         if (-lastWildAnimalTime == Constants.WILD_ANIMAL_TIME_PERIOD) {
             Position position = getRandomValidPosition();

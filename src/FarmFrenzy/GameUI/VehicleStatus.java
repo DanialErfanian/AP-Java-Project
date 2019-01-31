@@ -34,7 +34,7 @@ public class VehicleStatus {
     private void updateView(Vehicle vehicle, ImageView imageView) {// between 0 and 1
         double v = 1. * vehicle.getProgress() / vehicle.getFullProgress();
         imageView.setVisible(vehicle.getProgress() != 0);
-        imageView.setScaleX((v > 0.5) ? +1 : -1);
+        imageView.setScaleX((v < 0.5) ? +1 : -1);
         v = Math.min(v, 1 - v) * 2;
         int distance = positionX2 - positionX1;
         imageView.setX(positionX1 + distance * v);
