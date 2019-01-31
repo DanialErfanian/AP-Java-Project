@@ -3,6 +3,7 @@ package Animals;
 import Logic.Game;
 import Logic.MiddleMapObject;
 import Logic.Targetable;
+import Utils.MoveDirection;
 import Utils.Position;
 
 import java.util.ArrayList;
@@ -59,4 +60,26 @@ abstract public class BaseAnimal extends MiddleMapObject {
             return;
         move();
     }
+
+    public MoveDirection getDirection() {
+        String x, y;
+        Position position = getPosition(), target = this.target.getPosition();
+        if (position.getX() < target.getX())
+            x = "right";
+        else if (position.getX() == target.getX())
+            x = "";
+        else
+            x = "left";
+        if (position.getY() < target.getY())
+            y = "down_";
+        else if (position.getY() == target.getY())
+            y = "";
+        else
+            y = "up_";
+        if ("".equals(x + y))
+            return MoveDirection.defualt;
+        return MoveDirection.valueOf(x + y);
+    }
+
+    public abstract AnimalType getType();
 }

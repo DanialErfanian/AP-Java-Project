@@ -21,6 +21,11 @@ public class Dog extends BaseAnimal {
         catchWildAnimal();
     }
 
+    @Override
+    public AnimalType getType() {
+        return AnimalType.Dog;
+    }
+
     private void catchWildAnimal() {
         ArrayList<MiddleMapObject> cellObjects = this.getGame().getMap().getCellObjects(this.getPosition());
         for (MiddleMapObject object : cellObjects)

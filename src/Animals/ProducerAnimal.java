@@ -84,5 +84,16 @@ public class ProducerAnimal extends BaseAnimal {
         return getGame().getMap().getGrass(target.getPosition()) > 0;
     }
 
+    @Override
+    public AnimalType getType() {
+        if (type.equals(ProducerAnimalType.COW))
+            return AnimalType.Cow;
+        else if (type.equals(ProducerAnimalType.SHEEP))
+            return AnimalType.Sheep;
+        else if (type.equals(ProducerAnimalType.HEN))
+            return AnimalType.Hen;
+        assert false;
+        return null;
+    }
 
 }

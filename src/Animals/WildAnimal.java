@@ -21,6 +21,16 @@ public class WildAnimal extends BaseAnimal {
         catchAnimal();
     }
 
+    @Override
+    public AnimalType getType() {
+        if (type.equals(WildAnimalType.LION))
+            return AnimalType.Lion;
+        else if (type.equals(WildAnimalType.BEAR))
+            return AnimalType.Bear;
+        assert false;
+        return null;
+    }
+
     public WildAnimal(Game game, Position position) {
         super(game, position);
         this.type = Math.random() > 0.5 ? WildAnimalType.LION : WildAnimalType.BEAR;

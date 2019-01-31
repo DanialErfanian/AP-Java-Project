@@ -20,6 +20,11 @@ public class Cat extends BaseAnimal {
     }
 
     @Override
+    public AnimalType getType() {
+        return AnimalType.Cat;
+    }
+
+    @Override
     public String toString() {
         return "Cat: \n" + super.toString();
     }
