@@ -159,6 +159,364 @@
         "positionX": 693,
         "positionY": 420
       }
-    ]
+    ],
+    "imagePool": {
+      "animalView": {
+        "cat": {
+          "states": {
+            "up": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cat/up.png",
+              "isReversed": false
+            },
+            "down": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cat/down.png",
+              "isReversed": false
+            },
+            "left": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cat/left.png",
+              "isReversed": false
+            },
+            "right": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cat/left.png",
+              "isReversed": true
+            },
+            "down_left": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cat/down_left.png",
+              "isReversed": false
+            },
+            "up_left": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cat/up_left.png",
+              "isReversed": false
+            },
+            "down_right": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cat/down_left.png",
+              "isReversed": true
+            },
+            "up_right": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cat/up_left.png",
+              "isReversed": true
+            }
+          }
+        },
+        "sheep" : {
+          "states": {
+            "up" : {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/up.png",
+              "isReversed": false
+            },
+            "down" : {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/down.png",
+              "isReversed": false
+            },
+            "left" : {
+              "count": 24,
+              "columns": 6,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/left.png",
+              "isReversed": false
+            },
+            "right" : {
+              "count": 24,
+              "columns": 6,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/left.png",
+              "isReversed": true
+            },
+            "down_left" : {
+              "count": 24,
+              "columns": 6,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/down_left.png",
+              "isReversed": false
+            },
+            "down_right" : {
+              "count": 24,
+              "columns": 6,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/down_left.png",
+              "isReversed": true
+            },
+            "up_left" : {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/up_left.png",
+              "isReversed": false
+            },
+            "up_down" : {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/up_left.png",
+              "isReversed": true
+            },
+            "eat" : {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/eat.png",
+              "isReversed": false
+            },
+            "death" : {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/death.png",
+              "isReversed": false
+            }
+          }
+        },
+        "cow" : {
+          "states" : {
+            "up" : {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cow/up.png",
+              "isReversed": false
+            },
+            "down" : {
+              "count": 24,
+              "columns": 3,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cow/down.png",
+              "isReversed": false
+            },
+            "left" : {
+              "count": 24,
+              "columns": 3,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cow/left.png",
+              "isReversed": false
+            },
+            "right" : {
+              "count": 24,
+              "columns": 3,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cow/left.png",
+              "isReversed": true
+            },
+            "down_left" : {
+              "count": 24,
+              "columns": 3,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cow/down_left.png",
+              "isReversed": false
+            },
+            "down_right" : {
+              "count": 24,
+              "columns": 3,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cow/down_left.png",
+              "isReversed": true
+            },
+            "up_left" : {
+              "count": 24,
+              "columns": 3,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cow/up_left.png",
+              "isReversed": false
+            },
+            "up_down" : {
+              "count": 24,
+              "columns": 3,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cow/up_left.png",
+              "isReversed": true
+            },
+            "eat" : {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cow/eat.png",
+              "isReversed": false
+            },
+            "death" : {
+              "count": 24,
+              "columns": 3,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Cow/death.png",
+              "isReversed": false
+            }
+          }
+        },
+        "dog" : {
+          "states" : {
+            "up": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Dog/up.png",
+              "isReversed": false
+            },
+            "down": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Dog/down.png",
+              "isReversed": false
+            },
+            "left": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Dog/left.png",
+              "isReversed": false
+            },
+            "right": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Dog/left.png",
+              "isReversed": true
+            },
+            "down_left": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Dog/down_left.png",
+              "isReversed": false
+            },
+            "up_left": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Dog/up_left.png",
+              "isReversed": false
+            },
+            "down_right": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Dog/down_left.png",
+              "isReversed": true
+            },
+            "up_right": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Dog/up_left.png",
+              "isReversed": true
+            }
+          }
+        },
+        "grizzly" : {
+          "states" : {
+            "up": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/up.png",
+              "isReversed": false
+            },
+            "down": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/down.png",
+              "isReversed": false
+            },
+            "left": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/left.png",
+              "isReversed": false
+            },
+            "right": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/left.png",
+              "isReversed": true
+            },
+            "down_left": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/down_left.png",
+              "isReversed": false
+            },
+            "up_left": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/up_left.png",
+              "isReversed": false
+            },
+            "down_right": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/down_left.png",
+              "isReversed": true
+            },
+            "up_right": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/up_left.png",
+              "isReversed": true
+            },
+            "caged" : {
+              "count": 24,
+              "columns": 6,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/caged.png",
+              "isReversed": false
+            }
+          }
+        },
+        "turkey" : {
+          "states" : {
+            "up": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/up.png",
+              "isReversed": false
+            },
+            "down": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/down.png",
+              "isReversed": false
+            },
+            "left": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/left.png",
+              "isReversed": false
+            },
+            "right": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/left.png",
+              "isReversed": true
+            },
+            "down_left": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/down_left.png",
+              "isReversed": false
+            },
+            "up_left": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/up_left.png",
+              "isReversed": false
+            },
+            "down_right": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/down_left.png",
+              "isReversed": true
+            },
+            "up_right": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/up_left.png",
+              "isReversed": true
+            },
+            "eat" : {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/eat.png",
+              "isReversed": false
+            },
+            "death" : {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/death.png",
+              "isReversed": false
+            }
+          }
+        }
+      }
+    }
   }
 }
