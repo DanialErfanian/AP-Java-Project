@@ -3,7 +3,8 @@ package Server.User;
 public class HostProfile extends BaseProfile {
     private String name;
     private String token;
-    private int transactions_count = 0;
+    private int transactionsCount = 0;
+    private int money = 0;
 
     public String getName() {
         return name;
@@ -21,12 +22,20 @@ public class HostProfile extends BaseProfile {
         this.token = token;
     }
 
-    public int getTransactions_count() {
-        return transactions_count;
+    public int getTransactionsCount() {
+        return transactionsCount;
     }
 
-    public void setTransactions_count(int transactions_count) {
-        this.transactions_count = transactions_count;
+    public void setTransactionsCount(int transactionsCount) {
+        this.transactionsCount = transactionsCount;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 
     public HostProfile(String username, String name) {
@@ -38,5 +47,9 @@ public class HostProfile extends BaseProfile {
 
     public AuthenticationProfile toAuthenticationProfile() {
         return new AuthenticationProfile(this.getUsername(), this.getToken());
+    }
+
+    public ScoreboardProfile toScoreboardProfile() {
+        return new ScoreboardProfile(this.getUsername(), this.getName(), this.getMoney());
     }
 }
