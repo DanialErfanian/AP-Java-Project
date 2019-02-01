@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 public class SpriteAnimation extends Transition {
-    private final ImageView imageView;
+    private ImageView imageView;
     private int count;
     private int columns;
     private final int offsetX;
@@ -46,7 +46,7 @@ public class SpriteAnimation extends Transition {
         if (index != lastIndex) jumpTo(index);
     }
 
-    void jumpTo(int index) {
+    public void jumpTo(int index) {
         index %= count;
         final int x = (index % columns) * width + offsetX;
         final int y = (index / columns) * height + offsetY;
@@ -80,5 +80,16 @@ public class SpriteAnimation extends Transition {
 
     public ImageView getImageView() {
         return imageView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
+    }
+
+    public void swapImageView(ImageView imageView) {
+        imageView.setImage(this.imageView.getImage());
+        imageView.setScaleX(this.imageView.getScaleX());
+        this.imageView = imageView;
+        jumpTo(0);
     }
 }

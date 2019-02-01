@@ -161,8 +161,72 @@
       }
     ],
     "imagePool": {
-      "animalView": {
-        "cat": {
+      "animalViews": {
+        "Hen": {
+          "states": {
+            "up": {
+              "count": 24,
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/up.png",
+              "isReversed": false
+            },
+            "down": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/down.png",
+              "isReversed": false
+            },
+            "left": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/left.png",
+              "isReversed": false
+            },
+            "right": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/left.png",
+              "isReversed": true
+            },
+            "down_left": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/down_left.png",
+              "isReversed": false
+            },
+            "up_left": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/up_left.png",
+              "isReversed": false
+            },
+            "down_right": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/down_left.png",
+              "isReversed": true
+            },
+            "up_right": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/up_left.png",
+              "isReversed": true
+            },
+            "eat": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/eat.png",
+              "isReversed": false
+            },
+            "death": {
+              "count": 24,
+              "columns": 4,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/death.png",
+              "isReversed": false
+            }
+          }
+        },
+        "Cat": {
           "states": {
             "up": {
               "count": 24,
@@ -214,63 +278,63 @@
             }
           }
         },
-        "sheep" : {
+        "Sheep": {
           "states": {
-            "up" : {
+            "up": {
               "count": 24,
               "columns": 5,
               "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/up.png",
               "isReversed": false
             },
-            "down" : {
+            "down": {
               "count": 24,
               "columns": 5,
               "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/down.png",
               "isReversed": false
             },
-            "left" : {
+            "left": {
               "count": 24,
-              "columns": 6,
+              "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/left.png",
               "isReversed": false
             },
-            "right" : {
+            "right": {
               "count": 24,
-              "columns": 6,
+              "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/left.png",
               "isReversed": true
             },
-            "down_left" : {
+            "down_left": {
               "count": 24,
-              "columns": 6,
+              "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/down_left.png",
               "isReversed": false
             },
-            "down_right" : {
+            "down_right": {
               "count": 24,
-              "columns": 6,
+              "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/down_left.png",
               "isReversed": true
             },
-            "up_left" : {
+            "up_left": {
               "count": 24,
               "columns": 5,
               "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/up_left.png",
               "isReversed": false
             },
-            "up_down" : {
+            "up_right": {
               "count": 24,
               "columns": 5,
               "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/up_left.png",
               "isReversed": true
             },
-            "eat" : {
+            "eat": {
               "count": 24,
               "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/eat.png",
               "isReversed": false
             },
-            "death" : {
+            "death": {
               "count": 24,
               "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Sheep/death.png",
@@ -278,63 +342,63 @@
             }
           }
         },
-        "cow" : {
-          "states" : {
-            "up" : {
+        "Cow": {
+          "states": {
+            "up": {
               "count": 24,
               "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Cow/up.png",
               "isReversed": false
             },
-            "down" : {
+            "down": {
               "count": 24,
               "columns": 3,
               "imagePath": "src/Resources/Data/Game/Characters/1/Cow/down.png",
               "isReversed": false
             },
-            "left" : {
+            "left": {
               "count": 24,
               "columns": 3,
               "imagePath": "src/Resources/Data/Game/Characters/1/Cow/left.png",
               "isReversed": false
             },
-            "right" : {
+            "right": {
               "count": 24,
               "columns": 3,
               "imagePath": "src/Resources/Data/Game/Characters/1/Cow/left.png",
               "isReversed": true
             },
-            "down_left" : {
+            "down_left": {
               "count": 24,
               "columns": 3,
               "imagePath": "src/Resources/Data/Game/Characters/1/Cow/down_left.png",
               "isReversed": false
             },
-            "down_right" : {
+            "down_right": {
               "count": 24,
               "columns": 3,
               "imagePath": "src/Resources/Data/Game/Characters/1/Cow/down_left.png",
               "isReversed": true
             },
-            "up_left" : {
+            "up_left": {
               "count": 24,
               "columns": 3,
               "imagePath": "src/Resources/Data/Game/Characters/1/Cow/up_left.png",
               "isReversed": false
             },
-            "up_down" : {
+            "up_right": {
               "count": 24,
               "columns": 3,
               "imagePath": "src/Resources/Data/Game/Characters/1/Cow/up_left.png",
               "isReversed": true
             },
-            "eat" : {
+            "eat": {
               "count": 24,
               "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Cow/eat.png",
               "isReversed": false
             },
-            "death" : {
+            "death": {
               "count": 24,
               "columns": 3,
               "imagePath": "src/Resources/Data/Game/Characters/1/Cow/death.png",
@@ -342,8 +406,8 @@
             }
           }
         },
-        "dog" : {
-          "states" : {
+        "Dog": {
+          "states": {
             "up": {
               "count": 24,
               "columns": 5,
@@ -394,17 +458,17 @@
             }
           }
         },
-        "grizzly" : {
-          "states" : {
+        "Bear": {
+          "states": {
             "up": {
               "count": 24,
-              "columns": 5,
+              "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/up.png",
               "isReversed": false
             },
             "down": {
               "count": 24,
-              "columns": 5,
+              "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/down.png",
               "isReversed": false
             },
@@ -422,29 +486,29 @@
             },
             "down_left": {
               "count": 24,
-              "columns": 5,
+              "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/down_left.png",
               "isReversed": false
             },
             "up_left": {
               "count": 24,
-              "columns": 5,
+              "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/up_left.png",
               "isReversed": false
             },
             "down_right": {
               "count": 24,
-              "columns": 5,
+              "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/down_left.png",
               "isReversed": true
             },
             "up_right": {
               "count": 24,
-              "columns": 5,
+              "columns": 4,
               "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/up_left.png",
               "isReversed": true
             },
-            "caged" : {
+            "caged": {
               "count": 24,
               "columns": 6,
               "imagePath": "src/Resources/Data/Game/Characters/1/Grizzly/caged.png",
@@ -452,71 +516,72 @@
             }
           }
         },
-        "turkey" : {
-          "states" : {
+        "Lion": {
+          "states": {
             "up": {
               "count": 24,
-              "columns": 5,
-              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/up.png",
+              "columns": 6,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Lion/up.png",
               "isReversed": false
             },
             "down": {
               "count": 24,
-              "columns": 4,
-              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/down.png",
+              "columns": 5,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Lion/down.png",
               "isReversed": false
             },
             "left": {
               "count": 24,
-              "columns": 4,
-              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/left.png",
+              "columns": 3,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Lion/left.png",
               "isReversed": false
             },
             "right": {
               "count": 24,
-              "columns": 4,
-              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/left.png",
+              "columns": 3,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Lion/left.png",
               "isReversed": true
             },
             "down_left": {
               "count": 24,
               "columns": 4,
-              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/down_left.png",
+              "imagePath": "src/Resources/Data/Game/Characters/1/Lion/down_left.png",
               "isReversed": false
             },
             "up_left": {
               "count": 24,
-              "columns": 4,
-              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/up_left.png",
+              "columns": 6,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Lion/up_left.png",
               "isReversed": false
             },
             "down_right": {
               "count": 24,
               "columns": 4,
-              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/down_left.png",
+              "imagePath": "src/Resources/Data/Game/Characters/1/Lion/down_left.png",
               "isReversed": true
             },
             "up_right": {
               "count": 24,
-              "columns": 4,
-              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/up_left.png",
+              "columns": 6,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Lion/up_left.png",
               "isReversed": true
             },
-            "eat" : {
+            "caged": {
               "count": 24,
-              "columns": 4,
-              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/eat.png",
-              "isReversed": false
-            },
-            "death" : {
-              "count": 24,
-              "columns": 4,
-              "imagePath": "src/Resources/Data/Game/Characters/1/Turkey/death.png",
+              "columns": 6,
+              "imagePath": "src/Resources/Data/Game/Characters/1/Lion/caged.png",
               "isReversed": false
             }
           }
         }
-      }
+      },
+      "productsPath": "src/Resources/Data/Game/Products/"
+    },
+    "middleMapView": {
+      "X1": 170,
+      "X2": 500,
+      "Y1": 120,
+      "Y2": 400
     }
   }
 }

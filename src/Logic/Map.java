@@ -113,7 +113,6 @@ public class Map extends MainObject {
         return grass[position.getX()][position.getY()];
     }
 
-
     Map(Game game, int mapWidth, int mapHeight) {
         super(game);
         this.mapWidth = mapWidth;
@@ -130,11 +129,9 @@ public class Map extends MainObject {
     @Override
     protected void increaseTurn() {
         well.increaseTurn();
-        for (int i = 0; i < mapWidth; i++)
-            for (int j = 0; j < mapHeight; j++)
-                for (MiddleMapObject object : objects.get(i).get(j))
-                    if (object != null)
-                        object.increaseTurn();
+        for (MiddleMapObject object : getObjects())
+            if (object != null && object.isValid())
+                object.increaseTurn();
         lastWildAnimalTime--;
         if (-lastWildAnimalTime == Constants.WILD_ANIMAL_TIME_PERIOD) {
             Position position = getRandomValidPosition();
@@ -192,7 +189,7 @@ public class Map extends MainObject {
         for (int i = 0; i < mapWidth; i++)
             for (int j = 0; j < mapHeight; j++)
                 for (MiddleMapObject object : objects.get(i).get(j))
-                    if (!(object instanceof WildAnimal))
+                    if (object instanceof ProducerAnimal)
                         targets.add(object);
         if (targets.size() == 0)
             return null;
@@ -218,7 +215,7 @@ public class Map extends MainObject {
         for (int i = 0; i < mapWidth; i++)
             for (int j = 0; j < mapHeight; j++)
                 for (MiddleMapObject object : objects.get(i).get(j))
-                    if (object instanceof GroundProduct) {
+                    if (object != null && object.isValid() && object instanceof GroundProduct) {
                         products.add((GroundProduct) object);
                         minDistance = Math.min(minDistance, Position.getDistance(position, object.getPosition()));
                     }
@@ -234,7 +231,7 @@ public class Map extends MainObject {
     boolean plant(Position position) {
         if (isInvalid(position) || !getWell().plant())
             return false;
-        grass[position.getX()][position.getY()]++;
+        grass[position.getX()][position.getY()] += Constants.GRASS_PLANT_INCREASE;
         return true;
     }
 
@@ -278,5 +275,21 @@ public class Map extends MainObject {
         objects.remove(object);
         addObject(newPosition, object);
         object.setPosition(newPosition);
+    }
+
+    public int getMapWidth() {
+        return mapWidth;
+    }
+
+    public int getMapHeight() {
+        return mapHeight;
+    }
+
+    public ArrayList<MiddleMapObject> getObjects() {
+        ArrayList<MiddleMapObject> result = new ArrayList<>();
+        for (int i = 0; i < mapWidth; i++)
+            for (int j = 0; j < mapHeight; j++)
+                result.addAll(objects.get(i).get(j));
+        return result;
     }
 }

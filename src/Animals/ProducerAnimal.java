@@ -37,22 +37,28 @@ public class ProducerAnimal extends BaseAnimal {
         this.target = getGame().getMap().getRandomGrassyPosition();
     }
 
-    private void eat() {
+    private boolean eat() {
         int maxHungriness = Constants.PRODUCER_ANIMAL_MAX_HUNGRINESS;
-        if (hungriness >= maxHungriness)
+        if (hungriness >= maxHungriness) {
             destruct();
-        else {
+            deathState();
+        } else {
+            double decreaseHungriness = Constants.PRODUCER_ANIMAL_EAT_GRASS_DECREASE_HUNGRINESS;
             hungriness++;
-            if (hungriness > 0 && getGame().decreasePlant(getPosition()))
-                hungriness--;
+            if (hungriness > decreaseHungriness && getGame().decreasePlant(getPosition())) {
+                hungriness -= decreaseHungriness;
+                return true;
+            }
         }
+        return false;
     }
 
     @Override
-    void doTask() {
-        eat();
+    boolean doTask() {
+        boolean result = eat();
         if (this.isValid())
             decreaseProgress();
+        return result;
     }
 
     private void decreaseProgress() {
@@ -76,12 +82,6 @@ public class ProducerAnimal extends BaseAnimal {
                 "\ntype: " +
                 type + "\n" +
                 super.toString();
-    }
-
-    protected boolean isTargetInvalid() {
-        if (super.isTargetInvalid())
-            return true;
-        return getGame().getMap().getGrass(target.getPosition()) > 0;
     }
 
     @Override

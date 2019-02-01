@@ -1,6 +1,8 @@
 package FarmFrenzy.GameUI;
 
 import Buildings.Workshop;
+import FarmFrenzy.GameUI.MiddleMap.ImagePool;
+import FarmFrenzy.GameUI.MiddleMap.MiddleMapView;
 import Logic.Constants;
 import Logic.Game;
 import Utils.AnimationProperties;
@@ -21,14 +23,19 @@ import java.nio.file.Files;
 
 
 //TODO: add shadow file to vehicle and workshops (like src/Resources/Data/Game/Service/Car/01_m.png)
+//TODO: convert this file to enum(from class)
+//TODO: animal vaghti mikhad bokhore hamonja vaste targetesho avaz nakone
+
 public class UIProperties {
     private final ImageProperties background, road;
     private final WorkshopView[] workshops = new WorkshopView[6];
     private final VehicleView helicopter, truck;
     private final MoneyStatus moneyStatus;
     private final ImageProperties warehouse;
+    private final ImagePool imagePool;
+    private final MiddleMapView middleMapView;
 
-    public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road, VehicleView helicopter, VehicleView truck, MoneyStatus moneyStatus, ImageProperties warehouse) {
+    public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road, VehicleView helicopter, VehicleView truck, MoneyStatus moneyStatus, ImageProperties warehouse, ImagePool imagePool, MiddleMapView middleMapView) {
         this.background = background;
         System.arraycopy(workshops, 0, this.workshops, 0, Math.min(6, workshops.length));
         this.road = road;
@@ -36,6 +43,8 @@ public class UIProperties {
         this.truck = truck;
         this.moneyStatus = moneyStatus;
         this.warehouse = warehouse;
+        this.imagePool = imagePool;
+        this.middleMapView = middleMapView;
     }
 
     static UIProperties readFromFile(File file) {
@@ -84,6 +93,8 @@ public class UIProperties {
         pane.getChildren().add(truck.build(game.getTruck()));
         pane.getChildren().add(helicopter.build(game.getHelicopter()));
         pane.getChildren().add(moneyStatus.build(game));
+        pane.getChildren().add(middleMapView.build(game, imagePool));
+
         // TODO money and vehicles and...
 //        group.setScaleX(2);
 //        group.setScaleY(2);

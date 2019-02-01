@@ -17,8 +17,9 @@ public class Dog extends BaseAnimal {
     }
 
     @Override
-    void doTask() {
+    boolean doTask() {
         catchWildAnimal();
+        return false;
     }
 
     @Override

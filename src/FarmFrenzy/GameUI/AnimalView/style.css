@@ -1,9 +1,0 @@
-.main-pane {
-    -fx-background-image: url("/Resources/back.png");
-    -fx-background-size: cover;
-}
-
-.image {
-    -fx-fit-to-width: true;
-    -fx-fit-to-height: true;
-}

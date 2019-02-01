@@ -17,8 +17,9 @@ public class WildAnimal extends BaseAnimal {
     }
 
     @Override
-    void doTask() {
+    boolean doTask() {
         catchAnimal();
+        return false;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class WildAnimal extends BaseAnimal {
         ArrayList<MiddleMapObject> cellObjects = this.getGame().getMap().getCellObjects(this.getPosition());
         for (int i = 0; i < cellObjects.size(); i++) {
             MiddleMapObject object = cellObjects.get(i);
-            if (object instanceof WildAnimal)
+            if (!(object instanceof ProducerAnimal))
                 continue;
             cellObjects.set(i, null);
         }

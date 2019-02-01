@@ -4,6 +4,7 @@ import Utils.Position;
 
 abstract public class MiddleMapObject extends MainObject implements Targetable {
     private Position position;
+    private boolean hasAddedRecently = true;
 
     public MiddleMapObject(Game game, Position position) {
         super(game);
@@ -18,11 +19,19 @@ abstract public class MiddleMapObject extends MainObject implements Targetable {
         position = null;
     }
 
-    protected final boolean isValid() {
+    public final boolean isValid() {
         return position != null;
     }
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public void setAddedRecently(boolean hasAddedRecently) {
+        this.hasAddedRecently = hasAddedRecently;
+    }
+
+    public boolean isAddedRecently() {
+        return hasAddedRecently;
     }
 }

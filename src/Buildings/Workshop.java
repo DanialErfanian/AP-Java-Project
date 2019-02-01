@@ -9,7 +9,7 @@ import Utils.WorkshopBuilder;
 
 import java.util.ArrayList;
 
-public class Workshop extends BaseBuilding {
+public class Workshop extends BaseBuilding {// TODO convert to enum :)
     private int runningThreads = 0;
     private int progress = 0;
     private int level = 1;
