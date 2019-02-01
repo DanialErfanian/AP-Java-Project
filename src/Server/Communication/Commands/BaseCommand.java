@@ -6,8 +6,13 @@ import Server.User.AuthenticationProfile;
 
 public abstract class BaseCommand {
     private AuthenticationProfile authenticationProfile;
+    private boolean needsAuthentication = false;
 
     public BaseCommand() {
+    }
+
+    public BaseCommand(AuthenticationProfile authenticationProfile) {
+        this.authenticationProfile = authenticationProfile;
     }
 
     protected boolean isAuthenticated() {
@@ -16,6 +21,12 @@ public abstract class BaseCommand {
 
     public AuthenticationProfile getAuthenticationProfile() {
         return authenticationProfile;
+    }
+
+    public BaseResult start() {
+        if (needsAuthentication && !isAuthenticated())
+            return new BaseResult(403);
+        return run();
     }
 
     public abstract BaseResult run();

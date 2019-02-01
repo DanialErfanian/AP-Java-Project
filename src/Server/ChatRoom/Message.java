@@ -1,20 +1,26 @@
 package Server.ChatRoom;
 
-import Server.User.HostProfile;
+import java.util.Date;
 
 public class Message {
     private Room room;
-    private HostProfile sender;
+    private String sender;
     private String text;
     private Message repliedMessage;
+    private Date timestamp;
 
-    public Message(HostProfile sender, String text, Message repliedMessage) {
+    public Message(String sender, String text, Message repliedMessage) {
         this.sender = sender;
         this.text = text;
         this.repliedMessage = repliedMessage;
+        this.timestamp = new Date();
     }
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public String getSender() {
+        return sender;
     }
 }
