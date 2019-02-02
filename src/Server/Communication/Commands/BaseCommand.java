@@ -4,7 +4,9 @@ import Server.Communication.Results.BaseResult;
 import Server.Server;
 import Server.User.AuthenticationProfile;
 
-public abstract class BaseCommand {
+import java.io.Serializable;
+
+public abstract class BaseCommand implements Serializable {
     private AuthenticationProfile authenticationProfile;
 
     BaseCommand() {

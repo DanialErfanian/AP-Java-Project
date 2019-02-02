@@ -1,8 +1,11 @@
 package Server.User;
 
+import Utils.NetworkConfig;
+
 public class HostProfile extends BaseProfile {
     private String name;
     private String token;
+    private NetworkConfig netConf;
     private int transactionsCount = 0;
     private int money = 0;
 
@@ -38,11 +41,12 @@ public class HostProfile extends BaseProfile {
         this.money = money;
     }
 
-    public HostProfile(String username, String name) {
+    public HostProfile(String username, String name, NetworkConfig netConf) {
         super(username);
         this.name = name;
         // TODO generate random token
         this.token = username;
+        this.netConf = netConf;
     }
 
     public AuthenticationProfile toAuthenticationProfile() {
