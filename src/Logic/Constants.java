@@ -2,6 +2,7 @@ package Logic;
 
 public class Constants {
     public static final int WORKSHOP_MAX_LEVEL = 5;
+    public static final int WELL_MAX_LEVEL = 4;
 
     private Constants() {
     }

@@ -44,6 +44,8 @@ public class Well extends BaseBuilding {
     }
 
     public boolean upgrade() {
+        if (!haveUpgrade())
+            return false;
         int cost = getUpgradeCost();
         if (!getGame().decreaseMoney(cost))
             return false;
@@ -53,8 +55,12 @@ public class Well extends BaseBuilding {
     }
 
     @Override
-    protected int getUpgradeCost() {
+    public int getUpgradeCost() {
         return Constants.WELL_UPGRADE_COST;
+    }
+
+    public boolean haveUpgrade() {
+        return level != Constants.WELL_MAX_LEVEL;
     }
 
     public int getLevel() {

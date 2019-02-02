@@ -1,7 +1,10 @@
 package FarmFrenzy.GameUI;
 
+import Buildings.Well;
 import Logic.Game;
 import Utils.AnimationProperties;
+import Utils.ButtonHandler;
+import Utils.ButtonProperties;
 import Utils.SpriteAnimation;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
@@ -16,16 +19,19 @@ public class WellView {
     private AnimationProperties animationProperties;
     private int x, y, width, height;
     private String imagesPath;
+    private ButtonProperties upgradeButton;
+
     private transient int lastLevel = -1;
     private transient SpriteAnimation animation;
 
-    public WellView(AnimationProperties animation, int x, int y, int width, int height, String imagesPath) {
-        this.animationProperties = animation;
+    public WellView(AnimationProperties animationProperties, int x, int y, int width, int height, String imagesPath, ButtonProperties upgradeButton) {
+        this.animationProperties = animationProperties;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.imagesPath = imagesPath;
+        this.upgradeButton = upgradeButton;
     }
 
     public Group build(Game game) {
@@ -52,7 +58,37 @@ public class WellView {
         UIProperties.runEveryFrame(() -> updateLevel(game, imageView));
         imageView.setX(x);
         imageView.setY(y);
+
+        addUpgradeButton(group, game);
+
         return group;
+    }
+
+    private void addUpgradeButton(Group group, Game game) {
+        ButtonHandler upgrade = new ButtonHandler(upgradeButton) {
+            Well well = game.getMap().getWell();
+
+            @Override
+            protected boolean isAvailable() {
+                return game.getMoney() >= well.getUpgradeCost();
+            }
+
+            @Override
+            public void onClick() {
+                well.upgrade();
+            }
+
+            @Override
+            public boolean haveUpgrade() {
+                return well.haveUpgrade();
+            }
+
+            @Override
+            protected String getText() {
+                return Integer.toString(well.getUpgradeCost());
+            }
+        };
+        group.getChildren().add(upgrade.build(15));
     }
 
     private void updateLevel(Game game, ImageView imageView) {

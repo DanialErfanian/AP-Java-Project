@@ -95,7 +95,19 @@
       "y": 100,
       "height": 150,
       "width": 136,
-      "imagesPath": "src/Resources/Data/Game/Service/Well/"
+      "imagesPath": "src/Resources/Data/Game/Service/Well/",
+      "upgradeButton": {
+        "image": {
+          "positionX": 520,
+          "positionY": 90,
+          "width": 82,
+          "height": 32,
+          "isCenterPosition": true,
+          "image": "src/Resources/Data/Game/UI/Buttons/upgrade.png"
+        },
+        "textX": 510,
+        "textY": 80
+      }
     },
     "workshops": [
       {
