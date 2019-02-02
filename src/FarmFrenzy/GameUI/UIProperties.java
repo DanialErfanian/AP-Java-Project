@@ -3,6 +3,7 @@ package FarmFrenzy.GameUI;
 import Buildings.Workshop;
 import FarmFrenzy.GameUI.MiddleMap.ImagePool;
 import FarmFrenzy.GameUI.MiddleMap.MiddleMapView;
+import FarmFrenzy.Ui;
 import Logic.Constants;
 import Logic.Game;
 import Utils.AnimationProperties;
@@ -96,6 +97,23 @@ public class UIProperties {
         pane.getChildren().add(helicopter.build(game.getHelicopter()));
         pane.getChildren().add(moneyStatus.build(game));
         pane.getChildren().add(middleMapView.build(game, imagePool));
+        Thread thread = new Thread(() -> Ui.Run(game));
+        thread.setDaemon(true);
+        thread.start();
+
+        thread = new Thread(() -> {
+            while (true) {
+                game.increaseTurn();
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+
 
         startFrameUpdater();
         // TODO money and vehicles and...

@@ -20,7 +20,6 @@ public class Constants {
 
     static final int CAT_UPGRADE_COST = 500; // coin
 
-    static final int GRASS_PLANT_INCREASE = 10;
     static final double PRODUCER_ANIMAL_EAT_GRASS_RATE = 1;
     public static final double PRODUCER_ANIMAL_EAT_GRASS_DECREASE_HUNGRINESS = 1;
     public static final int PRODUCER_ANIMAL_FULL_PROGRESS = 10;
@@ -59,4 +58,7 @@ public class Constants {
     public static final int WORKSHOP_UPGRADE_COST = 150;
 
     static final int WILD_ANIMAL_TIME_PERIOD = 2 * 60 * 10; // 2 minute
+
+    public static final double GRASS_MAX_VALUE = 160;
+    static final int GRASS_PLANT_INCREASE = 160;
 }

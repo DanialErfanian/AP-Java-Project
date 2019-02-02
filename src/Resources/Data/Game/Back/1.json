@@ -581,7 +581,14 @@
       "X1": 170,
       "X2": 500,
       "Y1": 120,
-      "Y2": 400
+      "Y2": 400,
+      "grassView": {
+        "path": "src/Resources/Data/Game/grass1.png",
+        "animation": {
+          "count": 16,
+          "columns": 4
+        }
+      }
     }
   }
 }

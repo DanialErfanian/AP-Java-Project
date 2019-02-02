@@ -109,8 +109,8 @@ public class Map extends MainObject {
         addObject(position.getX(), position.getY(), object);
     }
 
-    public double getGrass(Position position) {
-        return grass[position.getX()][position.getY()];
+    public double getGrass(int x, int y) {
+        return grass[x][y];
     }
 
     Map(Game game, int mapWidth, int mapHeight) {
@@ -130,7 +130,7 @@ public class Map extends MainObject {
     protected void increaseTurn() {
         well.increaseTurn();
         for (MiddleMapObject object : getObjects())
-                object.increaseTurn();
+            object.increaseTurn();
         lastWildAnimalTime--;
         if (-lastWildAnimalTime == Constants.WILD_ANIMAL_TIME_PERIOD) {
             Position position = getRandomValidPosition();
@@ -230,7 +230,10 @@ public class Map extends MainObject {
     boolean plant(Position position) {
         if (isInvalid(position) || !getWell().plant())
             return false;
-        grass[position.getX()][position.getY()] += Constants.GRASS_PLANT_INCREASE;
+        int x = position.getX();
+        int y = position.getY();
+        grass[x][y] += Constants.GRASS_PLANT_INCREASE;
+        grass[x][y] = Math.min(grass[x][y], Constants.GRASS_MAX_VALUE);
         return true;
     }
 
@@ -284,7 +287,7 @@ public class Map extends MainObject {
         return mapHeight;
     }
 
-    public ArrayList<MiddleMapObject> getObjects() {
+    synchronized public ArrayList<MiddleMapObject> getObjects() {
         ArrayList<MiddleMapObject> result = new ArrayList<>();
         for (int i = 0; i < mapWidth; i++)
             for (int j = 0; j < mapHeight; j++) {

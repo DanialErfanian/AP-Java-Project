@@ -212,7 +212,7 @@ public class Ui {
 
     private static void plant(Game game, String[] args) {
         Position position = getPosition(args);
-        if (game.plant(position))
+        if (position != null && game.plant(position))
             System.out.printf("plant growing in cell %s done successfully.\n", position);
         else
             invalidCell();

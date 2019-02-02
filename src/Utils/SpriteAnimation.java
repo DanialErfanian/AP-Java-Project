@@ -17,7 +17,7 @@ public class SpriteAnimation extends Transition {
     private int width;
     private int height;
 
-    private int lastIndex;
+    private int lastIndex = -1;
 
     public SpriteAnimation(ImageView imageView, Duration duration, int count, int columns) {
         this(imageView, duration);
@@ -25,7 +25,7 @@ public class SpriteAnimation extends Transition {
         this.columns = columns;
     }
 
-    public SpriteAnimation(ImageView imageView, Duration duration) {
+    private SpriteAnimation(ImageView imageView, Duration duration) {
         this.imageView = imageView;
         this.offsetX = 0;
         this.offsetY = 0;
@@ -47,25 +47,13 @@ public class SpriteAnimation extends Transition {
     }
 
     public void jumpTo(int index) {
+        if (index == lastIndex)
+            return;
         index %= count;
         final int x = (index % columns) * width + offsetX;
         final int y = (index / columns) * height + offsetY;
         imageView.setViewport(new Rectangle2D(x, y, width, height));
         lastIndex = index;
-    }
-
-    public void update(AnimationProperties current) {
-        if (imageView.getImage() == current.getImage())
-            return;
-        imageView.setVisible(false);
-
-        this.imageView.setImage(current.getImage());
-        this.columns = current.getColumns();
-        this.count = current.getCount();
-
-        relax();
-        this.jumpTo(0);
-        imageView.setVisible(true);
     }
 
     @Override
@@ -84,12 +72,5 @@ public class SpriteAnimation extends Transition {
 
     public void setImageView(ImageView imageView) {
         this.imageView = imageView;
-    }
-
-    public void swapImageView(ImageView imageView) {
-        imageView.setImage(this.imageView.getImage());
-        imageView.setScaleX(this.imageView.getScaleX());
-        this.imageView = imageView;
-        jumpTo(0);
     }
 }

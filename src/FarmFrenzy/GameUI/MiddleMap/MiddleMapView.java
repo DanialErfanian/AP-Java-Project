@@ -10,18 +10,21 @@ import Utils.Position;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
 public class MiddleMapView {
     private int X1, X2, Y1, Y2;
+    private GrassView grassView;
     private transient ArrayList<AnimalController> controllers;
 
-    public MiddleMapView(int x1, int x2, int y1, int y2) {
+    public MiddleMapView(int x1, int x2, int y1, int y2, GrassView grassView) {
         X1 = x1;
         X2 = x2;
         Y1 = y1;
         Y2 = y2;
+        this.grassView = grassView;
     }
 
     public Group build(Game game, ImagePool imagePool) {
@@ -33,6 +36,7 @@ public class MiddleMapView {
             for (AnimalController controller : controllers)
                 controller.update();
         }));
+        group.getChildren().add(grassView.build(game, this));
         return group;
     }
 
@@ -51,12 +55,9 @@ public class MiddleMapView {
         return group;
     }
 
-    public void setPosition(ImageView imageView, MiddleMapObject object) {
-        Position position = object.getPosition();
-        if (position == null)
-            return;
-        int mapWidth = object.getGame().getMap().getMapWidth();
-        int mapHeight = object.getGame().getMap().getMapHeight();
+    public void setPosition(ImageView imageView, Position position, Game game) {
+        int mapWidth = game.getMap().getMapWidth();
+        int mapHeight = game.getMap().getMapHeight();
         double x = 1. * (X2 - X1) * position.getX() / mapWidth + X1;
         double y = 1. * (Y2 - Y1) * position.getY() / mapHeight + Y1;
         assert imageView != null;
@@ -64,6 +65,24 @@ public class MiddleMapView {
             imageView.setX(x);
             imageView.setY(y);
         });
+    }
+
+    public void setPosition(Rectangle imageView, Position position, Game game) {
+        int mapWidth = game.getMap().getMapWidth();
+        int mapHeight = game.getMap().getMapHeight();
+        double x = 1. * (X2 - X1) * position.getX() / mapWidth + X1;
+        double y = 1. * (Y2 - Y1) * position.getY() / mapHeight + Y1;
+        assert imageView != null;
+        Platform.runLater(() -> {
+            imageView.setX(x);
+            imageView.setY(y);
+        });
+    }
+
+    public void setPosition(ImageView imageView, MiddleMapObject object) {
+        Position position = object.getPosition();
+        if (position != null)
+            setPosition(imageView, object.getPosition(), object.getGame());
     }
 
     private void update(Group group, Game game, ImagePool imagePool) {
@@ -78,5 +97,21 @@ public class MiddleMapView {
         AnimalController controller = new AnimalController(animal, imagePool);
         Platform.runLater(() -> group.getChildren().add(controller.build(this)));
         return controller;
+    }
+
+    int getX1() {
+        return X1;
+    }
+
+    int getX2() {
+        return X2;
+    }
+
+    int getY1() {
+        return Y1;
+    }
+
+    int getY2() {
+        return Y2;
     }
 }
