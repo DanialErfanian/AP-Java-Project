@@ -15,7 +15,7 @@ public class Truck extends Vehicle {
         products = new ProductPool(capacity);
     }
 
-    int getUpgradeCost() {
+    public int getUpgradeCost() {
         return Constants.TRUCK_UPGRADE_COST;
     }
 

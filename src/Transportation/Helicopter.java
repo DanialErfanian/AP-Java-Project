@@ -15,7 +15,7 @@ public class Helicopter extends Vehicle {
         products = new ProductPool(capacity);
     }
 
-    int getUpgradeCost() {
+    public int getUpgradeCost() {
         return Constants.HELICOPTER_UPGRADE_COST;
     }
 
@@ -67,7 +67,7 @@ public class Helicopter extends Vehicle {
     }
 
     @Override
-    public int getFullProgress(){
+    public int getFullProgress() {
         return Constants.HELICOPTER_JOB_PROGRESS;
     }
 }

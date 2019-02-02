@@ -19,6 +19,11 @@ public class ProductPool implements java.io.Serializable {
         return products.getOrDefault(product, 0);
     }
 
+    public boolean canAddProduct(Product product, int count) {
+        int size = count * product.getDepotSize();
+        return remainedCapacity >= size;
+    }
+
     public boolean addProduct(Product product, int count) {
         int size = count * product.getDepotSize();
         if (remainedCapacity < size) {
@@ -74,7 +79,7 @@ public class ProductPool implements java.io.Serializable {
     }
 
     public boolean unallocate(int count) {
-        if(allocatedCapacity < count)
+        if (allocatedCapacity < count)
             return false;
         allocatedCapacity -= count;
         remainedCapacity += count;
