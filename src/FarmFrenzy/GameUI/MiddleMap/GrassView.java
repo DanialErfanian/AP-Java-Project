@@ -42,6 +42,7 @@ public class GrassView {
                 });
                 rectangle.setWidth(grassWidth);
                 rectangle.setHeight(grassHeight);
+                rectangle.setOnMouseClicked(mouseEvent -> game.plant(new Position(finalX, finalY)));
                 middleMapView.setPosition(rectangle, new Position(x, y), game);
                 group.getChildren().add(rectangle);
             }
