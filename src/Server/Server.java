@@ -3,7 +3,9 @@ package Server;
 import Server.ChatRoom.Message;
 import Server.ChatRoom.Room;
 import Server.Communication.Results.GetProfileResult;
+import Server.Communication.Results.JoinScoreboardResult;
 import Server.Communication.Results.RegisterResult;
+import Server.Scoreboard.Scoreboard;
 import Server.User.AuthenticationProfile;
 import Server.User.HostProfile;
 import Server.User.RegisterProfile;
@@ -11,12 +13,11 @@ import Server.User.ScoreboardProfile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class Server {
     private HashMap<String, HostProfile> users = new HashMap<>();
     private Room globalRoom = new Room();
-    private HashSet<HostProfile> scoreboardListeners = new HashSet<>();
+    private Scoreboard scoreboard = new Scoreboard();
 
     private Server() {
     }
@@ -42,7 +43,7 @@ public class Server {
             return new RegisterResult(400, null);
         hostProfile = new HostProfile(user.getUsername(), user.getName());
         this.users.put(hostProfile.getToken(), hostProfile);
-        // TODO send update to scoreboard listeners
+        this.scoreboard.addMember(hostProfile.toScoreboardProfile());
         return new RegisterResult(hostProfile.toAuthenticationProfile());
     }
 
@@ -68,7 +69,17 @@ public class Server {
     }
 
     public void updateMoney(String username, int money) {
-        users.get(username).setMoney(money);
-        // TODO send update to scoreboard listeners
+        HostProfile user = users.get(username);
+        user.setMoney(money);
+        scoreboard.addMember(user.toScoreboardProfile());
+    }
+
+    public JoinScoreboardResult addScoreboardWatcher(String username) {
+        scoreboard.addWatcher(users.get(username));
+        return new JoinScoreboardResult(scoreboard.toViewableScoreboard());
+    }
+
+    public void leaveScoreboard(String username) {
+        scoreboard.removeWatcher(users.get(username));
     }
 }

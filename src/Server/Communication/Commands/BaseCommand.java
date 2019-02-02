@@ -6,27 +6,30 @@ import Server.User.AuthenticationProfile;
 
 public abstract class BaseCommand {
     private AuthenticationProfile authenticationProfile;
-    private boolean needsAuthentication = false;
 
-    public BaseCommand() {
+    BaseCommand() {
     }
 
-    public BaseCommand(AuthenticationProfile authenticationProfile) {
+    BaseCommand(AuthenticationProfile authenticationProfile) {
         this.authenticationProfile = authenticationProfile;
     }
 
-    protected boolean isAuthenticated() {
+    private boolean isAuthenticated() {
         return Server.getInstance().authenticates(this.getAuthenticationProfile());
     }
 
-    public AuthenticationProfile getAuthenticationProfile() {
+    AuthenticationProfile getAuthenticationProfile() {
         return authenticationProfile;
     }
 
     public BaseResult start() {
-        if (needsAuthentication && !isAuthenticated())
+        if (needsAuthentication() && !isAuthenticated())
             return new BaseResult(403);
         return run();
+    }
+
+    private boolean needsAuthentication() {
+        return false;
     }
 
     public abstract BaseResult run();

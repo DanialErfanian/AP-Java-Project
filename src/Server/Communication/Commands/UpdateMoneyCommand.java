@@ -5,8 +5,11 @@ import Server.Server;
 import Server.User.AuthenticationProfile;
 
 public class UpdateMoneyCommand extends BaseCommand {
-    final private boolean needsAuthentication = true;
     private int money;
+
+    private boolean needsAuthentication() {
+        return true;
+    }
 
     public UpdateMoneyCommand(AuthenticationProfile authenticationProfile, int money) {
         super(authenticationProfile);
