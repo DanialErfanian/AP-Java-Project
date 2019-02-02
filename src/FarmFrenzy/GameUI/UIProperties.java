@@ -36,9 +36,10 @@ public class UIProperties {
     private final ImageProperties warehouse;
     private final ImagePool imagePool;
     private final MiddleMapView middleMapView;
+    private final WellView wellView;
     private static final ArrayList<Runnable> runnables = new ArrayList<>();
 
-    public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road, VehicleView helicopter, VehicleView truck, MoneyStatus moneyStatus, ImageProperties warehouse, ImagePool imagePool, MiddleMapView middleMapView) {
+    public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road, VehicleView helicopter, VehicleView truck, MoneyStatus moneyStatus, ImageProperties warehouse, ImagePool imagePool, MiddleMapView middleMapView, WellView wellView) {
         this.background = background;
         System.arraycopy(workshops, 0, this.workshops, 0, Math.min(6, workshops.length));
         this.road = road;
@@ -48,6 +49,7 @@ public class UIProperties {
         this.warehouse = warehouse;
         this.imagePool = imagePool;
         this.middleMapView = middleMapView;
+        this.wellView = wellView;
     }
 
     static UIProperties readFromFile(File file) {
@@ -72,7 +74,7 @@ public class UIProperties {
         try {
             PrintStream result = new PrintStream(file);
             result.println(mapper.toJson(this, AnimationProperties.class));
-            System.out.println("wrote to in file: " + file);
+            System.out.println("wrote to file: " + file);
             return true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -97,6 +99,7 @@ public class UIProperties {
         pane.getChildren().add(helicopter.build(game.getHelicopter()));
         pane.getChildren().add(moneyStatus.build(game));
         pane.getChildren().add(middleMapView.build(game, imagePool));
+        pane.getChildren().add(wellView.build(game));
         Thread thread = new Thread(() -> Ui.Run(game));
         thread.setDaemon(true);
         thread.start();

@@ -56,7 +56,7 @@ public class Map extends MainObject {
         return true;
     }
 
-    Well getWell() {
+    public Well getWell() {
         return well;
     }
 

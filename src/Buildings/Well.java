@@ -4,7 +4,7 @@ import Logic.Constants;
 import Logic.Game;
 
 public class Well extends BaseBuilding {
-    private int level = 0;
+    private int level = 1;
     private double capacity = Constants.WELL_INITIAL_CAPACITY, remainedWater = capacity;
 
     public Well(Game game) {
@@ -55,5 +55,9 @@ public class Well extends BaseBuilding {
     @Override
     protected int getUpgradeCost() {
         return Constants.WELL_UPGRADE_COST;
+    }
+
+    public int getLevel() {
+        return this.level;
     }
 }
