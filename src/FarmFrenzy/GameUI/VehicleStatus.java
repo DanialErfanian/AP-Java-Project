@@ -1,6 +1,5 @@
 package FarmFrenzy.GameUI;
 
-import Logic.Constants;
 import Transportation.Vehicle;
 import Utils.AnimationProperties;
 import Utils.SpriteAnimation;
@@ -73,26 +72,17 @@ public class VehicleStatus {
     }
 
     private void startUpdater(Vehicle vehicle, ImageView imageView) {
-        Thread thread = new Thread(new Runnable() {
+        UIProperties.runEveryFrame(new Runnable() {
             int lastLevel = -1;
 
             @Override
             public void run() {
-                while (true) {
-                    if (lastLevel != vehicle.getLevel()) {
-                        buildImageView(vehicle, imageView);
-                        lastLevel = vehicle.getLevel();
-                    }
-                    updateView(vehicle, imageView);
-                    try {
-                        Thread.sleep(1000 / Constants.UI_FPS);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                if (lastLevel != vehicle.getLevel()) {
+                    buildImageView(vehicle, imageView);
+                    lastLevel = vehicle.getLevel();
                 }
+                updateView(vehicle, imageView);
             }
         });
-        thread.setDaemon(true);
-        thread.start();
     }
 }

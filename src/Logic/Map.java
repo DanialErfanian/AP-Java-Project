@@ -130,7 +130,6 @@ public class Map extends MainObject {
     protected void increaseTurn() {
         well.increaseTurn();
         for (MiddleMapObject object : getObjects())
-            if (object != null && object.isValid())
                 object.increaseTurn();
         lastWildAnimalTime--;
         if (-lastWildAnimalTime == Constants.WILD_ANIMAL_TIME_PERIOD) {
@@ -288,8 +287,12 @@ public class Map extends MainObject {
     public ArrayList<MiddleMapObject> getObjects() {
         ArrayList<MiddleMapObject> result = new ArrayList<>();
         for (int i = 0; i < mapWidth; i++)
-            for (int j = 0; j < mapHeight; j++)
-                result.addAll(objects.get(i).get(j));
+            for (int j = 0; j < mapHeight; j++) {
+                ArrayList<MiddleMapObject> objects = this.objects.get(i).get(j);
+                for (MiddleMapObject object : objects)
+                    if (object != null && object.isValid())
+                        result.add(object);
+            }
         return result;
     }
 }

@@ -4,7 +4,6 @@ import Animals.AnimalType;
 import Animals.BaseAnimal;
 import FarmFrenzy.GameUI.MiddleMap.Animals.AnimalView;
 import Logic.Constants;
-import Logic.MiddleMapObject;
 import Products.GroundProduct;
 import Products.Product;
 import Utils.SpriteAnimation;
@@ -24,14 +23,13 @@ public class ImagePool {
         this.productsPath = productsPath;
     }
 
-    SpriteAnimation getAnimalAnimation(BaseAnimal animal) {
+    public SpriteAnimation getAnimalAnimation(BaseAnimal animal) {
         return animalViews.get(animal.getType()).getView(animal);
     }
 
-    ImageView getProductView(MiddleMapObject object) {
+    ImageView getProductView(GroundProduct product) {
         if (productViews == null)
             productViews = new HashMap<>();
-        GroundProduct product = (GroundProduct) object;
         Image image = productViews.get(product.getType());
         if (image == null) {
             File file = new File(productsPath + product.getType().name() + "/normal.png");

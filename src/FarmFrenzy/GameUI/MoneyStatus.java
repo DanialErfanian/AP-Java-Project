@@ -1,6 +1,5 @@
 package FarmFrenzy.GameUI;
 
-import Logic.Constants;
 import Logic.Game;
 import Utils.AnimationView;
 import Utils.SpriteAnimation;
@@ -36,17 +35,6 @@ class MoneyStatus {
     }
 
     private void startUpdater(Game game, Label label) {
-        Thread thread = new Thread(() -> {
-            while (true) {
-                Platform.runLater(() -> label.setText(Integer.toString(game.getMoney())));
-                try {
-                    Thread.sleep(1000 / Constants.UI_FPS);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();
+        UIProperties.runEveryFrame(() -> Platform.runLater(() -> label.setText(Integer.toString(game.getMoney()))));
     }
 }

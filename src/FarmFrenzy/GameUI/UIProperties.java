@@ -20,12 +20,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
+import java.util.ArrayList;
 
 
 //TODO: add shadow file to vehicle and workshops (like src/Resources/Data/Game/Service/Car/01_m.png)
 //TODO: convert this file to enum(from class)
 //TODO: animal vaghti mikhad bokhore hamonja vaste targetesho avaz nakone
-
+//TODO: when level is complete ??? :)
 public class UIProperties {
     private final ImageProperties background, road;
     private final WorkshopView[] workshops = new WorkshopView[6];
@@ -34,6 +35,7 @@ public class UIProperties {
     private final ImageProperties warehouse;
     private final ImagePool imagePool;
     private final MiddleMapView middleMapView;
+    private static final ArrayList<Runnable> runnables = new ArrayList<>();
 
     public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road, VehicleView helicopter, VehicleView truck, MoneyStatus moneyStatus, ImageProperties warehouse, ImagePool imagePool, MiddleMapView middleMapView) {
         this.background = background;
@@ -95,6 +97,7 @@ public class UIProperties {
         pane.getChildren().add(moneyStatus.build(game));
         pane.getChildren().add(middleMapView.build(game, imagePool));
 
+        startFrameUpdater();
         // TODO money and vehicles and...
 //        group.setScaleX(2);
 //        group.setScaleY(2);
@@ -103,32 +106,39 @@ public class UIProperties {
         return group;
     }
 
+    private void startFrameUpdater() {
+        Thread thread = new Thread(() -> {
+            while (true) {
+                for (Runnable runnable : runnables)
+                    runnable.run();
+                try {
+                    Thread.sleep(1000 / Constants.UI_FPS);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+    }
+
     private Group buildWarehouse(Game game) {
         Group group = new Group();
         ImageView imageView = warehouse.toImageView(false);
-        Thread thread = new Thread(new Runnable() {
+        runEveryFrame(new Runnable() {
             int last = -1;
 
             @Override
             public void run() {
-                while (true) {
-                    if (last != game.getWarehouse().getLevel()) {
-                        last = game.getWarehouse().getLevel();
-                        String path = warehouse.getImagePath() + String.format("0%d.png", last);
-                        Image image = new Image(new File(path).toURI().toString());
-                        imageView.setImage(image);
-                    }
-                    try {
-                        Thread.sleep(1000 / Constants.UI_FPS);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                if (last != game.getWarehouse().getLevel()) {
+                    last = game.getWarehouse().getLevel();
+                    String path = warehouse.getImagePath() + String.format("0%d.png", last);
+                    Image image = new Image(new File(path).toURI().toString());
+                    imageView.setImage(image);
                 }
             }
         });
         group.getChildren().add(imageView);
-        thread.setDaemon(true);
-        thread.start();
         return group;
     }
 
@@ -142,5 +152,9 @@ public class UIProperties {
         for (int i = 0; i < Math.min(this.workshops.length, workshops.length); i++)
             group.getChildren().add(this.workshops[i].build(workshops[i]));
         return group;
+    }
+
+    public static void runEveryFrame(Runnable runnable) {
+        runnables.add(runnable);
     }
 }

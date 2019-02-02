@@ -1,7 +1,6 @@
 package FarmFrenzy.GameUI;
 
 
-import Logic.Constants;
 import Transportation.Vehicle;
 import Utils.ImageProperties;
 import javafx.scene.Group;
@@ -23,29 +22,20 @@ class VehicleView {
         Group group = new Group();
         group.getChildren().add(status.build(vehicle));
         ImageView imageView = image.toImageView(false);
-        Thread thread = new Thread(new Runnable() {
+        UIProperties.runEveryFrame(new Runnable() {
             int last = -1;
 
             @Override
             public void run() {
-                while (true) {
-                    if (last != vehicle.getLevel()) {
-                        last = vehicle.getLevel();
-                        String path = image.getImagePath() + String.format("0%d.png", last);
-                        Image image = new Image(new File(path).toURI().toString());
-                        imageView.setImage(image);
-                    }
-                    try {
-                        Thread.sleep(1000 / Constants.UI_FPS);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                if (last != vehicle.getLevel()) {
+                    last = vehicle.getLevel();
+                    String path = image.getImagePath() + String.format("0%d.png", last);
+                    Image image = new Image(new File(path).toURI().toString());
+                    imageView.setImage(image);
                 }
             }
         });
         group.getChildren().add(imageView);
-        thread.setDaemon(true);
-        thread.start();
         return group;
     }
 }
