@@ -15,14 +15,17 @@ public class Main extends Application {
         launch(args);
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        Level level = Level.readFromFile("media/Level-testing.json");
+    public static Group build(String path) {
+        Level level = Level.readFromFile(path);
         assert level != null;
         UIProperties properties = UIProperties.readFromFile(new File(level.getUIPropertiesPath()));
-
         Game game = new Game(level);
-        Group root = properties.build(game);
+        return properties.build(game);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        Group root = build("media/Level-testing.json");
         primaryStage.setTitle("testing...");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
