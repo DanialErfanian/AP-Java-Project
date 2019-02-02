@@ -18,6 +18,7 @@ public class AnimalController {
     private Group group;
     private HashMap<AnimalState, SpriteAnimation> animations = new HashMap<>();
     private MiddleMapView middleMapView;
+    private transient ImageView imageView;
 
     public AnimalController(BaseAnimal animal, ImagePool imagePool) {
         this.animal = animal;
@@ -48,7 +49,12 @@ public class AnimalController {
         Platform.runLater(() -> group.getChildren().clear());
         if (animation.getStatus() != Animation.Status.STOPPED) {
             ImageView imageView = animation.getImageView();
-            middleMapView.setPosition(imageView, animal);
+            if (state == AnimalState.death) {
+                imageView.setX(this.imageView.getX());
+                imageView.setY(this.imageView.getY());
+            } else
+                middleMapView.setPosition(imageView, animal);
+            this.imageView = imageView;
             Platform.runLater(() -> group.getChildren().add(imageView));
         }
     }
