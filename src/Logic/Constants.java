@@ -1,6 +1,8 @@
 package Logic;
 
 public class Constants {
+    public static final int WORKSHOP_MAX_LEVEL = 5;
+
     private Constants() {
     }
 

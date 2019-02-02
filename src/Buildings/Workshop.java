@@ -52,8 +52,14 @@ public class Workshop extends BaseBuilding {// TODO convert to enum :)
     }
 
     @Override
-    protected int getUpgradeCost() {
+    public int getUpgradeCost() {
+        if (level == Constants.WORKSHOP_MAX_LEVEL)
+            return Integer.MAX_VALUE;
         return Constants.WORKSHOP_UPGRADE_COST;
+    }
+
+    public boolean haveUpgrade() {
+        return level < Constants.WORKSHOP_MAX_LEVEL;
     }
 
     public String start() {

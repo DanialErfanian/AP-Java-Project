@@ -32,6 +32,6 @@ public class BuyAnimalView {
                 return Integer.toString(game.getAnimalBuyCost(type));
             }
         };
-        return button.build();
+        return button.build(10);
     }
 }

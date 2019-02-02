@@ -108,7 +108,19 @@
           "image": "src/Resources/Data/Game/Back/1/place1.png"
         },
         "positionX": 120,
-        "positionY": 155
+        "positionY": 155,
+        "upgradeButton": {
+          "image": {
+            "positionX": 40,
+            "positionY": 150,
+            "width": 82,
+            "height": 32,
+            "isCenterPosition": true,
+            "image": "src/Resources/Data/Game/UI/Buttons/upgrade.png"
+          },
+          "textX": 30,
+          "textY": 139
+        }
       },
       {
         "background": {
@@ -120,7 +132,19 @@
           "image": "src/Resources/Data/Game/Back/1/place2.png"
         },
         "positionX": 96,
-        "positionY": 280
+        "positionY": 280,
+        "upgradeButton": {
+          "image": {
+            "positionX": 40,
+            "positionY": 330,
+            "width": 82,
+            "height": 32,
+            "isCenterPosition": true,
+            "image": "src/Resources/Data/Game/UI/Buttons/upgrade.png"
+          },
+          "textX": 30,
+          "textY": 319
+        }
       },
       {
         "background": {
@@ -132,7 +156,19 @@
           "image": "src/Resources/Data/Game/Back/1/place3.png"
         },
         "positionX": 110,
-        "positionY": 427
+        "positionY": 427,
+        "upgradeButton": {
+          "image": {
+            "positionX": 40,
+            "positionY": 400,
+            "width": 82,
+            "height": 32,
+            "isCenterPosition": true,
+            "image": "src/Resources/Data/Game/UI/Buttons/upgrade.png"
+          },
+          "textX": 30,
+          "textY": 391
+        }
       },
       {
         "background": {
@@ -144,7 +180,18 @@
           "image": "src/Resources/Data/Game/Back/1/place4.png"
         },
         "positionX": 642,
-        "positionY": 160
+        "positionY": 160,
+        "upgradeButton": {
+          "image": {
+            "positionX": 700,
+            "positionY": 100,
+            "width": 82,
+            "height": 32,
+            "image": "src/Resources/Data/Game/UI/Buttons/upgrade.png"
+          },
+          "textX": 730,
+          "textY": 105
+        }
       },
       {
         "background": {
@@ -156,7 +203,18 @@
           "image": "src/Resources/Data/Game/Back/1/place5.png"
         },
         "positionX": 690,
-        "positionY": 280
+        "positionY": 280,
+        "upgradeButton": {
+          "image": {
+            "positionX": 713,
+            "positionY": 200,
+            "width": 82,
+            "height": 32,
+            "image": "src/Resources/Data/Game/UI/Buttons/upgrade.png"
+          },
+          "textX": 743,
+          "textY": 205
+        }
       },
       {
         "background": {
@@ -168,7 +226,18 @@
           "image": "src/Resources/Data/Game/Back/1/place6.png"
         },
         "positionX": 693,
-        "positionY": 420
+        "positionY": 420,
+        "upgradeButton": {
+          "image": {
+            "positionX": 713,
+            "positionY": 350,
+            "width": 82,
+            "height": 32,
+            "image": "src/Resources/Data/Game/UI/Buttons/upgrade.png"
+          },
+          "textX": 743,
+          "textY": 355
+        }
       }
     ],
     "imagePool": {

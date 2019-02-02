@@ -1,7 +1,9 @@
 package Utils;
 
 import FarmFrenzy.GameUI.UIProperties;
+import javafx.application.Platform;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -18,7 +20,11 @@ public abstract class ButtonHandler {
 
     public abstract void onClick();
 
-    public Group build() {
+    public boolean haveUpgrade() {
+        return true;
+    }
+
+    public Group build(int labelSize) {
         Group group = new Group();
         ImageView imageView = properties.getImage().toImageView();
 
@@ -27,14 +33,18 @@ public abstract class ButtonHandler {
         SpriteAnimation animation = new SpriteAnimation(imageView, Duration.ONE, count, columns);
         animation.relax();
 
-        startAnimationHandler(animation);
 
         Label label = new Label(getText());
-        label.setStyle("-fx-font-size: 10; -fx-text-alignment: center");
+        label.setStyle("-fx-font-size: " + labelSize + "; -fx-text-alignment: center");
         label.setLayoutX(properties.getTextX());
         label.setLayoutY(properties.getTextY());
+        startAnimationHandler(animation, label);
         group.getChildren().add(imageView);
         group.getChildren().add(label);
+        UIProperties.runEveryFrame(() -> {
+            if (!haveUpgrade())
+                Platform.runLater(() -> group.getChildren().clear());
+        });
         return group;
     }
 
@@ -42,18 +52,9 @@ public abstract class ButtonHandler {
 
     private transient boolean done, enter, click;
 
-    private void startAnimationHandler(SpriteAnimation animation) {
-        ImageView imageView = animation.getImageView();
-        imageView.setOnMouseEntered(mouseEvent -> enter = true);
-        imageView.setOnMousePressed(mouseEvent -> {
-            click = true;
-            done = false;
-        });
-        imageView.setOnMouseExited(mouseEvent -> enter = false);
-        imageView.setOnMouseReleased(mouseDragEvent -> {
-            click = false;
-            done = false;
-        });
+    private void startAnimationHandler(SpriteAnimation animation, Label label) {
+        config(animation.getImageView());
+        config(label);
         UIProperties.runEveryFrame(() -> {
             if (!isAvailable())
                 animation.jumpTo(3);
@@ -68,5 +69,19 @@ public abstract class ButtonHandler {
             else
                 animation.jumpTo(0);
         });
+    }
+
+    private void config(Node node) {
+        node.setOnMouseEntered(mouseEvent -> enter = true);
+        node.setOnMousePressed(mouseEvent -> {
+            click = true;
+            done = false;
+        });
+        node.setOnMouseExited(mouseEvent -> enter = false);
+        node.setOnMouseReleased(mouseDragEvent -> {
+            click = false;
+            done = false;
+        });
+
     }
 }
