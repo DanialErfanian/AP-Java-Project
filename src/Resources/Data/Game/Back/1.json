@@ -604,88 +604,90 @@
     "buyAnimalViews": [
       {
         "type": "Hen",
-        "image": {
-          "positionX": 31,
-          "positionY": 34,
-          "width": 60,
-          "height": 62,
-          "isCenterPosition": true,
-          "image": "src/Resources/Data/Game/UI/Buttons/buy_turkey.png"
-        },
-        "animation": {
-          "count": 4,
-          "columns": 1
-        },
-        "textX": 15,
-        "textY": 43
+        "properties": {
+          "image": {
+            "positionX": 31,
+            "positionY": 34,
+            "width": 60,
+            "height": 62,
+            "isCenterPosition": true,
+            "image": "src/Resources/Data/Game/UI/Buttons/buy_turkey.png"
+          },
+          "textX": 15,
+          "textY": 43
+        }
       },
       {
         "type": "Sheep",
-        "image": {
-          "positionX": 91,
-          "positionY": 34,
-          "width": 60,
-          "height": 62,
-          "isCenterPosition": true,
-          "image": "src/Resources/Data/Game/UI/Buttons/buy_sheep.png"
-        },
-        "animation": {
-          "count": 4,
-          "columns": 1
-        },
-        "textX": 80,
-        "textY": 43
+        "properties": {
+          "image": {
+            "positionX": 91,
+            "positionY": 34,
+            "width": 60,
+            "height": 62,
+            "isCenterPosition": true,
+            "image": "src/Resources/Data/Game/UI/Buttons/buy_sheep.png"
+          },
+          "textX": 80,
+          "textY": 43
+        }
       },
       {
         "type": "Cow",
-        "image": {
-          "positionX": 147,
-          "positionY": 34,
-          "width": 60,
-          "height": 62,
-          "isCenterPosition": true,
-          "image": "src/Resources/Data/Game/UI/Buttons/buy_cow.png"
-        },
-        "animation": {
-          "count": 4,
-          "columns": 1
-        },
-        "textX": 135,
-        "textY": 43
+        "properties": {
+          "image": {
+            "positionX": 147,
+            "positionY": 34,
+            "width": 60,
+            "height": 62,
+            "isCenterPosition": true,
+            "image": "src/Resources/Data/Game/UI/Buttons/buy_cow.png"
+          },
+          "animation": {
+            "count": 4,
+            "columns": 1
+          },
+          "textX": 135,
+          "textY": 43
+        }
       },
       {
         "type": "Dog",
-        "image": {
-          "positionX": 205,
-          "positionY": 34,
-          "width": 60,
-          "height": 62,
-          "isCenterPosition": true,
-          "image": "src/Resources/Data/Game/UI/Buttons/buy_dog_1.png"
-        },
-        "animation": {
-          "count": 4,
-          "columns": 1
-        },
-        "textX": 190,
-        "textY": 43
+        "properties": {
+          "image": {
+            "positionX": 205,
+            "positionY": 34,
+            "width": 60,
+            "height": 62,
+            "isCenterPosition": true,
+            "image": "src/Resources/Data/Game/UI/Buttons/buy_dog_1.png"
+          },
+          "animation": {
+            "count": 4,
+            "columns": 1
+          },
+          "textX": 190,
+          "textY": 43
+        }
       },
       {
         "type": "Cat",
-        "image": {
-          "positionX": 265,
-          "positionY": 34,
-          "width": 60,
-          "height": 62,
-          "isCenterPosition": true,
-          "image": "src/Resources/Data/Game/UI/Buttons/buy_cat_1.png"
-        },
-        "animation": {
-          "count": 4,
-          "columns": 1
-        },
-        "textX": 250,
-        "textY": 43
+        "properties": {
+          "image": {
+            "positionX": 265,
+            "positionY": 34,
+            "width": 60,
+            "height": 62,
+            "isCenterPosition": true,
+            "image": "src/Resources/Data/Game/UI/Buttons/buy_cat_1.png"
+          },
+          "animation": {
+            "count": 4,
+            "columns": 1
+          },
+          "textX": 250,
+          "textY": 43
+        }
       }
     ]
   }
