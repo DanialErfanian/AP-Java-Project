@@ -2,10 +2,10 @@ package Server;
 
 import Server.ChatRoom.Message;
 import Server.ChatRoom.Room;
-import Server.Communication.Commands.BaseCommand;
 import Server.Communication.Results.GetProfileResult;
 import Server.Communication.Results.JoinScoreboardResult;
 import Server.Communication.Results.RegisterResult;
+import Server.CommunicationHandlers.CommandHandler;
 import Server.Scoreboard.Scoreboard;
 import Server.User.AuthenticationProfile;
 import Server.User.HostProfile;
@@ -15,10 +15,7 @@ import Utils.NetworkConfig;
 import org.jetbrains.annotations.Contract;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -45,7 +42,7 @@ public class Server {
         ServerSocket serverSocket;
         serverSocket = new ServerSocket(4444);
 
-        while (true) {
+        while (!serverSocket.isClosed()) {
             Thread thread = new Thread(new CommandHandler(serverSocket.accept()));
             thread.start();
         }
@@ -104,30 +101,5 @@ public class Server {
 
     public void leaveScoreboard(String username) {
         scoreboard.removeWatcher(users.get(username));
-    }
-}
-
-class CommandHandler implements Runnable {
-    private Socket socket;
-
-    CommandHandler(Socket socket) {
-        this.socket = socket;
-    }
-
-    public void run() {
-        while (true) {
-            try {
-                ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
-                ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
-                Object data = input.readObject();
-                if (data == null)
-                    break;
-                BaseCommand command = (BaseCommand) data;
-                output.writeObject(command.run());
-                output.flush();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 }
