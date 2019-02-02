@@ -89,4 +89,8 @@ public class Workshop extends BaseBuilding {// TODO convert to enum :)
     public int getLevel() {
         return level;
     }
+
+    public boolean isRunning() {
+        return runningThreads > 0;
+    }
 }
