@@ -16,7 +16,7 @@ public class UpdateMoneyCommand extends BaseCommand {
         this.money = money;
     }
 
-    public BaseResult run() {
+    protected BaseResult run() {
         Server.getInstance().updateMoney(this.getAuthenticationProfile().getUsername(), money);
         return BaseResult.getOK();
     }

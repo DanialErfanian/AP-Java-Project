@@ -7,7 +7,7 @@ public class JoinScoreboardCommand extends BaseCommand {
     private boolean needsAuthentication() {
         return true;
     }
-    public BaseResult run() {
+    protected BaseResult run() {
         return Server.getInstance().addScoreboardWatcher(this.getAuthenticationProfile().getUsername());
     }
 }

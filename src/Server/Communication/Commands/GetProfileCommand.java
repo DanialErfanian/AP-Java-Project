@@ -10,7 +10,7 @@ public class GetProfileCommand extends BaseCommand {
         this.username = username;
     }
 
-    public GetProfileResult run() {
+    protected GetProfileResult run() {
         return Server.getInstance().getProfile(username);
     }
 }

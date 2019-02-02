@@ -17,7 +17,7 @@ public class SendMessageCommand extends BaseCommand {
         this.message = message;
     }
 
-    public BaseResult run() {
+    protected BaseResult run() {
         if (message.getSender().equals(this.getAuthenticationProfile().getUsername()))
             return new BaseResult(403);
         Server.getInstance().sendGlobalMessage(message);

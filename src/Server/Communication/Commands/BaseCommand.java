@@ -34,5 +34,5 @@ public abstract class BaseCommand implements Serializable {
         return false;
     }
 
-    public abstract BaseResult run();
+    protected abstract BaseResult run();
 }

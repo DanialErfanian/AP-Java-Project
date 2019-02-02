@@ -11,7 +11,7 @@ public class RegisterCommand extends BaseCommand {
         this.registerProfile = registerProfile;
     }
 
-    public RegisterResult run() {
+    protected RegisterResult run() {
         return Server.getInstance().registerUser(registerProfile);
     }
 }

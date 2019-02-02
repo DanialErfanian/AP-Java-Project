@@ -5,7 +5,7 @@ import Server.ChatRoom.Room;
 import Server.Communication.Results.GetProfileResult;
 import Server.Communication.Results.JoinScoreboardResult;
 import Server.Communication.Results.RegisterResult;
-import Server.CommunicationHandlers.CommandHandler;
+import Server.CommunicationHandlers.CommandReceiver;
 import Server.Scoreboard.Scoreboard;
 import Server.User.AuthenticationProfile;
 import Server.User.HostProfile;
@@ -43,7 +43,7 @@ public class Server {
         serverSocket = new ServerSocket(4444);
 
         while (!serverSocket.isClosed()) {
-            Thread thread = new Thread(new CommandHandler(serverSocket.accept()));
+            Thread thread = new Thread(new CommandReceiver(serverSocket.accept()));
             thread.start();
         }
     }

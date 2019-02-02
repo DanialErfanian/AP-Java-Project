@@ -7,10 +7,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class CommandHandler implements Runnable {
+public class CommandReceiver implements Runnable {
     private Socket socket;
 
-    public CommandHandler(Socket socket) {
+    public CommandReceiver(Socket socket) {
         this.socket = socket;
     }
 
@@ -32,7 +32,7 @@ public class CommandHandler implements Runnable {
                 if (data == null)
                     break;
                 BaseCommand command = (BaseCommand) data;
-                output.writeObject(command.run());
+                output.writeObject(command.start());
                 output.flush();
             } catch (Exception e) {
                 e.printStackTrace();
