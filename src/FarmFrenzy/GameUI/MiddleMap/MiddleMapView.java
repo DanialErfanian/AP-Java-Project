@@ -30,13 +30,13 @@ public class MiddleMapView {
     public Group build(Game game, ImagePool imagePool) {
         this.controllers = new ArrayList<>();
         Group group = new Group();
-        group.getChildren().add(handleProducts(game, imagePool));
         UIProperties.runEveryFrame(() -> update(group, game, imagePool));
         UIProperties.runEveryFrame((() -> {
             for (AnimalController controller : controllers)
                 controller.update();
         }));
         group.getChildren().add(grassView.build(game, this));
+        group.getChildren().add(handleProducts(game, imagePool));
         return group;
     }
 

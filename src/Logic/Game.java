@@ -1,5 +1,6 @@
 package Logic;
 
+import Animals.AnimalType;
 import Buildings.Warehouse;
 import Buildings.Workshop;
 import Products.Product;
@@ -164,6 +165,10 @@ public class Game implements java.io.Serializable {
         return map.buy(animalName);
     }
 
+    public boolean buy(AnimalType type) {
+        return buy(type.toString().toLowerCase());
+    }
+
     public boolean collect(Position position) {
         return map.collect(position);
     }
@@ -300,5 +305,21 @@ public class Game implements java.io.Serializable {
 
     public Helicopter getHelicopter() {
         return helicopter;
+    }
+
+    public int getAnimalBuyCost(AnimalType type) {
+        switch (type) {
+            case Hen:
+                return Constants.HEN_BUY_COST;
+            case Sheep:
+                return Constants.SHEEP_BUY_COST;
+            case Cow:
+                return Constants.COW_BUY_COST;
+            case Cat:
+                return Constants.CAT_BUY_COST;
+            case Dog:
+                return Constants.DOG_BUY_COST;
+        }
+        return 0;
     }
 }

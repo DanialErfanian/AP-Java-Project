@@ -38,6 +38,7 @@ public class UIProperties {
     private final MiddleMapView middleMapView;
     private final WellView wellView;
     private static final ArrayList<Runnable> runnables = new ArrayList<>();
+    private BuyAnimalView[] buyAnimalViews;
 
     public UIProperties(ImageProperties background, WorkshopView[] workshops, ImageProperties road, VehicleView helicopter, VehicleView truck, MoneyStatus moneyStatus, ImageProperties warehouse, ImagePool imagePool, MiddleMapView middleMapView, WellView wellView) {
         this.background = background;
@@ -100,6 +101,8 @@ public class UIProperties {
         pane.getChildren().add(moneyStatus.build(game));
         pane.getChildren().add(middleMapView.build(game, imagePool));
         pane.getChildren().add(wellView.build(game));
+        for(BuyAnimalView buyAnimalView: buyAnimalViews)
+            pane.getChildren().add(buyAnimalView.build(game));
         Thread thread = new Thread(() -> Ui.Run(game));
         thread.setDaemon(true);
         thread.start();

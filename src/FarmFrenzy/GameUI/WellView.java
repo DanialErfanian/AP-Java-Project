@@ -62,7 +62,6 @@ public class WellView {
             return;
         lastLevel = level;
         String path = new File(imagesPath + "0" + level + ".png").toURI().toString();
-        System.out.println(path);
         Image image = new Image(path);
         imageView.setImage(image);
         animation.relax();

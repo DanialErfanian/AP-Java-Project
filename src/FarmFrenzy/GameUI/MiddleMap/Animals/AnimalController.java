@@ -32,6 +32,8 @@ public class AnimalController {
     }
 
     public void update() {
+        if (middleMapView == null)
+            return;
         AnimalState state = animal.getState();
         SpriteAnimation animation = animations.get(state);
         // TODO death state position don't fixed
