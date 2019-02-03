@@ -38,8 +38,8 @@ public class GrassView {
                 UIProperties.runEveryFrame(() -> {
                     double grass = game.getMap().getGrass(finalX, finalY);
                     double v = grass / Constants.GRASS_MAX_VALUE;
-                    rectangle.setOpacity(((finalX + finalY) % 2 == 0) ? 1 : 0);
-//                    rectangle.setOpacity(v);
+//                    rectangle.setOpacity(((finalX + finalY) % 2 == 0) ? 1 : 0);
+                    rectangle.setOpacity(v);
                 });
                 rectangle.setWidth(grassWidth);
                 rectangle.setHeight(grassHeight);

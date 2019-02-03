@@ -47,7 +47,7 @@ public class MiddleMapView {
             Platform.runLater(() -> group.getChildren().clear());
             ArrayList<MiddleMapObject> objects = game.getMap().getObjects();
             for (MiddleMapObject object : objects)
-                if (object instanceof GroundProduct) {
+                if (object instanceof GroundProduct && object.isValid()) {
                     ImageView imageView = imagePool.getProductView((GroundProduct) object);
                     setPosition(imageView, object);
                     Platform.runLater(() -> group.getChildren().add(imageView));

@@ -114,4 +114,8 @@ public class Server implements Runnable {
         scoreboard.removeWatcher(user);
         globalRoom.removeMember(user);
     }
+
+    public void setNetConf(NetworkConfig netConf) {
+        this.netConf = netConf;
+    }
 }

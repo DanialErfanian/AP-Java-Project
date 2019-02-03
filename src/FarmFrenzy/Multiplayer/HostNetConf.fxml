@@ -31,14 +31,14 @@
                                 <Font size="28.0" />
                             </font>
                         </Label>
-                        <TextField prefHeight="38.0" prefWidth="300.0" promptText="Enter port">
+                        <TextField prefHeight="38.0" prefWidth="300.0" promptText="Enter port" fx:id="serverPort">
                             <font>
                                 <Font size="26.0" />
                             </font>
                         </TextField>
                     </children>
                 </HBox>
-                <Button fx:id="joinButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Join">
+                <Button fx:id="startButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Start">
                     <VBox.margin>
                         <Insets top="30.0" />
                     </VBox.margin>

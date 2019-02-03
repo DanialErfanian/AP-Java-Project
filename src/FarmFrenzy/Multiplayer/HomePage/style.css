@@ -1,0 +1,61 @@
+.rootPane {
+    -fx-background-color: black;
+    -fx-background-image: url("../../../Resources/Data/MainMenu/back.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.playersLabel {
+    -fx-opacity: 0.5;
+    -fx-background-color: white;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-border-width: 0 0 10 0;
+}
+
+.playersPane * {
+    -fx-spacing: 5;
+}
+
+.playersPane * * {
+    -fx-font-size: 20px;
+}
+
+.splitPane {
+    -fx-opacity: 0.6;
+    -fx-background-color: #051533;
+}
+
+Button {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../../../Resources/Data/Common/Buttons/button_178-0-0.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-pref-width: 377;
+    -fx-pref-height: 60;
+    -fx-font-size: 25;
+}
+
+Button:hover {
+    -fx-background-image: url("../../../Resources/Data/Common/Buttons/button_178-1-0.png");
+}
+
+Button:armed {
+    -fx-background-image: url("../../../Resources/Data/Common/Buttons/button_178-0-1.png");
+}
+
+.form-control {
+    -fx-background-color: WHITE;
+    -fx-border-color: #CCC;
+    -fx-border-radius: 3px;
+}
+
+.messageBox{
+    -fx-border-color: black;
+    -fx-border-width: 1 1 1 1;
+}
+
+.sendImage{
+    -fx-cursor: closed_hand;
+}

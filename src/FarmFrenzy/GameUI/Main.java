@@ -25,7 +25,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Group root = build("media/Level-testing.json");
+        Group root = build("src/Resources/levels/level1.json");
         primaryStage.setTitle("testing...");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

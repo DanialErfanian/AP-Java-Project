@@ -39,7 +39,7 @@ public class Constants {
     public static final int TRUCK_UPGRADE_INCREASE_CAPACITY = 10;
     public static final int TRUCK_JOB_PROGRESS = 30; // turn
 
-    public static final int GROUND_PRODUCT_TIMEOUT = 50;
+    public static final int GROUND_PRODUCT_TIMEOUT = 10;
 
     static final int HEN_BUY_COST = 100; // coin
     static final int SHEEP_BUY_COST = 150; // coin
@@ -60,7 +60,7 @@ public class Constants {
     public static final int WORKSHOP_PROGRESS = 15; // turn
     public static final int WORKSHOP_UPGRADE_COST = 150;
 
-    static final int WILD_ANIMAL_TIME_PERIOD = 2 * 60 * 10; // 2 minute
+    static final int WILD_ANIMAL_TIME_PERIOD = 2 * 60; // 2 minute
 
     public static final double GRASS_MAX_VALUE = 160;
     static final int GRASS_PLANT_INCREASE = 160;

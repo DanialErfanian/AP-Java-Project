@@ -16,6 +16,10 @@ public class CommandSender {
     private ObjectInputStream serverInput;
     private NetworkConfig serverConf;
 
+    public CommandSender(NetworkConfig serverConf) {
+        this.serverConf = serverConf;
+    }
+
     private void connectServer() throws BadServerException {
         System.err.printf("INFO: trying to connect to server %s:%d.\n", serverConf.getIp(), serverConf.getPort());
         try {

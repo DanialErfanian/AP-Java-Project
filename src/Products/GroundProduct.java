@@ -29,9 +29,10 @@ public class GroundProduct extends MiddleMapObject {
     protected void increaseTurn() {
         if (getPosition() == null)
             return;
-        if (constructTime == 0)
+        if (constructTime == 0) {
+            setPosition(null);
             amount = 0;
-        else
+        } else
             constructTime--;
     }
 

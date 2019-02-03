@@ -1,6 +1,7 @@
 package Server;
 
 import Server.ChatRoom.Message;
+import Server.ChatRoom.MessageHandler;
 import Server.Communication.Commands.*;
 import Server.Communication.Handlers.CommandSender;
 import Server.Communication.Handlers.UpdateReceiver;
@@ -23,6 +24,7 @@ public class Client {
     }
 
     private static Client instance = new Client();
+    private MessageHandler messageHandler;
 
     @Contract(pure = true)
     public static Client getInstance() {
@@ -31,13 +33,12 @@ public class Client {
 
     private HostProfile profile;
     private CommandSender commandSender;
-    private UpdateReceiver updateReceiver;
     private NetworkConfig clientNetConf;
 
     private ViewableScoreboard scoreboard;
 
     public void runUpdateReceiver() {
-        updateReceiver = new UpdateReceiver(clientNetConf);
+        UpdateReceiver updateReceiver = new UpdateReceiver(clientNetConf);
         Thread updateReceiverThread = new Thread(updateReceiver);
         updateReceiverThread.start();
     }
@@ -52,6 +53,7 @@ public class Client {
             throw new StatusCodeException(result.getStatusCode());
         profile.setToken(result.getAuthenticationProfile().getToken());
         profile.getNetConf().setIp(result.getIp());
+        clientNetConf.setIp(result.getIp());
     }
 
     public void leaveServer() throws BadServerException, StatusCodeException {
@@ -99,7 +101,8 @@ public class Client {
     }
 
     public void addMessageUpdate(Message message) {
-        // TODO
+        if(messageHandler != null)
+            messageHandler.handle(message);
     }
 
     public void scoreboardUpdate(ScoreboardProfile scoreboardProfile) {
@@ -108,5 +111,21 @@ public class Client {
 
     public void scoreboardLeave(ScoreboardProfile scoreboardProfile) {
         scoreboard.removeMember(scoreboardProfile);
+    }
+
+    public void setClientNetConf(NetworkConfig clientNetConf) {
+        this.clientNetConf = clientNetConf;
+    }
+
+    public void setCommandSender(CommandSender commandSender) {
+        this.commandSender = commandSender;
+    }
+
+    public void setProfile(HostProfile profile) {
+        this.profile = profile;
+    }
+
+    public void onNewMessage(MessageHandler messageHandler) {
+        this.messageHandler = messageHandler;
     }
 }
