@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 public class Room {
     private ArrayList<Message> history;
-    HashSet<HostProfile> users = new HashSet<>();
+    private HashSet<HostProfile> users = new HashSet<>();
 
     public void addMessage(Message message) {
         message.setRoom(this);
@@ -16,5 +16,9 @@ public class Room {
         for (HostProfile user : users) {
             Server.getInstance().sendMessageToUser(user, message);
         }
+    }
+
+    public void removeMember(HostProfile hostProfile) {
+        users.remove(hostProfile);
     }
 }

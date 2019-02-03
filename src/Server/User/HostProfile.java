@@ -56,4 +56,8 @@ public class HostProfile extends BaseProfile {
     public ScoreboardProfile toScoreboardProfile() {
         return new ScoreboardProfile(this.getUsername(), this.getName(), this.getMoney());
     }
+
+    public RegisterProfile toRegisterProfile() {
+        return new RegisterProfile(this.getUsername(), this.getName());
+    }
 }

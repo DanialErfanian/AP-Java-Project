@@ -14,4 +14,8 @@ public class RegisterResult extends BaseResult {
         super(statusCode);
         this.authenticationProfile = authenticationProfile;
     }
+
+    public AuthenticationProfile getAuthenticationProfile() {
+        return authenticationProfile;
+    }
 }

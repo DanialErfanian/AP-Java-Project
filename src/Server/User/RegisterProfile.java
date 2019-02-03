@@ -6,6 +6,11 @@ public class RegisterProfile extends BaseProfile {
     private String name;
     private NetworkConfig netConf;
 
+    public RegisterProfile(String username, String name) {
+        super(username);
+        this.name = name;
+    }
+
     public RegisterProfile(String username, String name, NetworkConfig netConf) {
         super(username);
         this.name = name;
@@ -22,5 +27,9 @@ public class RegisterProfile extends BaseProfile {
 
     public NetworkConfig getNetConf() {
         return netConf;
+    }
+
+    public void setNetConf(NetworkConfig netConf) {
+        this.netConf = netConf;
     }
 }

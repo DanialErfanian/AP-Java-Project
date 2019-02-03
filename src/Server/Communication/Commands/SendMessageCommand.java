@@ -8,9 +8,10 @@ import Server.User.AuthenticationProfile;
 public class SendMessageCommand extends BaseCommand {
     private Message message;
 
-    private boolean needsAuthentication() {
+    protected boolean needsAuthentication() {
         return true;
     }
+
 
     public SendMessageCommand(AuthenticationProfile authenticationProfile, Message message) {
         super(authenticationProfile);

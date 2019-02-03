@@ -15,6 +15,10 @@ public class Scoreboard {
         members.put(scoreboardProfile.getUsername(), scoreboardProfile);
     }
 
+    public void removeMember(HostProfile hostProfile) {
+        members.remove(hostProfile.getUsername());
+    }
+
     public void addWatcher(HostProfile hostProfile) {
         watchers.put(hostProfile.getUsername(), hostProfile);
     }

@@ -21,7 +21,7 @@ public class CommandReceiver implements Runnable {
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            System.out.println("Can't open input/output for the socket.");
+            System.err.println("Can't open input/output for the socket.");
             e.printStackTrace();
             return;
         }

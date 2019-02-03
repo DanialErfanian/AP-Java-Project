@@ -30,7 +30,7 @@ public abstract class BaseCommand implements Serializable {
         return run();
     }
 
-    private boolean needsAuthentication() {
+    protected boolean needsAuthentication() {
         return false;
     }
 

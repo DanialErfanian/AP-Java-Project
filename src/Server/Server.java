@@ -102,4 +102,12 @@ public class Server {
     public void leaveScoreboard(String username) {
         scoreboard.removeWatcher(users.get(username));
     }
+
+    public void leaveMember(AuthenticationProfile profile) {
+        HostProfile user = users.get(profile.getUsername());
+        users.remove(user.getUsername());
+        scoreboard.removeMember(user);
+        scoreboard.removeWatcher(user);
+        globalRoom.removeMember(user);
+    }
 }

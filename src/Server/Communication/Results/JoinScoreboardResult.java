@@ -9,4 +9,8 @@ public class JoinScoreboardResult extends BaseResult {
         super(200);
         this.scoreboard = scoreboard;
     }
+
+    public ViewableScoreboard getScoreboard() {
+        return scoreboard;
+    }
 }

@@ -22,4 +22,8 @@ public class BaseResult implements Serializable {
     public static BaseResult getNOK() {
         return NOK;
     }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
 }

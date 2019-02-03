@@ -7,7 +7,7 @@ import Server.User.AuthenticationProfile;
 public class UpdateMoneyCommand extends BaseCommand {
     private int money;
 
-    private boolean needsAuthentication() {
+    protected boolean needsAuthentication() {
         return true;
     }
 
