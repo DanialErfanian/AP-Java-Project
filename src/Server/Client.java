@@ -3,6 +3,7 @@ package Server;
 import Server.ChatRoom.Message;
 import Server.Communication.Commands.*;
 import Server.Communication.Handlers.CommandSender;
+import Server.Communication.Handlers.UpdateReceiver;
 import Server.Communication.Results.BaseResult;
 import Server.Communication.Results.GetProfileResult;
 import Server.Communication.Results.JoinScoreboardResult;
@@ -15,6 +16,7 @@ import Server.User.HostProfile;
 import Server.User.RegisterProfile;
 import Server.User.ScoreboardProfile;
 import Utils.NetworkConfig;
+import org.jetbrains.annotations.Contract;
 
 public class Client {
     private Client() {
@@ -22,19 +24,27 @@ public class Client {
 
     private static Client instance = new Client();
 
+    @Contract(pure = true)
     public static Client getInstance() {
         return instance;
     }
 
     private HostProfile profile;
     private CommandSender commandSender;
-    private NetworkConfig netConf;
+    private UpdateReceiver updateReceiver;
+    private NetworkConfig clientNetConf;
 
     private ViewableScoreboard scoreboard;
 
+    public void runUpdateReceiver() {
+        updateReceiver = new UpdateReceiver(clientNetConf);
+        Thread updateReceiverThread = new Thread(updateReceiver);
+        updateReceiverThread.start();
+    }
+
     public void joinServer() throws BadServerException, StatusCodeException {
         RegisterProfile registerProfile = profile.toRegisterProfile();
-        registerProfile.setNetConf(netConf);
+        registerProfile.setNetConf(clientNetConf);
         RegisterResult result = (RegisterResult) commandSender.sendCommand(new RegisterCommand(registerProfile));
         if (result.getStatusCode() == 400)
             throw new NonuniqueUsernameException(400);
