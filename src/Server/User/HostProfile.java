@@ -60,4 +60,8 @@ public class HostProfile extends BaseProfile {
     public RegisterProfile toRegisterProfile() {
         return new RegisterProfile(this.getUsername(), this.getName());
     }
+
+    public NetworkConfig getNetConf() {
+        return netConf;
+    }
 }

@@ -51,6 +51,7 @@ public class Client {
         if (result.getStatusCode() != 200)
             throw new StatusCodeException(result.getStatusCode());
         profile.setToken(result.getAuthenticationProfile().getToken());
+        profile.getNetConf().setIp(result.getIp());
     }
 
     public void leaveServer() throws BadServerException, StatusCodeException {

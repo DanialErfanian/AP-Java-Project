@@ -1,6 +1,8 @@
 package Server.Communication.Handlers;
 
 import Server.Communication.Commands.BaseCommand;
+import Server.Communication.Results.BaseResult;
+import Server.Communication.Results.RegisterResult;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,7 +34,10 @@ public class CommandReceiver implements Runnable {
                 if (data == null)
                     break;
                 BaseCommand command = (BaseCommand) data;
-                output.writeObject(command.start());
+                BaseResult result = command.start();
+                if (result instanceof RegisterResult)
+                    ((RegisterResult) result).setIp(socket.getInetAddress().getHostAddress());
+                output.writeObject(result);
                 output.flush();
             } catch (Exception e) {
                 e.printStackTrace();

@@ -4,6 +4,7 @@ import Server.User.AuthenticationProfile;
 
 public class RegisterResult extends BaseResult {
     private AuthenticationProfile authenticationProfile;
+    private String ip;
 
     public RegisterResult(AuthenticationProfile authenticationProfile) {
         super(200);
@@ -17,5 +18,13 @@ public class RegisterResult extends BaseResult {
 
     public AuthenticationProfile getAuthenticationProfile() {
         return authenticationProfile;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getIp() {
+        return ip;
     }
 }
