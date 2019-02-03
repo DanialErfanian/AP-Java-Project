@@ -2,10 +2,11 @@ package Server.Scoreboard;
 
 import Server.User.ScoreboardProfile;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ViewableScoreboard {
+public class ViewableScoreboard implements Serializable {
     private HashMap<String, ScoreboardProfile> members;
 
     ViewableScoreboard(HashMap<String, ScoreboardProfile> members) {
@@ -20,7 +21,7 @@ public class ViewableScoreboard {
         members.remove(scoreboardProfile.getUsername());
     }
 
-    public ArrayList<ScoreboardProfile> getScoreboardProfiles(){
+    public ArrayList<ScoreboardProfile> getScoreboardProfiles() {
         return (ArrayList<ScoreboardProfile>) members.values();
     }
 }

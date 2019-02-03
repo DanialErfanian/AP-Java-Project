@@ -114,20 +114,24 @@ public class Client {
             messageHandler.handle(message);
     }
 
-    private ViewableScoreboard getScoreboard() throws BadServerException {
+    private ViewableScoreboard getScoreboard() {
         if (scoreboard == null) {
             BaseCommand command = new GetScoreboardCommand();
-            GetScoreboardResult result = (GetScoreboardResult) commandSender.sendCommand(command);
-            scoreboard = result.getScoreboard();
+            try {
+                GetScoreboardResult result = (GetScoreboardResult) commandSender.sendCommand(command);
+                scoreboard = result.getScoreboard();
+            } catch (BadServerException e) {
+                e.printStackTrace();
+            }
         }
         return scoreboard;
     }
 
-    public void scoreboardUpdate(ScoreboardProfile scoreboardProfile) throws BadServerException {
+    public void scoreboardUpdate(ScoreboardProfile scoreboardProfile) {
         getScoreboard().addMember(scoreboardProfile);
     }
 
-    public void scoreboardLeave(ScoreboardProfile scoreboardProfile) throws BadServerException {
+    public void scoreboardLeave(ScoreboardProfile scoreboardProfile) {
         getScoreboard().removeMember(scoreboardProfile);
     }
 

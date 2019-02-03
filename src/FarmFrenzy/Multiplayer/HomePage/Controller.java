@@ -3,6 +3,7 @@ package FarmFrenzy.Multiplayer.HomePage;
 import Server.Client;
 import Server.Exceptions.BadServerException;
 import Server.Exceptions.StatusCodeException;
+import Server.User.ScoreboardProfile;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -11,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -21,9 +23,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        usersBox.getChildren().clear();
-        //Client.getInstance().
-        //usersBox.getChildren().add();
+        updateScoreboard();
         sendImage.setOnMouseClicked(mouseEvent -> {
             String messageText = messageField.getText();
             messageField.clear();
@@ -37,6 +37,17 @@ public class Controller implements Initializable {
             Label label = new Label(message.getCompleteText());
             Platform.runLater(() -> messagesBox.getChildren().add(label));
         });
+    }
+
+    private void updateScoreboard() {
+        Platform.runLater(() -> usersBox.getChildren().clear());
+        try {
+            ArrayList<ScoreboardProfile> profiles = Client.getInstance().getScoreboardProfiles();
+            for (ScoreboardProfile profile : profiles)
+                Platform.runLater(() -> usersBox.getChildren().add(new Label(profile.getName())));
+        } catch (BadServerException e) {
+            e.printStackTrace();
+        }
     }
 
     public void sendMessage() {
