@@ -1,0 +1,65 @@
+{
+  "name": "test-level1",
+  "requirements": {
+    "Egg" : 10,
+    "Wool" : 4,
+    "Milk" : 1,
+    "Cake" : 4,
+    "FlouryCake" : 1
+  },
+  "Workshops": [
+    {
+      "name": "DriedEggs",
+      "inputs": [
+        "Egg"
+      ],
+      "output": "DriedEggs",
+      "Position" : {
+        "x" : 0,
+        "y" : 0
+      },
+      "animationFiles" : "src/Resources/Data/Game/Houses/DriedEggs/"
+    },
+    {
+      "name" : "Cake",
+      "inputs" : [
+        "DriedEggs"
+      ],
+      "output" : "Cake",
+      "position" : {
+        "x" : 0,
+        "y" : 15
+      },
+      "animationFiles" : "src/Resources/Data/Game/Houses/Cake/"
+    },
+    {
+      "name" : "FlouryCake",
+      "inputs": [
+        "Cake",
+        "Flour"
+      ],
+      "output" : "FlouryCake",
+      "position" : {
+        "x" : 0,
+        "y" : 29
+      },
+      "animationFiles": "src/Resources/Data/Game/Houses/FlouryCake/"
+    },
+    {
+      "name" : "Spinnery",
+      "inputs" : [
+        "Wool"
+      ],
+      "output" : "CagedJaguar",
+      "position" : {
+        "x" : 19,
+        "y" : 0
+      },
+      "animationFiles": "src/Resources/Data/Game/Houses/Spinnery/"
+    }
+  ],
+  "mapWidth" : 20,
+  "mapHeight" : 30,
+  "money" : 2500,
+  "UIPropertiesPath": "src/Resources/Data/Game/Back/1.json"
+}
