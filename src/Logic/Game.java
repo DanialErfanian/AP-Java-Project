@@ -1,13 +1,14 @@
 package Logic;
 
+import Animals.AnimalType;
 import Buildings.Warehouse;
 import Buildings.Workshop;
 import Products.Product;
-import Products.WorkshopBuilder;
 import Transportation.Helicopter;
 import Transportation.Truck;
 import Transportation.Vehicle;
 import Utils.Position;
+import Utils.WorkshopBuilder;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 import org.jetbrains.annotations.Contract;
@@ -20,23 +21,48 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-// TODO print map without start NuLL Pointer exception
+
 public class Game implements java.io.Serializable {
+    // TODO Helicopter drop project on middle map not to warehouse
     // TODO Max level is still unhandled
-    private static ArrayList<Level> levels = new ArrayList<>();
     private HashMap<Product, Integer> requirements;
     private int money;
     private final Workshop[] workshops = new Workshop[6];
     private Map map;
     private Truck truck;
     private Helicopter helicopter;
+    private final Level level;
 
-    public Game() {
+    public Game(Level level) {
+        this.level = level;
+        requirements = level.getRequirements();
+        money = level.getMoney();
+        WorkshopBuilder[] workshops = level.getWorkshops();
+        for (int i = 0; i < workshops.length; i++)
+            if (workshops[i] != null)
+                this.workshops[i] = new Workshop(this, workshops[i]);
+            else
+                this.workshops[i] = null;
+        this.map = new Map(this, level.getMapWidth(), level.getMapHeight());
+        this.truck = new Truck(this);
+        this.helicopter = new Helicopter(this);
+    }
 
+    public Level getLevel() {
+        return level;
+    }
+
+    private void done() {
+        requirements = null;
+        money = 0;
+        for (int i = 0; i < 6; i++) workshops[i] = null;
+        map = null;
+        truck = null;
+        helicopter = null;
+        System.out.println("Level is done. GL&HF :)");
     }
 
     private HashMap<Product, Double> getPassedPercent() {
@@ -47,20 +73,6 @@ public class Game implements java.io.Serializable {
             result.put(product, (double) (100 * getWarehouse().getProductCount(product) / wishCount));
         }
         return result;
-    }
-
-    public Game(Level level) {
-        requirements = level.getRequirements();
-        money = level.getMoney();
-        WorkshopBuilder[] workshops = level.getWorkshops();
-        for (int i = 0; i < 6; i++)
-            if (workshops[i] != null)
-                this.workshops[i] = new Workshop(this, workshops[i]);
-            else
-                this.workshops[i] = null;
-        this.map = new Map(this, level.getMapWidth(), level.getMapHeight());
-        this.truck = new Truck(this);
-        this.helicopter = new Helicopter(this);
     }
 
     public Map getMap() {
@@ -83,10 +95,23 @@ public class Game implements java.io.Serializable {
     }
 
     public void increaseTurn() {
-        // TODO: check if level requirements satisfied level is done
+        HashMap<Product, Double> passedRequirements = getPassedPercent();
+        boolean passed = true;
+        for (HashMap.Entry<Product, Double> x : passedRequirements.entrySet())
+            passed &= (x.getValue().equals(100.0));
+        if (passed) {
+            done();
+            return;
+        }
         // TODO: max Level? :thinking:
+        if (map == null)
+            return;
         map.increaseTurn();
-        for (Workshop workshop : workshops) workshop.increaseTurn();
+        for (Workshop workshop : workshops)
+            if (workshop != null)
+                workshop.increaseTurn();
+        this.truck.increaseTurn();
+        this.helicopter.increaseTurn();
     }
 
     public void turn(int count) {
@@ -107,7 +132,7 @@ public class Game implements java.io.Serializable {
     }
 
     public boolean save(String path) {
-        if (path == null)
+        if (path == null || map == null)
             return false;
         relax();
         YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
@@ -136,28 +161,12 @@ public class Game implements java.io.Serializable {
         }
     }
 
-    @Nullable
-    public static Game run(String mapName) {
-        if (mapName == null)
-            return null;
-        for (Level level : levels)
-            if (level.getName().equals(mapName))
-                return new Game(level);
-        return null;
-    }
-
-    public static boolean loadCustom(String path) {
-        if (path == null)
-            return false;
-        Level level = Level.loadFromFile(path);
-        if (level == null)
-            return false;
-        levels.add(level);
-        return true;
-    }
-
     public boolean buy(String animalName) {
         return map.buy(animalName);
+    }
+
+    public boolean buy(AnimalType type) {
+        return buy(type.toString().toLowerCase());
     }
 
     public boolean collect(Position position) {
@@ -216,10 +225,7 @@ public class Game implements java.io.Serializable {
     }
 
     private void relax() {
-        // TODO
-        // GroundProduct with amount 0 mean invalid and must be deleted
-        // WildAnimal will replace with null after remove
-        // generally BaseAnimal with position = null mean invalid and must be deleted
+        map.relax();
     }
 
     private boolean decreasePlant(int x, int y) {
@@ -231,13 +237,13 @@ public class Game implements java.io.Serializable {
     }
 
     public String print(String target) {
+        if (map == null)
+            return "Game isn't started with certain level";
         switch (target) {
             case "info":
                 return this.toString();
             case "map":
                 return map.toString();
-            case "levels":
-                return levels.toString();
             case "warehouse":
                 return getWarehouse().toString();
             case "well":
@@ -265,23 +271,8 @@ public class Game implements java.io.Serializable {
         }
     }
 
-    @Nullable
-    @Contract(pure = true)
-    private Product getProductByName(@NotNull String itemName) {
-        switch (itemName) {
-            case "wool":
-                return Product.WOOL;
-            case "egg":
-                return Product.EGG;
-            case "milk":
-                return Product.MILK;
-            default:
-                return null;
-        }
-    }
-
     public boolean addToVehicle(String name, String itemName, int count) {
-        Product product = getProductByName(itemName);
+        Product product = Product.getProductByName(itemName);
         Vehicle vehicle = getVehicleByName(name);
         if (product == null)
             return false;
@@ -304,4 +295,31 @@ public class Game implements java.io.Serializable {
         return vehicle.go();
     }
 
+    public Workshop[] getWorkshops() {
+        return workshops;
+    }
+
+    public Truck getTruck() {
+        return truck;
+    }
+
+    public Helicopter getHelicopter() {
+        return helicopter;
+    }
+
+    public int getAnimalBuyCost(AnimalType type) {
+        switch (type) {
+            case Hen:
+                return Constants.HEN_BUY_COST;
+            case Sheep:
+                return Constants.SHEEP_BUY_COST;
+            case Cow:
+                return Constants.COW_BUY_COST;
+            case Cat:
+                return Constants.CAT_BUY_COST;
+            case Dog:
+                return Constants.DOG_BUY_COST;
+        }
+        return 0;
+    }
 }

@@ -17,8 +17,14 @@ public class Dog extends BaseAnimal {
     }
 
     @Override
-    void doTask() {
+    boolean doTask() {
         catchWildAnimal();
+        return false;
+    }
+
+    @Override
+    public AnimalType getType() {
+        return AnimalType.Dog;
     }
 
     private void catchWildAnimal() {

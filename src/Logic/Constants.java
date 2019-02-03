@@ -1,44 +1,45 @@
 package Logic;
 
 public class Constants {
+    public static final int WORKSHOP_MAX_LEVEL = 5;
+    public static final int WELL_MAX_LEVEL = 4;
+
     private Constants() {
     }
 
+    public static final int VEHICLE_MAX_LEVEL = 4;
+
+    public static final int WORKSHOP_VIEW_ANIMATION_COLUMNS = 4;
+    public static final int WORKSHOP_VIEW_ANIMATION_COUNT = 16;
+
+    public static final int UI_PRODUCT_WIDTH = 48;
+    public static final int UI_PRODUCT_HEIGHT = 48;
+    public static final int UI_FPS = 10;
+
+    public static final int WORKSHOP_VIEW_HEIGHT = 150;
+    public static final int WORKSHOP_VIEW_WIDTH = 150;
 
     public static final double NEW_PLANT_NEEDED_WATER = 1;
 
     static final int CAT_UPGRADE_COST = 500; // coin
 
-    public static final int BEAR_SELL_PROFIT = 300;
-    public static final int LION_SELL_PROFIT = 300;
-    public static final int LION_BUY_PROFIT = 300;
-    public static final int BEAR_BUY_PROFIT = 300;
-
     static final double PRODUCER_ANIMAL_EAT_GRASS_RATE = 1;
+    public static final double PRODUCER_ANIMAL_EAT_GRASS_DECREASE_HUNGRINESS = 1;
     public static final int PRODUCER_ANIMAL_FULL_PROGRESS = 10;
     public static final int PRODUCER_ANIMAL_PRODUCTION_RATE = 1;
-    public static final int PRODUCER_ANIMAL_MAX_HUNGRINESS = 13;
+    public static final int PRODUCER_ANIMAL_MAX_HUNGRINESS = 100;
 
     public static final int HELICOPTER_INITIAL_CAPACITY = 15;
     public static final int HELICOPTER_UPGRADE_COST = 100; // coin
     public static final int HELICOPTER_UPGRADE_INCREASE_CAPACITY = 10;
     public static final int HELICOPTER_JOB_PROGRESS = 30; // turn
 
-    public static final int WOOL_BUY_PROFIT = 125; // coin
-    public static final int MILK_BUY_PROFIT = 100; // coin
-    public static final int EGG_BUY_PROFIT = 75; // coin
-
-    public static final int WOOL_SELL_PROFIT = 125; // coin
-    public static final int MILK_SELL_PROFIT = 100; // coin
-    public static final int EGG_SELL_PROFIT = 75; // coin
-
-
     public static final int TRUCK_INITIAL_CAPACITY = 15;
     public static final int TRUCK_UPGRADE_COST = 100; // coin
     public static final int TRUCK_UPGRADE_INCREASE_CAPACITY = 10;
     public static final int TRUCK_JOB_PROGRESS = 30; // turn
 
-    public static final int GROUND_PRODUCT_TIMEOUT = 5;
+    public static final int GROUND_PRODUCT_TIMEOUT = 50;
 
     static final int HEN_BUY_COST = 100; // coin
     static final int SHEEP_BUY_COST = 150; // coin
@@ -59,7 +60,8 @@ public class Constants {
     public static final int WORKSHOP_PROGRESS = 15; // turn
     public static final int WORKSHOP_UPGRADE_COST = 150;
 
-    static final int WILD_ANIMAL_TIME_PERIOD = 2 * 60; // 2 minute
-    static final int START_MONEY = 500;
+    static final int WILD_ANIMAL_TIME_PERIOD = 2 * 60 * 10; // 2 minute
 
+    public static final double GRASS_MAX_VALUE = 160;
+    static final int GRASS_PLANT_INCREASE = 160;
 }

@@ -1,7 +1,7 @@
 package Logic;
 
 import Products.Product;
-import Products.WorkshopBuilder;
+import Utils.WorkshopBuilder;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 import org.jetbrains.annotations.Nullable;
@@ -15,17 +15,19 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Level implements java.io.Serializable {
+public class Level {
     private String name;
     private HashMap<Product, Integer> requirements;
     private final WorkshopBuilder[] workshops = new WorkshopBuilder[6];
     private int mapWidth;
     private int mapHeight;
     private int money;
+    private String UIPropertiesPath;
 
     @Nullable
-    static Level loadFromFile(String path) {
+    public static Level readFromFile(String path) {
         try {
+            System.out.println("Loading level from " + path);
             String text = new String(Files.readAllBytes(Paths.get(path)));
             YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
             return mapper.fromJson(text, Level.class);
@@ -35,7 +37,7 @@ public class Level implements java.io.Serializable {
         }
     }
 
-    public boolean saveToFile(String path) {
+    public boolean writeToFile(String path) {
         YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
         File file = new File(path);
         try {
@@ -59,13 +61,14 @@ public class Level implements java.io.Serializable {
                 "\nmoney: " + money;
     }
 
-    public Level(String name, HashMap<Product, Integer> requirements, WorkshopBuilder[] workshops, int mapWidth, int mapHeight, int money) {
+    public Level(String name, HashMap<Product, Integer> requirements, WorkshopBuilder[] workshops, int mapWidth, int mapHeight, int money, String UIPropertiesPath) {
         this.name = name;
         this.requirements = requirements;
         System.arraycopy(workshops, 0, this.workshops, 0, Math.min(6, workshops.length));
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
         this.money = money;
+        this.UIPropertiesPath = UIPropertiesPath;
     }
 
     String getName() {
@@ -90,5 +93,9 @@ public class Level implements java.io.Serializable {
 
     int getMoney() {
         return money;
+    }
+
+    public String getUIPropertiesPath() {
+        return UIPropertiesPath;
     }
 }

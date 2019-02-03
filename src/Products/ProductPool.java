@@ -8,6 +8,7 @@ public class ProductPool implements java.io.Serializable {
     private int capacity;
     private int remainedCapacity;
     private HashMap<Product, Integer> products = new HashMap<>();
+    private int allocatedCapacity = 0;
 
     public ProductPool(int capacity) {
         this.capacity = capacity;
@@ -18,20 +19,22 @@ public class ProductPool implements java.io.Serializable {
         return products.getOrDefault(product, 0);
     }
 
+    public boolean canAddProduct(Product product, int count) {
+        int size = count * product.getDepotSize();
+        return remainedCapacity >= size;
+    }
+
     public boolean addProduct(Product product, int count) {
-        if (remainedCapacity < count) {
+        int size = count * product.getDepotSize();
+        if (remainedCapacity < size) {
             return false;
         }
         int current = this.getProductCount(product);
-        if (current < -count)
+        if (current < -size)
             return false;
-        products.put(product, current + count);
-        remainedCapacity -= count;
+        products.put(product, current + size);
+        remainedCapacity -= size;
         return true;
-    }
-
-    public int getCapacity() {
-        return capacity;
     }
 
     public int getRemainedCapacity() {
@@ -63,4 +66,23 @@ public class ProductPool implements java.io.Serializable {
         return products.entrySet();
     }
 
+    public boolean allocate(int count) {
+        if (remainedCapacity < count)
+            return false;
+        allocatedCapacity += count;
+        remainedCapacity -= count;
+        return true;
+    }
+
+    public int getFilledCapacity() {
+        return this.capacity - this.remainedCapacity;
+    }
+
+    public boolean unallocate(int count) {
+        if (allocatedCapacity < count)
+            return false;
+        allocatedCapacity -= count;
+        remainedCapacity += count;
+        return true;
+    }
 }

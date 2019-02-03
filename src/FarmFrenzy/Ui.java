@@ -4,14 +4,15 @@ import Logic.Game;
 import Utils.Position;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.Scanner;
 
-class Ui {
+public class Ui {
     private Ui() {
 
     }
 
-    static void Run(Game game) {
+    public static void Run(Game game) {
         Scanner input = new Scanner(System.in);
         while (true) {
             String command = input.nextLine();
@@ -40,12 +41,12 @@ class Ui {
                 case "upgrade":
                     upgrade(game, args);
                     break;
-                case "load_custom":
-                    loadCustom(args);
-                    break;
-                case "run":
-                    game = run(game, args);
-                    break;
+//                case "load_custom":
+//                    loadCustom(args);
+//                    break;
+//                case "run":
+//                    game = run(game, args);
+//                    break;
                 case "save_game":
                     saveGame(game, args);
                     break;
@@ -60,6 +61,14 @@ class Ui {
                     break;
                 case "exit":
                     System.exit(0);
+                case "clear":
+                    try {
+                        System.out.println("Fana e ozma :)");
+                        Runtime.getRuntime().exec("clear");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
                 default:
                     vehicleCommand(game, args);
             }
@@ -106,7 +115,7 @@ class Ui {
             System.out.printf("%s cleared successfully.\n", args[0]);
         else
             System.out.printf("clearing %s failed!\n", args[0]);
-    }// TODO
+    }
 
     static private void goVehicle(Game game, String[] args) {
         if (game.goVehicle(args[0]))
@@ -153,29 +162,29 @@ class Ui {
         System.out.println("Saving " + (game.save(path) ? "done." : "failed!"));
     }
 
-    private static Game run(Game game, String[] args) {
-        String mapName = null;
-        if (args.length > 1)
-            mapName = args[1];
-        Game newGame = Game.run(mapName);
-        if (newGame == null)
-            System.out.println("Map with this name not found!");
-        else {
-            game = newGame;
-            System.out.println("Map loaded successfully.");
-        }
-        return game;
-    }
+//    private static Game run(Game game, String[] args) {
+//        String mapName = null;
+//        if (args.length > 1)
+//            mapName = args[1];
+//        Game newGame = Game.run(mapName);
+//        if (newGame == null)
+//            System.out.println("Map with this name not found!");
+//        else {
+//            game = newGame;
+//            System.out.println("Map loaded successfully.");
+//        }
+//        return game;
+//    }
 
-    private static void loadCustom(String[] args) {
-        String path = null;
-        if (args.length > 1)
-            path = args[1];
-        if (Game.loadCustom(path))
-            System.out.println("Custom level loaded successfully.");
-        else
-            System.out.println("Loading level failed!");
-    }
+//    private static void loadCustom(String[] args) {
+//        String path = null;
+//        if (args.length > 1)
+//            path = args[1];
+//        if (Game.loadCustom(path))
+//            System.out.println("Custom level loaded successfully.");
+//        else
+//            System.out.println("Loading level failed!");
+//    }
 
     private static void upgrade(Game game, String[] args) {
         String target = null;
@@ -203,7 +212,7 @@ class Ui {
 
     private static void plant(Game game, String[] args) {
         Position position = getPosition(args);
-        if (game.plant(position))
+        if (position != null && game.plant(position))
             System.out.printf("plant growing in cell %s done successfully.\n", position);
         else
             invalidCell();

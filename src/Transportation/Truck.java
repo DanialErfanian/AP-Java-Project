@@ -15,7 +15,7 @@ public class Truck extends Vehicle {
         products = new ProductPool(capacity);
     }
 
-    int getUpgradeCost() {
+    public int getUpgradeCost() {
         return Constants.TRUCK_UPGRADE_COST;
     }
 
@@ -29,7 +29,7 @@ public class Truck extends Vehicle {
         for (HashMap.Entry<Product, Integer> entry : products.getEntrySet()) {
             Product product = entry.getKey();
             int count = entry.getValue();
-            sum += product.getBuyProfit() * count;
+            sum += product.getSaleCost() * count;
         }
         return sum;
     }
@@ -49,7 +49,12 @@ public class Truck extends Vehicle {
         if (onTheWay)
             return false;
         onTheWay = true;
-        progress = Constants.TRUCK_JOB_PROGRESS;
+        progress = getFullProgress();
         return true;
+    }
+
+    @Override
+    public int getFullProgress() {
+        return Constants.TRUCK_JOB_PROGRESS;
     }
 }

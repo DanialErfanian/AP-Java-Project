@@ -1,12 +1,13 @@
 package Transportation;
 
+import Logic.Constants;
 import Logic.Game;
 import Logic.MainObject;
 import Products.Product;
 import Products.ProductPool;
 
 abstract public class Vehicle extends MainObject {
-    private int level = 0;
+    private int level = 1;
     int progress = 0;
     boolean onTheWay = false;
     ProductPool products;
@@ -17,14 +18,23 @@ abstract public class Vehicle extends MainObject {
         return products.addProduct(product, count);
     }
 
+    public boolean canAddProduct(Product product, int count) {
+        if (onTheWay)
+            return false;
+        return products.canAddProduct(product, count);
+    }
+
     Vehicle(Game game) {
         super(game);
     }
 
     abstract public void increaseTurn();
 
+    public final boolean haveUpgrade() {
+        return level < Constants.VEHICLE_MAX_LEVEL;
+    }
 
-    abstract int getUpgradeCost();
+    public abstract int getUpgradeCost();
 
     abstract int getUpgradeIncreaseCapacity();
 
@@ -38,6 +48,7 @@ abstract public class Vehicle extends MainObject {
         products.increaseCapacity(increaseCapacity);
         return true;
     }
+
 
     public boolean clear() {
         if (onTheWay)
@@ -61,6 +72,18 @@ abstract public class Vehicle extends MainObject {
     } // getInfo
 
     private boolean canUpgrade() {
+        if (level >= Constants.VEHICLE_MAX_LEVEL)
+            return false;
         return getGame().getMoney() >= getUpgradeCost();
+    }
+
+    public abstract int getFullProgress();
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getProgress() {
+        return progress;
     }
 }

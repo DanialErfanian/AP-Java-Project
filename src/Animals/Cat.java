@@ -15,8 +15,14 @@ public class Cat extends BaseAnimal {
     }
 
     @Override
-    void doTask() {
+    boolean doTask() {
         getGame().collect(getPosition());
+        return false;
+    }
+
+    @Override
+    public AnimalType getType() {
+        return AnimalType.Cat;
     }
 
     @Override

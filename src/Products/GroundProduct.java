@@ -18,6 +18,14 @@ public class GroundProduct extends MiddleMapObject {
     }
 
     @Override
+    public String toString() {
+        return "GroundProduct: " +
+                "\ntype: " + type +
+                "\namount: " + amount +
+                "\nconstructTime" + constructTime;
+    }
+
+    @Override
     protected void increaseTurn() {
         if (getPosition() == null)
             return;
@@ -33,5 +41,13 @@ public class GroundProduct extends MiddleMapObject {
             amount--;
         if (amount == 0)
             this.destruct();
+    }
+
+    public Product getType() {
+        return type;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }

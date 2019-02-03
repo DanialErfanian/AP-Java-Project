@@ -17,8 +17,19 @@ public class WildAnimal extends BaseAnimal {
     }
 
     @Override
-    void doTask() {
+    boolean doTask() {
         catchAnimal();
+        return false;
+    }
+
+    @Override
+    public AnimalType getType() {
+        if (type.equals(WildAnimalType.LION))
+            return AnimalType.Lion;
+        else if (type.equals(WildAnimalType.BEAR))
+            return AnimalType.Bear;
+        assert false;
+        return null;
     }
 
     public WildAnimal(Game game, Position position) {
@@ -37,7 +48,7 @@ public class WildAnimal extends BaseAnimal {
 //    }
 
     public GroundProduct cage() {
-        Product product = this.type.equals(WildAnimalType.LION) ? Product.LION : Product.BEAR;
+        Product product = this.type.equals(WildAnimalType.LION) ? Product.CagedLion : Product.CagedBrownBear;
         return new GroundProduct(getGame(), product, this.getPosition(), 1);
     }
 
@@ -45,7 +56,7 @@ public class WildAnimal extends BaseAnimal {
         ArrayList<MiddleMapObject> cellObjects = this.getGame().getMap().getCellObjects(this.getPosition());
         for (int i = 0; i < cellObjects.size(); i++) {
             MiddleMapObject object = cellObjects.get(i);
-            if (object instanceof WildAnimal)
+            if (!(object instanceof ProducerAnimal))
                 continue;
             cellObjects.set(i, null);
         }

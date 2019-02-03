@@ -15,7 +15,7 @@ public class Helicopter extends Vehicle {
         products = new ProductPool(capacity);
     }
 
-    int getUpgradeCost() {
+    public int getUpgradeCost() {
         return Constants.HELICOPTER_UPGRADE_COST;
     }
 
@@ -29,7 +29,7 @@ public class Helicopter extends Vehicle {
         for (HashMap.Entry<Product, Integer> entry : products.getEntrySet()) {
             Product product = entry.getKey();
             int count = entry.getValue();
-            sum += product.getSellProfit() * count;
+            sum += product.getBuyCost() * count;
         }
         return sum;
     }
@@ -38,20 +38,36 @@ public class Helicopter extends Vehicle {
     public void increaseTurn() {
         if (progress == 0) {
             onTheWay = false;
-            // TODO add to Warehouse
+            assert (getGame().getWarehouse().unallocate(products.getFilledCapacity()));
+            for (HashMap.Entry<Product, Integer> entry : products.getEntrySet()) {
+                assert (getGame().getWarehouse().addProduct(entry.getKey(), entry.getValue()));
+            }
             clear();
         } else
             progress--;
+    }
+
+    private boolean canGo() {
+        if (getGame().getMoney() < getCost())
+            return false;
+        return getGame().getWarehouse().getRemainedCapacity() >= products.getFilledCapacity();
     }
 
     @Override
     public boolean go() {
         if (onTheWay)
             return false;
-        if (!getGame().decreaseMoney(getCost()))
+        if (!canGo())
             return false;
+        getGame().decreaseMoney(getCost());
+        assert (getGame().getWarehouse().allocate(products.getFilledCapacity()));
         onTheWay = true;
-        progress = Constants.HELICOPTER_JOB_PROGRESS;
+        progress = getFullProgress();
         return true;
+    }
+
+    @Override
+    public int getFullProgress() {
+        return Constants.HELICOPTER_JOB_PROGRESS;
     }
 }
