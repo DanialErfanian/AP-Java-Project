@@ -17,9 +17,13 @@ public class Controller implements Initializable {
     public ImageView sendImage;
     public TextField messageField;
     public VBox messagesBox;
+    public VBox usersBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        usersBox.getChildren().clear();
+        //Client.getInstance().
+        //usersBox.getChildren().add();
         sendImage.setOnMouseClicked(mouseEvent -> {
             String messageText = messageField.getText();
             messageField.clear();

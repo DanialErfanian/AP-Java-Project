@@ -42,7 +42,7 @@
                       </HBox>
                       <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="379.0" prefWidth="414.0" styleClass="playersPane" VBox.vgrow="SOMETIMES">
                          <content>
-                             <VBox alignment="TOP_CENTER">
+                             <VBox fx:id="usersBox" alignment="TOP_CENTER">
                                  <padding>
                                      <Insets top="10.0" />
                                  </padding>

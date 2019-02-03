@@ -2,11 +2,12 @@ package Server;
 
 import Server.ChatRoom.Message;
 import Server.ChatRoom.Room;
+import Server.Communication.Handlers.CommandReceiver;
 import Server.Communication.Results.GetProfileResult;
 import Server.Communication.Results.JoinScoreboardResult;
 import Server.Communication.Results.RegisterResult;
-import Server.Communication.Handlers.CommandReceiver;
 import Server.Scoreboard.Scoreboard;
+import Server.Scoreboard.ViewableScoreboard;
 import Server.User.AuthenticationProfile;
 import Server.User.HostProfile;
 import Server.User.RegisterProfile;
@@ -81,6 +82,10 @@ public class Server implements Runnable {
 
     public void sendGlobalMessage(Message message) {
         globalRoom.addMessage(message);
+    }
+
+    public Scoreboard getPureScoreboardz() {
+        return scoreboard;
     }
 
     public ArrayList<ScoreboardProfile> getScoreboard() {

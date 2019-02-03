@@ -2,12 +2,13 @@ package Server.Scoreboard;
 
 import Server.User.ScoreboardProfile;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ViewableScoreboard {
-    private HashMap<String, ScoreboardProfile> members = new HashMap<>();
+    private HashMap<String, ScoreboardProfile> members;
 
-    public ViewableScoreboard(HashMap<String, ScoreboardProfile> members) {
+    ViewableScoreboard(HashMap<String, ScoreboardProfile> members) {
         this.members = members;
     }
 
@@ -19,4 +20,7 @@ public class ViewableScoreboard {
         members.remove(scoreboardProfile.getUsername());
     }
 
+    public ArrayList<ScoreboardProfile> getScoreboardProfiles(){
+        return (ArrayList<ScoreboardProfile>) members.values();
+    }
 }

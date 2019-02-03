@@ -5,10 +5,7 @@ import Server.ChatRoom.MessageHandler;
 import Server.Communication.Commands.*;
 import Server.Communication.Handlers.CommandSender;
 import Server.Communication.Handlers.UpdateReceiver;
-import Server.Communication.Results.BaseResult;
-import Server.Communication.Results.GetProfileResult;
-import Server.Communication.Results.JoinScoreboardResult;
-import Server.Communication.Results.RegisterResult;
+import Server.Communication.Results.*;
 import Server.Exceptions.BadServerException;
 import Server.Exceptions.NonuniqueUsernameException;
 import Server.Exceptions.StatusCodeException;
@@ -18,6 +15,8 @@ import Server.User.RegisterProfile;
 import Server.User.ScoreboardProfile;
 import Utils.NetworkConfig;
 import org.jetbrains.annotations.Contract;
+
+import java.util.ArrayList;
 
 public class Client {
     private Client() {
@@ -110,12 +109,21 @@ public class Client {
             messageHandler.handle(message);
     }
 
-    public void scoreboardUpdate(ScoreboardProfile scoreboardProfile) {
-        scoreboard.addMember(scoreboardProfile);
+    private ViewableScoreboard getScoreboard() throws BadServerException {
+        if (scoreboard == null) {
+            BaseCommand command = new GetScoreboardCommand();
+            GetScoreboardResult result = (GetScoreboardResult) commandSender.sendCommand(command);
+            scoreboard = result.getScoreboard();
+        }
+        return scoreboard;
     }
 
-    public void scoreboardLeave(ScoreboardProfile scoreboardProfile) {
-        scoreboard.removeMember(scoreboardProfile);
+    public void scoreboardUpdate(ScoreboardProfile scoreboardProfile) throws BadServerException {
+        getScoreboard().addMember(scoreboardProfile);
+    }
+
+    public void scoreboardLeave(ScoreboardProfile scoreboardProfile) throws BadServerException {
+        getScoreboard().removeMember(scoreboardProfile);
     }
 
     public void setClientNetConf(NetworkConfig clientNetConf) {
@@ -132,5 +140,9 @@ public class Client {
 
     public void setOnNewMessage(MessageHandler messageHandler) {
         this.messageHandler = messageHandler;
+    }
+
+    public ArrayList<ScoreboardProfile> getScoreboardProfiles() throws BadServerException {
+        return getScoreboard().getScoreboardProfiles();
     }
 }
