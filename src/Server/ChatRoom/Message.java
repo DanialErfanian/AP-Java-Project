@@ -1,8 +1,9 @@
 package Server.ChatRoom;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Message {
+public class Message implements Serializable {
     private Room room;
     private String sender;
     private String text;
@@ -22,5 +23,13 @@ public class Message {
 
     public String getSender() {
         return sender;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public String getCompleteText() {
+        return getSender() + ": " + getText();
     }
 }

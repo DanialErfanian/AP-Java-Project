@@ -50,7 +50,7 @@ public class JoinNetConf implements Initializable {
 
             // Change Page
             Scene scene = joinButton.getScene();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage/View.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage/ClientHomeView.fxml"));
             Parent root = null;
             try {
                 root = loader.load();

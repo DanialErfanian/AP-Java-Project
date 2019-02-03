@@ -52,7 +52,7 @@ public class Client {
         if (result.getStatusCode() != 200)
             throw new StatusCodeException(result.getStatusCode());
         profile.setToken(result.getAuthenticationProfile().getToken());
-        profile.getNetConf().setIp(result.getIp());
+//        profile.getNetConf().setIp(result.getIp());
         clientNetConf.setIp(result.getIp());
     }
 
@@ -92,6 +92,11 @@ public class Client {
             throw new StatusCodeException(result.getStatusCode());
     }
 
+    public void sendMessage(String text) throws BadServerException, StatusCodeException {
+        Message message = new Message(profile.getName(), text, null);
+        sendMessage(message);
+    }
+
     public HostProfile getProfile(String username) throws BadServerException, StatusCodeException {
         GetProfileCommand command = new GetProfileCommand(username);
         GetProfileResult result = (GetProfileResult) commandSender.sendCommand(command);
@@ -101,7 +106,7 @@ public class Client {
     }
 
     public void addMessageUpdate(Message message) {
-        if(messageHandler != null)
+        if (messageHandler != null)
             messageHandler.handle(message);
     }
 
@@ -125,7 +130,7 @@ public class Client {
         this.profile = profile;
     }
 
-    public void onNewMessage(MessageHandler messageHandler) {
+    public void setOnNewMessage(MessageHandler messageHandler) {
         this.messageHandler = messageHandler;
     }
 }

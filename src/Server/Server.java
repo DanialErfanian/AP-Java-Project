@@ -118,4 +118,8 @@ public class Server implements Runnable {
     public void setNetConf(NetworkConfig netConf) {
         this.netConf = netConf;
     }
+
+    public HostProfile getHostProfile(String username) {
+        return users.get(username);
+    }
 }

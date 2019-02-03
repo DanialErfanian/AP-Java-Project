@@ -1,6 +1,8 @@
 package Server.User;
 
-public abstract class BaseProfile {
+import java.io.Serializable;
+
+public abstract class BaseProfile implements Serializable {
     private String username;
 
     public BaseProfile() {

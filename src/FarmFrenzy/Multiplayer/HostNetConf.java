@@ -36,12 +36,14 @@ public class HostNetConf implements Initializable {
             Thread thread = new Thread(server);
             thread.setDaemon(true);
             thread.start();
+
             Scene scene = startButton.getScene();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage/View.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HostClient.fxml"));
             Parent root = null;
             try {
                 root = loader.load();
             } catch (IOException e) {
+                System.err.println("Failed... ;-P");
                 e.printStackTrace();
             }
             scene.setRoot(root);

@@ -1,6 +1,8 @@
 package Utils;
 
-public class NetworkConfig {
+import java.io.Serializable;
+
+public class NetworkConfig implements Serializable {
     private String ip;
     private int port;
 

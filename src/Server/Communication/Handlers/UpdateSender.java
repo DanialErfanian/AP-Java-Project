@@ -12,6 +12,10 @@ public class UpdateSender {
     private Socket socket;
     private ObjectOutputStream output;
 
+    public UpdateSender(NetworkConfig netConf) {
+        this.netConf = netConf;
+    }
+
     public void sendUpdate(BaseUpdate update) {
         try {
             if (socket == null)
@@ -25,6 +29,7 @@ public class UpdateSender {
 
     private void connect() throws IOException {
         socket = new Socket(netConf.getIp(), netConf.getPort());
+        output = new ObjectOutputStream(socket.getOutputStream());
     }
 
 }

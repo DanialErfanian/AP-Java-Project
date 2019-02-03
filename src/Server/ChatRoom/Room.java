@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Room {
-    private ArrayList<Message> history;
+    private ArrayList<Message> history = new ArrayList<>();
     private HashSet<HostProfile> users = new HashSet<>();
 
     public void addMessage(Message message) {

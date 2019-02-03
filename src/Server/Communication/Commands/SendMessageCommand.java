@@ -4,6 +4,7 @@ import Server.ChatRoom.Message;
 import Server.Communication.Results.BaseResult;
 import Server.Server;
 import Server.User.AuthenticationProfile;
+import Server.User.HostProfile;
 
 public class SendMessageCommand extends BaseCommand {
     private Message message;
@@ -19,9 +20,8 @@ public class SendMessageCommand extends BaseCommand {
     }
 
     protected BaseResult run() {
-        if (message.getSender().equals(this.getAuthenticationProfile().getUsername()))
-            return new BaseResult(403);
-        Server.getInstance().sendGlobalMessage(message);
+        Server server = Server.getInstance();
+        server.sendGlobalMessage(message);
         return BaseResult.getOK();
     }
 }

@@ -1,5 +1,9 @@
 package FarmFrenzy.Multiplayer.HomePage;
 
+import Server.Client;
+import Server.Exceptions.BadServerException;
+import Server.Exceptions.StatusCodeException;
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -18,9 +22,16 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sendImage.setOnMouseClicked(mouseEvent -> {
             String messageText = messageField.getText();
-            System.out.println(messageText);
-            messagesBox.getChildren().add(new Label(messageText));
             messageField.clear();
+            try {
+                Client.getInstance().sendMessage(messageText);
+            } catch (BadServerException | StatusCodeException e) {
+                e.printStackTrace();
+            }
+        });
+        Client.getInstance().setOnNewMessage(message -> {
+            Label label = new Label(message.getCompleteText());
+            Platform.runLater(() -> messagesBox.getChildren().add(label));
         });
     }
 
