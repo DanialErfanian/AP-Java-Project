@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="749.0" prefWidth="1040.0" styleClass="main-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FarmFrenzy.MainPage.Controller">
+    <top>
+        <VBox prefHeight="303.0" prefWidth="1007.0" styleClass="top-box">
+            <children>
+                <ImageView fx:id="imageView" fitHeight="306.0" fitWidth="354.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-view" />
+                <ImageView fitHeight="132.0" fitWidth="623.0" pickOnBounds="true" preserveRatio="true" styleClass="title-view">
+               <VBox.margin>
+                  <Insets top="-70.0" />
+               </VBox.margin></ImageView>
+            </children>
+        </VBox>
+    </top>
+    <center>
+          <VBox alignment="TOP_CENTER" prefHeight="238.0" prefWidth="1040.0" styleClass="middle-box">
+         <children>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="67.0" prefWidth="1040.0" spacing="10.0">
+               <children>
+                  <Label text="Name:">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="nameField" prefHeight="36.0" prefWidth="171.0" promptText="Enter your name">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Text layoutX="414.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcome-text" text="ov hgsssssss'" textAlignment="CENTER" wrappingWidth="231.7294921875">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Text>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="playButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="377.0" styleClass="Button" text="Play">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+    </center>
+   <bottom>
+      <HBox alignment="TOP_CENTER" prefHeight="91.0" prefWidth="1040.0" styleClass="bottom-box" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="multiplayer" mnemonicParsing="false" styleClass="Button" text="Multiplayer" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="Button" text="Awards" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="Button" text="Credits" />
+            <Button fx:id="exitButton" layoutX="72.0" layoutY="10.0" mnemonicParsing="false" styleClass="Button" text="Exit" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
