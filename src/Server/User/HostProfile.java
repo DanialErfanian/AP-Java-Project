@@ -1,5 +1,7 @@
 package Server.User;
 
+import Server.Communication.ClientUpdates.ChatMessageUpdate;
+import Server.Communication.Handlers.UpdateSender;
 import Utils.NetworkConfig;
 
 public class HostProfile extends BaseProfile {
@@ -8,6 +10,7 @@ public class HostProfile extends BaseProfile {
     private NetworkConfig netConf;
     private int transactionsCount = 0;
     private int money = 0;
+    private UpdateSender updateSender;
 
     public String getName() {
         return name;
@@ -46,7 +49,7 @@ public class HostProfile extends BaseProfile {
         this.name = name;
         // TODO generate random token
         this.token = username;
-        this.netConf = netConf;
+        this.setNetConf(netConf);
     }
 
     public AuthenticationProfile toAuthenticationProfile() {
@@ -58,10 +61,19 @@ public class HostProfile extends BaseProfile {
     }
 
     public RegisterProfile toRegisterProfile() {
-        return new RegisterProfile(this.getUsername(), this.getName());
+        return new RegisterProfile(this.getUsername(), this.getName(), this.getNetConf());
     }
 
     public NetworkConfig getNetConf() {
         return netConf;
+    }
+
+    public void setNetConf(NetworkConfig netConf) {
+        this.netConf = netConf;
+        this.updateSender = new UpdateSender(netConf);
+    }
+
+    public void sendUpdate(ChatMessageUpdate update) {
+        this.updateSender.sendUpdate(update);
     }
 }

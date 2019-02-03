@@ -2,12 +2,12 @@ package Server;
 
 import Server.ChatRoom.Message;
 import Server.ChatRoom.Room;
+import Server.Communication.ClientUpdates.ChatMessageUpdate;
 import Server.Communication.Handlers.CommandReceiver;
 import Server.Communication.Results.GetProfileResult;
 import Server.Communication.Results.JoinScoreboardResult;
 import Server.Communication.Results.RegisterResult;
 import Server.Scoreboard.Scoreboard;
-import Server.Scoreboard.ViewableScoreboard;
 import Server.User.AuthenticationProfile;
 import Server.User.HostProfile;
 import Server.User.RegisterProfile;
@@ -67,8 +67,9 @@ public class Server implements Runnable {
         if (hostProfile != null)
             return new RegisterResult(400, null);
         hostProfile = new HostProfile(user.getUsername(), user.getName(), user.getNetConf());
-        this.users.put(hostProfile.getToken(), hostProfile);
+        this.users.put(hostProfile.getUsername(), hostProfile);
         this.scoreboard.addMember(hostProfile.toScoreboardProfile());
+        globalRoom.addMember(hostProfile);
         return new RegisterResult(hostProfile.toAuthenticationProfile());
     }
 
@@ -77,10 +78,12 @@ public class Server implements Runnable {
     }
 
     public void sendMessageToUser(HostProfile user, Message message) {
-        // TODO WHAT TO DO? :))
+        user.sendUpdate(new ChatMessageUpdate(message));
+        System.err.println(user.getName() + " --- " + message.getCompleteText());
     }
 
     public void sendGlobalMessage(Message message) {
+        System.out.println(message.getCompleteText());
         globalRoom.addMessage(message);
     }
 

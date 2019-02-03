@@ -43,16 +43,21 @@ public class Client {
     }
 
     public void joinServer() throws BadServerException, StatusCodeException {
+        if (clientNetConf.getIp() == null)
+            this.fixIp();
         RegisterProfile registerProfile = profile.toRegisterProfile();
-        registerProfile.setNetConf(clientNetConf);
         RegisterResult result = (RegisterResult) commandSender.sendCommand(new RegisterCommand(registerProfile));
         if (result.getStatusCode() == 400)
             throw new NonuniqueUsernameException(400);
         if (result.getStatusCode() != 200)
             throw new StatusCodeException(result.getStatusCode());
         profile.setToken(result.getAuthenticationProfile().getToken());
-//        profile.getNetConf().setIp(result.getIp());
-        clientNetConf.setIp(result.getIp());
+    }
+
+    private void fixIp() throws BadServerException {
+        GetIpResult result = (GetIpResult) commandSender.sendCommand(new GetIpCommand());
+        this.clientNetConf.setIp(result.getIp());
+        this.profile.getNetConf().setIp(result.getIp());
     }
 
     public void leaveServer() throws BadServerException, StatusCodeException {
