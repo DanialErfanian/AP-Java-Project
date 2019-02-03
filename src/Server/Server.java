@@ -5,7 +5,7 @@ import Server.ChatRoom.Room;
 import Server.Communication.Results.GetProfileResult;
 import Server.Communication.Results.JoinScoreboardResult;
 import Server.Communication.Results.RegisterResult;
-import Server.CommunicationHandlers.CommandReceiver;
+import Server.Communication.Handlers.CommandReceiver;
 import Server.Scoreboard.Scoreboard;
 import Server.User.AuthenticationProfile;
 import Server.User.HostProfile;

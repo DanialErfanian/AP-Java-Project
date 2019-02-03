@@ -14,4 +14,9 @@ public class ViewableScoreboard {
     public void addMember(ScoreboardProfile scoreboardProfile) {
         members.put(scoreboardProfile.getUsername(), scoreboardProfile);
     }
+
+    public void removeMember(ScoreboardProfile scoreboardProfile) {
+        members.remove(scoreboardProfile.getUsername());
+    }
+
 }

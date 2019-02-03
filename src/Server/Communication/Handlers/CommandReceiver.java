@@ -1,4 +1,4 @@
-package Server.CommunicationHandlers;
+package Server.Communication.Handlers;
 
 import Server.Communication.Commands.BaseCommand;
 

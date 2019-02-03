@@ -5,16 +5,26 @@ import Server.Communication.Commands.*;
 import Server.Communication.Results.BaseResult;
 import Server.Communication.Results.JoinScoreboardResult;
 import Server.Communication.Results.RegisterResult;
-import Server.CommunicationHandlers.CommandSender;
+import Server.Communication.Handlers.CommandSender;
 import Server.Exceptions.BadServerException;
 import Server.Exceptions.NonuniqueUsernameException;
 import Server.Exceptions.StatusCodeException;
 import Server.Scoreboard.ViewableScoreboard;
 import Server.User.HostProfile;
 import Server.User.RegisterProfile;
+import Server.User.ScoreboardProfile;
 import Utils.NetworkConfig;
 
 public class Client {
+    private Client() {
+    }
+
+    private static Client instance = new Client();
+
+    public static Client getInstance() {
+        return instance;
+    }
+
     private HostProfile profile;
     private CommandSender commandSender;
     private NetworkConfig netConf;
@@ -66,5 +76,17 @@ public class Client {
         BaseResult result = commandSender.sendCommand(command);
         if (result.getStatusCode() != 200)
             throw new StatusCodeException(result.getStatusCode());
+    }
+
+    public void addMessageUpdate(Message message) {
+        // TODO
+    }
+
+    public void scoreboardUpdate(ScoreboardProfile scoreboardProfile) {
+        scoreboard.addMember(scoreboardProfile);
+    }
+
+    public void scoreboardLeave(ScoreboardProfile scoreboardProfile) {
+        scoreboard.removeMember(scoreboardProfile);
     }
 }
