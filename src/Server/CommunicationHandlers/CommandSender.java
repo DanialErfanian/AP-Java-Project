@@ -29,7 +29,7 @@ public class CommandSender {
         }
     }
 
-    public BaseResult sendCommand(BaseCommand command) throws BadServerException {
+    public synchronized BaseResult sendCommand(BaseCommand command) throws BadServerException {
         if (socket == null || socket.isClosed()) {
             connectServer();
         }
