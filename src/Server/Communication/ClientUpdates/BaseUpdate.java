@@ -1,6 +1,8 @@
 package Server.Communication.ClientUpdates;
 
-public abstract class BaseUpdate {
+import java.io.Serializable;
+
+public abstract class BaseUpdate implements Serializable {
 
     abstract protected void run();
 
