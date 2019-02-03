@@ -25,7 +25,7 @@ public class Server implements Runnable {
     private Room globalRoom = new Room();
     private Scoreboard scoreboard = new Scoreboard();
 
-    NetworkConfig netConf;
+    private NetworkConfig netConf;
 
     private Server() {
     }
@@ -39,7 +39,6 @@ public class Server implements Runnable {
 
     public void run() {
         try {
-            Server server = Server.getInstance();
             ServerSocket serverSocket;
             serverSocket = new ServerSocket(netConf.getPort());
 

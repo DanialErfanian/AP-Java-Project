@@ -2,10 +2,11 @@ package Server;
 
 import Server.ChatRoom.Message;
 import Server.Communication.Commands.*;
+import Server.Communication.Handlers.CommandSender;
 import Server.Communication.Results.BaseResult;
+import Server.Communication.Results.GetProfileResult;
 import Server.Communication.Results.JoinScoreboardResult;
 import Server.Communication.Results.RegisterResult;
-import Server.Communication.Handlers.CommandSender;
 import Server.Exceptions.BadServerException;
 import Server.Exceptions.NonuniqueUsernameException;
 import Server.Exceptions.StatusCodeException;
@@ -76,6 +77,14 @@ public class Client {
         BaseResult result = commandSender.sendCommand(command);
         if (result.getStatusCode() != 200)
             throw new StatusCodeException(result.getStatusCode());
+    }
+
+    public HostProfile getProfile(String username) throws BadServerException, StatusCodeException {
+        GetProfileCommand command = new GetProfileCommand(username);
+        GetProfileResult result = (GetProfileResult) commandSender.sendCommand(command);
+        if (result.getStatusCode() != 200)
+            throw new StatusCodeException(result.getStatusCode());
+        return result.getHostProfile();
     }
 
     public void addMessageUpdate(Message message) {

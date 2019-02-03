@@ -9,4 +9,8 @@ public class GetProfileResult extends BaseResult {
         super(200);
         this.hostProfile = hostProfile;
     }
+
+    public HostProfile getHostProfile() {
+        return hostProfile;
+    }
 }
