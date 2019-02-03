@@ -38,7 +38,7 @@ public class JoinNetConf implements Initializable {
 
             String IP = serverIP.getText(); // TODO validate IP
             Client client = Client.getInstance();
-            client.setProfile(new HostProfile(username.getText(), playerName, null));
+            client.setProfile(new HostProfile(username.getText(), playerName, new NetworkConfig(null, lport)));
             client.setCommandSender(new CommandSender(new NetworkConfig(IP, sport)));
             client.setClientNetConf(new NetworkConfig(null, lport));
             try {
