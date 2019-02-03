@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Server {
+public class Server implements Runnable {
     private HashMap<String, HostProfile> users = new HashMap<>();
     private Room globalRoom = new Room();
     private Scoreboard scoreboard = new Scoreboard();
@@ -37,14 +37,19 @@ public class Server {
         return instance;
     }
 
-    public void run() throws IOException {
-        Server server = Server.getInstance();
-        ServerSocket serverSocket;
-        serverSocket = new ServerSocket(4444);
+    public void run() {
+        try {
+            Server server = Server.getInstance();
+            ServerSocket serverSocket;
+            serverSocket = new ServerSocket(netConf.getPort());
 
-        while (!serverSocket.isClosed()) {
-            Thread thread = new Thread(new CommandReceiver(serverSocket.accept()));
-            thread.start();
+            while (!serverSocket.isClosed()) {
+                Thread thread = new Thread(new CommandReceiver(serverSocket.accept()));
+                thread.start();
+            }
+        } catch (IOException e) {
+            System.err.println("Server error while listening!");
+            e.printStackTrace();
         }
     }
 
