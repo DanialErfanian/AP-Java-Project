@@ -29,8 +29,8 @@ abstract public class BaseAnimal extends MiddleMapObject {
             move();
             return;
         }
-        int[] dx = {-1, -0, +1, -1, -0, +1, -1, -0, +1};
-        int[] dy = {-1, -1, -1, -0, -0, -0, +1, +1, +1};
+        int[] dy = {-1, -0, +1, -1, -0, +1, -1, -0, +1};
+        int[] dx = {-1, -1, -1, -0, -0, -0, +1, +1, +1};
         AnimalState[] animalStates = new AnimalState[dx.length];
         animalStates[0] = AnimalState.up_left;
         animalStates[1] = AnimalState.up;

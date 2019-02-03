@@ -58,6 +58,7 @@ public class AnimalController {
                 middleMapView.setPosition(imageView, animal);
             this.imageView = imageView;
             Platform.runLater(() -> group.getChildren().add(imageView));
+            imageView.setOnMouseClicked((ignored)-> System.out.println("click.."));
         }
     }
 }

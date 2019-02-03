@@ -27,8 +27,8 @@ public class GrassView {
         int Y1 = middleMapView.getY1();
         int Y2 = middleMapView.getY2();
 
-        double grassWidth = 1. * (X2 - X1) / mapHeight * 2;
-        double grassHeight = 1. * (Y2 - Y1) / mapWidth * 2;
+        double grassWidth = 1. * (X2 - X1) / mapHeight;
+        double grassHeight = 1. * (Y2 - Y1) / mapWidth;
         for (int x = 0; x < mapWidth; x++)
             for (int y = 0; y < mapHeight; y++) {
                 int finalY = y;
@@ -38,7 +38,8 @@ public class GrassView {
                 UIProperties.runEveryFrame(() -> {
                     double grass = game.getMap().getGrass(finalX, finalY);
                     double v = grass / Constants.GRASS_MAX_VALUE;
-                    rectangle.setOpacity(v);
+                    rectangle.setOpacity(((finalX + finalY) % 2 == 0) ? 1 : 0);
+//                    rectangle.setOpacity(v);
                 });
                 rectangle.setWidth(grassWidth);
                 rectangle.setHeight(grassHeight);

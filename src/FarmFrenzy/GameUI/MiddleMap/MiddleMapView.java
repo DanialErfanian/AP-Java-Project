@@ -9,6 +9,7 @@ import Products.GroundProduct;
 import Utils.Position;
 import javafx.application.Platform;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
@@ -55,28 +56,22 @@ public class MiddleMapView {
         return group;
     }
 
-    public void setPosition(ImageView imageView, Position position, Game game) {
+    void setPosition(Node node, Position position, Game game) {
         int mapWidth = game.getMap().getMapWidth();
         int mapHeight = game.getMap().getMapHeight();
-        double x = 1. * (X2 - X1) * position.getX() / mapWidth + X1;
-        double y = 1. * (Y2 - Y1) * position.getY() / mapHeight + Y1;
-        assert imageView != null;
-        Platform.runLater(() -> {
-            imageView.setX(x);
-            imageView.setY(y);
-        });
-    }
-
-    public void setPosition(Rectangle imageView, Position position, Game game) {
-        int mapWidth = game.getMap().getMapWidth();
-        int mapHeight = game.getMap().getMapHeight();
-        double x = 1. * (X2 - X1) * position.getX() / mapWidth + X1;
-        double y = 1. * (Y2 - Y1) * position.getY() / mapHeight + Y1;
-        assert imageView != null;
-        Platform.runLater(() -> {
-            imageView.setX(x);
-            imageView.setY(y);
-        });
+        double x = 1. * (X2 - X1) * position.getY() / mapHeight + X1;
+        double y = 1. * (Y2 - Y1) * position.getX() / mapWidth + Y1;
+        if (node instanceof ImageView)
+            Platform.runLater(() -> {
+                ImageView imageView = (ImageView) node;
+                imageView.setX(x - imageView.getFitHeight() / 2);
+                imageView.setY(y - imageView.getFitWidth() / 2);
+            });
+        if (node instanceof Rectangle)
+            Platform.runLater(() -> {
+                ((Rectangle) node).setX(x);
+                ((Rectangle) node).setY(y);
+            });
     }
 
     public void setPosition(ImageView imageView, MiddleMapObject object) {

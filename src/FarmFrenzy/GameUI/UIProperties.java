@@ -101,27 +101,13 @@ public class UIProperties {
         pane.getChildren().add(moneyStatus.build(game));
         pane.getChildren().add(middleMapView.build(game, imagePool));
         pane.getChildren().add(wellView.build(game));
-        for(BuyAnimalView buyAnimalView: buyAnimalViews)
+        for (BuyAnimalView buyAnimalView : buyAnimalViews)
             pane.getChildren().add(buyAnimalView.build(game));
         Thread thread = new Thread(() -> Ui.Run(game));
         thread.setDaemon(true);
         thread.start();
 
-        thread = new Thread(() -> {
-            while (true) {
-                game.increaseTurn();
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();
-
-
-        startFrameUpdater();
+        startFrameUpdater(game);
         // TODO money and vehicles and...
 //        group.setScaleX(2);
 //        group.setScaleY(2);
@@ -130,9 +116,14 @@ public class UIProperties {
         return group;
     }
 
-    private void startFrameUpdater() {
+    private void startFrameUpdater(Game game) {
+
         Thread thread = new Thread(() -> {
+            int count = 0;
             while (true) {
+                count++;
+                if(count % 2 == 0)
+                    game.increaseTurn();
                 for (Runnable runnable : runnables)
                     runnable.run();
                 try {

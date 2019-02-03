@@ -670,10 +670,10 @@
       "productsPath": "src/Resources/Data/Game/Products/"
     },
     "middleMapView": {
-      "X1": 170,
-      "X2": 500,
-      "Y1": 120,
-      "Y2": 400,
+      "X1": 200,
+      "X2": 570,
+      "Y1": 200,
+      "Y2": 450,
       "grassView": {
         "path": "src/Resources/Data/Game/grass1.png",
         "animation": {

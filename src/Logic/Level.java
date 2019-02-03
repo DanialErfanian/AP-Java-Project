@@ -1,6 +1,5 @@
 package Logic;
 
-import FarmFrenzy.GameUI.UIProperties;
 import Products.Product;
 import Utils.WorkshopBuilder;
 import com.gilecode.yagson.YaGson;
