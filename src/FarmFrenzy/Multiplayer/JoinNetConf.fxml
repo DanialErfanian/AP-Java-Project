@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane prefHeight="661.0" prefWidth="1007.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="FarmFrenzy.Multiplayer.JoinNetConf">
+    <center>
+        <VBox alignment="CENTER" prefHeight="463.0" prefWidth="657.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="79.0" prefWidth="815.0">
+                <Label text="Server IP:      ">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="serverIP" prefHeight="49.0" prefWidth="300.0" promptText="Enter server IP">
+                    <font>
+                        <Font size="26.0"/>
+                    </font>
+                </TextField>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="79.0" prefWidth="815.0">
+                <Label text="Server port:  ">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="serverPort" prefHeight="38.0" prefWidth="300.0"
+                           promptText="Enter server port">
+                    <font>
+                        <Font size="26.0"/>
+                    </font>
+                </TextField>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="256.0" prefHeight="79.0" prefWidth="815.0">
+                <Label text="Listen port:   ">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="listenPort" prefHeight="38.0" prefWidth="300.0"
+                           promptText="Enter listen port">
+                    <font>
+                        <Font size="26.0"/>
+                    </font>
+                </TextField>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="311.0" prefHeight="79.0" prefWidth="815.0">
+                <Label text="Username:    ">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="username" prefHeight="38.0" prefWidth="300.0" promptText="Enter username">
+                    <font>
+                        <Font size="26.0"/>
+                    </font>
+                </TextField>
+            </HBox>
+            <Button fx:id="joinButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Join">
+                <VBox.margin>
+                    <Insets top="30.0"/>
+                </VBox.margin>
+            </Button>
+        </VBox>
+    </center>
+</BorderPane>

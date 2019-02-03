@@ -23,11 +23,23 @@
     <center>
           <VBox alignment="TOP_CENTER" prefHeight="238.0" prefWidth="1040.0" styleClass="middle-box">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcome-text" text="سلام عمووووو" textAlignment="CENTER" wrappingWidth="231.7294921875">
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </Text>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="67.0" prefWidth="1040.0" spacing="10.0">
+               <children>
+                  <Label text="Name:">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="nameField" prefHeight="36.0" prefWidth="171.0" promptText="Enter your name">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
             <Text layoutX="414.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcome-text" text="ov hgsssssss'" textAlignment="CENTER" wrappingWidth="231.7294921875">
                <VBox.margin>
                   <Insets top="30.0" />
@@ -35,7 +47,7 @@
             </Text>
             <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="playButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="377.0" styleClass="main-menu-button" text="Play">
+                  <Button fx:id="playButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="377.0" styleClass="Button" text="Play">
                      <font>
                         <Font size="31.0" />
                      </font>
@@ -48,10 +60,10 @@
    <bottom>
       <HBox alignment="TOP_CENTER" prefHeight="91.0" prefWidth="1040.0" styleClass="bottom-box" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" styleClass="main-menu-button" text="Options" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="main-menu-button" text="Awards" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="main-menu-button" text="Credits" />
-            <Button fx:id="exitButton" layoutX="72.0" layoutY="10.0" mnemonicParsing="false" styleClass="main-menu-button" text="Exit" />
+            <Button fx:id="multiplayer" mnemonicParsing="false" styleClass="Button" text="Multiplayer" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="Button" text="Awards" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="Button" text="Credits" />
+            <Button fx:id="exitButton" layoutX="72.0" layoutY="10.0" mnemonicParsing="false" styleClass="Button" text="Exit" />
          </children>
       </HBox>
    </bottom>
