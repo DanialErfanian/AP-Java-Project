@@ -22,6 +22,6 @@ public class ViewableScoreboard implements Serializable {
     }
 
     public ArrayList<ScoreboardProfile> getScoreboardProfiles() {
-        return (ArrayList<ScoreboardProfile>) members.values();
+        return new ArrayList<ScoreboardProfile>(members.values());
     }
 }
