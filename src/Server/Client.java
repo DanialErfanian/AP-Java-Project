@@ -53,7 +53,7 @@ public class Client {
         if (result.getStatusCode() != 200)
             throw new StatusCodeException(result.getStatusCode());
         profile.setToken(result.getAuthenticationProfile().getToken());
-        updateScoreboard();
+        updateScoreboardUI();
     }
 
     private void fixIp() throws BadServerException {
@@ -67,7 +67,7 @@ public class Client {
         BaseResult result = commandSender.sendCommand(command);
         if (result.getStatusCode() != 200)
             throw new StatusCodeException(result.getStatusCode());
-        updateScoreboard();
+        //updateScoreboardUI(); we don't need this update
     }
 
     public void joinScoreboard() throws BadServerException, StatusCodeException {
@@ -78,7 +78,7 @@ public class Client {
         scoreboard = result.getScoreboard();
     }
 
-    private void updateScoreboard() {
+    private void updateScoreboardUI() {
         if (onScoreboardChange != null)
             onScoreboardChange.run();
     }
@@ -97,7 +97,7 @@ public class Client {
             throw new StatusCodeException(result.getStatusCode());
     }
 
-    public void sendMessage(Message message) throws BadServerException, StatusCodeException {
+    private void sendMessage(Message message) throws BadServerException, StatusCodeException {
         SendMessageCommand command = new SendMessageCommand(profile.toAuthenticationProfile(), message);
         BaseResult result = commandSender.sendCommand(command);
         if (result.getStatusCode() != 200)
@@ -137,6 +137,7 @@ public class Client {
 
     public void scoreboardUpdate(ScoreboardProfile scoreboardProfile) {
         getScoreboard().addMember(scoreboardProfile);
+        updateScoreboardUI();
     }
 
     public void scoreboardLeave(ScoreboardProfile scoreboardProfile) {

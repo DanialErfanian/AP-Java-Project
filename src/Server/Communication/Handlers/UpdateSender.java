@@ -23,6 +23,7 @@ public class UpdateSender {
             if (socket == null)
                 connect();
             YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
+            System.err.println("UpdateSender: sending update: " + update.getClass());
             output.writeObject(mapper.toJson(update, BaseUpdate.class));
         } catch (Exception e) {
             System.err.println("Error while writing object to socket.");

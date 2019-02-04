@@ -28,7 +28,8 @@ public class UpdateReceiver implements Runnable {
                 YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
                 String updateJson = (String) input.readObject();
                 BaseUpdate update = mapper.fromJson(updateJson, BaseUpdate.class);
-                System.err.println("new update found :D");
+                System.err.println("UpdateReceiver: new update found: " + update.getClass());
+                System.err.println("UpdateReceiver: starting update...");
                 update.start();
             }
         } catch (Exception e) {

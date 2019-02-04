@@ -31,6 +31,12 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            Client.getInstance().joinScoreboard();
+        } catch (BadServerException | StatusCodeException e) {
+            System.out.println("We can't subscribe on Scoreboard");
+            e.printStackTrace();
+        }
         updateScoreboard();
         sendImage.setOnMouseClicked(mouseEvent -> {
             String messageText = messageField.getText();

@@ -39,7 +39,9 @@ public class CommandReceiver implements Runnable {
                 YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
                 BaseCommand command;
                 command = mapper.fromJson(json, BaseCommand.class);
+                System.err.println("CommandReceiver new Command: " + command.getClass());
                 BaseResult result = command.start();
+                System.err.println("CommandReceiver sending result to client \nresult: " + result.getClass());
                 if (result instanceof GetIpResult)
                     ((GetIpResult) result).setIp(socket.getInetAddress().getHostAddress());
                 String resultJson = mapper.toJson(result, BaseResult.class);

@@ -40,11 +40,14 @@ public class CommandSender {
             connectServer();
         }
         try {
+            System.err.println("CommandSender sending command: " + command.getClass());
             YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
             String json = mapper.toJson(command, BaseCommand.class);
             serverOutput.writeObject(json);
             serverOutput.flush();
-            return mapper.fromJson((String) serverInput.readObject(), BaseResult.class);
+            BaseResult result = mapper.fromJson((String) serverInput.readObject(), BaseResult.class);
+            System.err.println("CommandSender found result: " + result.getClass());
+            return result;
         } catch (IOException e) {
             throw new BadServerException(e);
         } catch (ClassNotFoundException e) {
