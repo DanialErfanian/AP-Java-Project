@@ -1,97 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<BorderPane prefHeight="748.0" prefWidth="1028.0" styleClass="rootPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FarmFrenzy.Multiplayer.HomePage.Controller">
+<BorderPane prefHeight="748.0" prefWidth="1028.0" styleClass="rootPane" stylesheets="@style.css"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="FarmFrenzy.Multiplayer.HomePage.Controller">
     <bottom>
         <HBox alignment="CENTER" prefHeight="100.0" BorderPane.alignment="CENTER">
             <BorderPane.margin>
-                <Insets />
+                <Insets/>
             </BorderPane.margin>
-           <children>
-               <Button mnemonicParsing="false" text="Play">
-                   <HBox.margin>
-                       <Insets />
-                   </HBox.margin>
-               </Button>
-           </children>
+            <Button mnemonicParsing="false" text="Play">
+                <HBox.margin>
+                    <Insets/>
+                </HBox.margin>
+            </Button>
         </HBox>
     </bottom>
     <center>
         <SplitPane dividerPositions="0.24561403508771928" styleClass="splitPane" BorderPane.alignment="CENTER">
-           <items>
-               <VBox prefHeight="200.0" prefWidth="100.0">
-                  <children>
-                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="playersLabel">
-                         <children>
-                             <Label prefHeight="56.0" prefWidth="144.0" text="Players" textAlignment="CENTER">
-                                 <font>
-                                     <Font size="36.0" />
-                                 </font>
-                             </Label>
-                         </children>
-                      </HBox>
-                      <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="379.0" prefWidth="414.0" styleClass="playersPane" VBox.vgrow="SOMETIMES">
-                         <content>
-                             <VBox fx:id="usersBox" alignment="TOP_CENTER">
-                                 <padding>
-                                     <Insets top="10.0" />
-                                 </padding>
-                                <children>
-                                    <Label text="Label" />
-                                    <Label layoutX="10.0" layoutY="10.0" text="sadlkjfgl;kdj lg dj" />
-                                    <Label layoutX="10.0" layoutY="10.0" text="Label" />
-                                    <Label layoutX="10.0" layoutY="39.0" text="sadlkjfgl;kdj lg dj" />
-                                </children>
-                             </VBox>
-                         </content>
-                      </ScrollPane>
-                  </children>
-               </VBox>
-               <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
-                  <children>
-                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="playersLabel">
-                         <children>
-                             <Label prefHeight="56.0" prefWidth="105.0" text="Chat" textAlignment="CENTER">
-                                 <font>
-                                     <Font size="36.0" />
-                                 </font>
-                             </Label>
-                         </children>
-                      </HBox>
-                      <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="379.0" prefWidth="414.0" styleClass="playersPane" VBox.vgrow="SOMETIMES">
-                         <content>
-                             <BorderPane prefHeight="200.0" prefWidth="200.0">
-                                 <bottom>
-                                     <HBox styleClass="messageBox" BorderPane.alignment="CENTER">
-                                        <children>
-                                            <TextField fx:id="messageField" onAction="#sendMessage" styleClass="form-control" HBox.hgrow="ALWAYS" />
-                                            <ImageView fx:id="sendImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="sendImage">
-                                               <image>
-                                                   <Image url="@../../../Resources/send-message.png" />
-                                               </image>
-                                            </ImageView>
-                                        </children>
-                                     </HBox>
-                                 </bottom>
-                           <center>
-                              <VBox fx:id="messagesBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-                           </center>
-                             </BorderPane>
-                         </content>
-                      </ScrollPane>
-                  </children>
-               </VBox>
-           </items>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="playersLabel">
+                    <Label prefHeight="56.0" prefWidth="144.0" text="Players" textAlignment="CENTER">
+                        <font>
+                            <Font size="36.0"/>
+                        </font>
+                    </Label>
+                </HBox>
+                <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="379.0"
+                            prefWidth="414.0" styleClass="playersPane" VBox.vgrow="SOMETIMES" fx:id="scrollPane">
+                    <VBox fx:id="usersBox" alignment="TOP_CENTER">
+                        <padding>
+                            <Insets top="10.0"/>
+                        </padding>
+                        <Label text="Label"/>
+                        <Label layoutX="10.0" layoutY="10.0" text="sadlkjfgl;kdj lg dj"/>
+                        <Label layoutX="10.0" layoutY="10.0" text="Label"/>
+                        <Label layoutX="10.0" layoutY="39.0" text="sadlkjfgl;kdj lg dj"/>
+                    </VBox>
+                </ScrollPane>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="playersLabel">
+                    <Label prefHeight="56.0" prefWidth="105.0" text="Chat" textAlignment="CENTER">
+                        <font>
+                            <Font size="36.0"/>
+                        </font>
+                    </Label>
+                </HBox>
+                <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="379.0"
+                            prefWidth="414.0" styleClass="playersPane" VBox.vgrow="SOMETIMES">
+                    <BorderPane prefHeight="200.0" prefWidth="200.0">
+                        <bottom>
+                            <HBox styleClass="messageBox" BorderPane.alignment="CENTER">
+                                <TextField fx:id="messageField" onAction="#sendMessage"
+                                           styleClass="form-control" HBox.hgrow="ALWAYS"/>
+                                <ImageView fx:id="sendImage" fitHeight="40.0" fitWidth="40.0"
+                                           pickOnBounds="true" preserveRatio="true"
+                                           styleClass="sendImage">
+                                    <Image url="@../../../Resources/send-message.png"/>
+                                </ImageView>
+                            </HBox>
+                        </bottom>
+                        <center>
+                            <VBox fx:id="messagesBox" prefHeight="200.0" prefWidth="100.0"
+                                  BorderPane.alignment="CENTER"/>
+                        </center>
+                    </BorderPane>
+                </ScrollPane>
+            </VBox>
         </SplitPane>
     </center>
 </BorderPane>

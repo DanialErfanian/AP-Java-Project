@@ -24,7 +24,7 @@ public class UpdateReceiver implements Runnable {
             ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
             while (!socket.isClosed()) {
                 BaseUpdate update = (BaseUpdate) input.readObject();
-                System.err.println("HIIIIII :D");
+                System.err.println("new update found :D");
                 update.start();
             }
         } catch (Exception e) {

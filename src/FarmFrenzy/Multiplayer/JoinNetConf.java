@@ -1,5 +1,6 @@
 package FarmFrenzy.Multiplayer;
 
+import FarmFrenzy.Multiplayer.HomePage.Controller;
 import Server.Client;
 import Server.Communication.Handlers.CommandSender;
 import Server.Exceptions.BadServerException;
@@ -51,13 +52,22 @@ public class JoinNetConf implements Initializable {
             // Change Page
             Scene scene = joinButton.getScene();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage/ClientHomeView.fxml"));
-            Parent root = null;
+            Parent root;
             try {
                 root = loader.load();
+                scene.setRoot(root);
+                Controller controller = loader.getController();
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    controller.update();
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            scene.setRoot(root);
         });
     }
 }

@@ -24,6 +24,7 @@ public class Client {
 
     private static Client instance = new Client();
     private MessageHandler messageHandler;
+    private Runnable onScoreboardChange;
 
     @Contract(pure = true)
     public static Client getInstance() {
@@ -52,6 +53,7 @@ public class Client {
         if (result.getStatusCode() != 200)
             throw new StatusCodeException(result.getStatusCode());
         profile.setToken(result.getAuthenticationProfile().getToken());
+        updateScoreboard();
     }
 
     private void fixIp() throws BadServerException {
@@ -65,6 +67,7 @@ public class Client {
         BaseResult result = commandSender.sendCommand(command);
         if (result.getStatusCode() != 200)
             throw new StatusCodeException(result.getStatusCode());
+        updateScoreboard();
     }
 
     public void joinScoreboard() throws BadServerException, StatusCodeException {
@@ -73,6 +76,11 @@ public class Client {
         if (result.getStatusCode() != 200)
             throw new StatusCodeException(result.getStatusCode());
         scoreboard = result.getScoreboard();
+    }
+
+    private void updateScoreboard() {
+        if (onScoreboardChange != null)
+            onScoreboardChange.run();
     }
 
     public void leaveScoreboard() throws BadServerException, StatusCodeException {
@@ -153,5 +161,9 @@ public class Client {
 
     public ArrayList<ScoreboardProfile> getScoreboardProfiles() throws BadServerException {
         return getScoreboard().getScoreboardProfiles();
+    }
+
+    public void setOnScoreboardChange(Runnable runnable) {
+        onScoreboardChange = runnable;
     }
 }
