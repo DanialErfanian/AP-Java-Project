@@ -1,6 +1,6 @@
 package Server.User;
 
-import Server.Communication.ClientUpdates.ChatMessageUpdate;
+import Server.Communication.ClientUpdates.BaseUpdate;
 import Server.Communication.Handlers.UpdateSender;
 import Utils.NetworkConfig;
 
@@ -68,12 +68,12 @@ public class HostProfile extends BaseProfile {
         return netConf;
     }
 
-    public void setNetConf(NetworkConfig netConf) {
+    private void setNetConf(NetworkConfig netConf) {
         this.netConf = netConf;
         this.updateSender = new UpdateSender(netConf);
     }
 
-    public void sendUpdate(ChatMessageUpdate update) {
+    public void sendUpdate(BaseUpdate update) {
         this.updateSender.sendUpdate(update);
     }
 }

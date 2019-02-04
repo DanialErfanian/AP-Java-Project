@@ -6,6 +6,10 @@ import Server.User.ScoreboardProfile;
 public class ScoreboardChangeUpdate extends BaseUpdate {
     private ScoreboardProfile scoreboardProfile;
 
+    public ScoreboardChangeUpdate(ScoreboardProfile scoreboardProfile) {
+        this.scoreboardProfile = scoreboardProfile;
+    }
+
     protected void run() {
         Client.getInstance().scoreboardUpdate(scoreboardProfile);
     }

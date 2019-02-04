@@ -8,7 +8,7 @@ public abstract class BaseProfile implements Serializable {
     public BaseProfile() {
     }
 
-    public BaseProfile(String username) {
+    BaseProfile(String username) {
         this.username = username;
     }
 
