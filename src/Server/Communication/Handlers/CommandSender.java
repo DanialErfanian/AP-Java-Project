@@ -4,6 +4,8 @@ import Server.Communication.Commands.BaseCommand;
 import Server.Communication.Results.BaseResult;
 import Server.Exceptions.BadServerException;
 import Utils.NetworkConfig;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.YaGsonBuilder;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -38,9 +40,11 @@ public class CommandSender {
             connectServer();
         }
         try {
-            serverOutput.writeObject(command);
+            YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
+            String json = mapper.toJson(command, BaseCommand.class);
+            serverOutput.writeObject(json);
             serverOutput.flush();
-            return (BaseResult) serverInput.readObject();
+            return mapper.fromJson((String) serverInput.readObject(), BaseResult.class);
         } catch (IOException e) {
             throw new BadServerException(e);
         } catch (ClassNotFoundException e) {

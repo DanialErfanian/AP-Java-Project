@@ -2,6 +2,8 @@ package Server.Communication.Handlers;
 
 import Server.Communication.ClientUpdates.BaseUpdate;
 import Utils.NetworkConfig;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.YaGsonBuilder;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -20,7 +22,8 @@ public class UpdateSender {
         try {
             if (socket == null)
                 connect();
-            output.writeObject(update);
+            YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
+            output.writeObject(mapper.toJson(update, BaseUpdate.class));
         } catch (Exception e) {
             System.err.println("Error while writing object to socket.");
             e.printStackTrace();

@@ -2,6 +2,8 @@ package Server.Communication.Handlers;
 
 import Server.Communication.ClientUpdates.BaseUpdate;
 import Utils.NetworkConfig;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.YaGsonBuilder;
 
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
@@ -23,7 +25,9 @@ public class UpdateReceiver implements Runnable {
             Socket socket = serverSocket.accept();
             ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
             while (!socket.isClosed()) {
-                BaseUpdate update = (BaseUpdate) input.readObject();
+                YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
+                String updateJson = (String) input.readObject();
+                BaseUpdate update = mapper.fromJson(updateJson, BaseUpdate.class);
                 System.err.println("new update found :D");
                 update.start();
             }

@@ -3,6 +3,8 @@ package Server.Communication.Handlers;
 import Server.Communication.Commands.BaseCommand;
 import Server.Communication.Results.BaseResult;
 import Server.Communication.Results.GetIpResult;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.YaGsonBuilder;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -33,11 +35,15 @@ public class CommandReceiver implements Runnable {
                 Object data = input.readObject();
                 if (data == null)
                     break;
-                BaseCommand command = (BaseCommand) data;
+                String json = (String) data;
+                YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
+                BaseCommand command;
+                command = mapper.fromJson(json, BaseCommand.class);
                 BaseResult result = command.start();
                 if (result instanceof GetIpResult)
                     ((GetIpResult) result).setIp(socket.getInetAddress().getHostAddress());
-                output.writeObject(result);
+                String resultJson = mapper.toJson(result, BaseResult.class);
+                output.writeObject(resultJson);
                 output.flush();
             } catch (Exception e) {
                 e.printStackTrace();
